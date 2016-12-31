@@ -91,7 +91,7 @@ namespace FastDeepCloner
                     if (item != null)
                     {
                         var underlyingSystemType = item.GetType();
-                        clonedIteam = (item is string || IsInternalType(underlyingSystemType))
+                        clonedIteam = (IsInternalType(underlyingSystemType))
                             ? item
                             : new ClonerShared(item, _fieldtype, _alreadyCloned).Clone();
                     }
@@ -115,7 +115,7 @@ namespace FastDeepCloner
                     if (item != null)
                     {
                         var underlyingSystemType = item.GetType();
-                        clonedIteam = (item is string || IsInternalType(underlyingSystemType))
+                        clonedIteam = (IsInternalType(underlyingSystemType))
                             ? item
                             : new ClonerShared(item, _fieldtype, _alreadyCloned).Clone();
                     }
@@ -145,7 +145,7 @@ namespace FastDeepCloner
                         }
 
 
-                        if ((value is string || IsInternalType(property.FieldType)))
+                        if ((IsInternalType(property.FieldType)))
                             property.SetValue(resObject, value);
                         else
                         {
@@ -173,7 +173,7 @@ namespace FastDeepCloner
                         }
 
 
-                        if ((value is string || IsInternalType(property.PropertyType)))
+                        if ((IsInternalType(property.PropertyType)))
                             property.SetValue(resObject, value);
                         else
                         {
