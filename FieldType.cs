@@ -1,8 +1,8 @@
 ﻿namespace FastDeepCloner
 {
     /// <summary>
-    /// PropertyField for public property
-    /// fielInfo for private property
+    /// PropertyField for property
+    /// fielInfo for property
     /// </summary>
     public enum FieldType
     {
