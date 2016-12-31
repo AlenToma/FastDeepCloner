@@ -1,0 +1,5 @@
+D:\Projects\FastDeepCloner\obj\Debug\FastDeepCloner.csprojResolveAssemblyReference.cache
+D:\Projects\FastDeepCloner\bin\Debug\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\bin\Debug\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\obj\Debug\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\obj\Debug\FastDeepCloner.pdb
