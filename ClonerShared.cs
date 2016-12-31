@@ -140,7 +140,7 @@ namespace FastDeepCloner
 
                         if (_alreadyCloned.ContainsKey(value) && _alreadyCloned.ContainsValue(fullPath + property.Name))
                         {
-                            property.SetValue(resObject, _alreadyCloned[fullPath + property.Name]);
+                            property.SetValue(resObject, _alreadyCloned[value]);
                             continue;
                         }
 
@@ -168,7 +168,7 @@ namespace FastDeepCloner
 
                         if (_alreadyCloned.ContainsKey(value) && _alreadyCloned.ContainsValue(fullPath + property.Name))
                         {
-                            property.SetValue(resObject, _alreadyCloned[fullPath + property.Name]);
+                            property.SetValue(resObject, _alreadyCloned[value]);
                             continue;
                         }
 
