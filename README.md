@@ -6,4 +6,5 @@ Update
 Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 
 How to use 
+
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar)
