@@ -10,16 +10,16 @@ namespace FastDeepCloner
         private FieldType _fieldtype;
         private object _objectToBeCloned;
         private Type _primaryType;
-        private Dictionary<object, object> _alreadyCloned;
+        private Dictionary<ClonedItems, object> _alreadyCloned;
         internal ClonerShared(object objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo)
         {
             _fieldtype = fieldType;
             _objectToBeCloned = objectToBeCloned;
             _primaryType = objectToBeCloned?.GetType() ?? null;
-            _alreadyCloned = new Dictionary<object, object>();
+            _alreadyCloned = new Dictionary<ClonedItems, object>();
         }
 
-        private ClonerShared(object objectToBeCloned, FieldType fieldType, Dictionary<object, object> alreadyCloned)
+        private ClonerShared(object objectToBeCloned, FieldType fieldType, Dictionary<ClonedItems, object> alreadyCloned)
         {
             _fieldtype = fieldType;
             _objectToBeCloned = objectToBeCloned;
@@ -137,10 +137,10 @@ namespace FastDeepCloner
                         var value = property.GetValue(_objectToBeCloned);
                         if (value == null)
                             continue;
-
-                        if (_alreadyCloned.ContainsKey(value) && _alreadyCloned.ContainsValue(fullPath + property.Name))
+                        var clonedItem = new ClonedItems() { Value = value, Key = fullPath + property.Name };
+                        if (_alreadyCloned.ContainsKey(clonedItem))
                         {
-                            property.SetValue(resObject, _alreadyCloned[value]);
+                            property.SetValue(resObject, _alreadyCloned[clonedItem]);
                             continue;
                         }
 
@@ -150,7 +150,7 @@ namespace FastDeepCloner
                         else
                         {
                             var tValue = new ClonerShared(value, _fieldtype, _alreadyCloned).Clone();
-                            _alreadyCloned.Add(value, fullPath + property.Name);
+                            _alreadyCloned.Add(clonedItem, tValue);
                             property.SetValue(resObject, tValue);
                         }
                     }
@@ -166,9 +166,10 @@ namespace FastDeepCloner
                         if (value == null)
                             continue;
 
-                        if (_alreadyCloned.ContainsKey(value) && _alreadyCloned.ContainsValue(fullPath + property.Name))
+                        var clonedItem = new ClonedItems() { Value = value, Key = fullPath + property.Name };
+                        if (_alreadyCloned.ContainsKey(clonedItem))
                         {
-                            property.SetValue(resObject, _alreadyCloned[value]);
+                            property.SetValue(resObject, _alreadyCloned[clonedItem]);
                             continue;
                         }
 
@@ -178,7 +179,7 @@ namespace FastDeepCloner
                         else
                         {
                             var tValue = new ClonerShared(value, _fieldtype, _alreadyCloned).Clone();
-                            _alreadyCloned.Add(value, fullPath + property.Name);
+                            _alreadyCloned.Add(clonedItem, tValue);
                             property.SetValue(resObject, tValue);
                         }
                     }
