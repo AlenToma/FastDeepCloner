@@ -6,9 +6,4 @@ Update
 Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 
 How to use 
-
-Car myobject = FastDeepCloner.DeepCloner.Clone<Car>(myCar);
-
-List<Car> myobjectList = FastDeepCloner.DeepCloner.Clone<List<Car>>(myCars);
-
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar)
