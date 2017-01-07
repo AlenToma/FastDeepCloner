@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FastDeepCloner
 {
-    public class ClonedItems
+    internal class ClonedItems
     {
        public object Value { get; set; }
 

@@ -10,7 +10,7 @@
         /// <returns></returns>
         public static object Clone(object objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo)
         {
-            return new ClonerShared(objectToBeCloned, fieldType).Clone();
+            return new ClonerShared().Clone(objectToBeCloned, fieldType);
         }
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// <returns></returns>
         public static T Clone<T>(T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
         {
-            return (T)new ClonerShared(objectToBeCloned, fieldType).Clone();
+            return (T)new ClonerShared().Clone(objectToBeCloned, fieldType);
         }
     }
 }

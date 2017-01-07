@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// PropertyField for property
-    /// fielInfo for property
+    /// FielInfo for property
     /// </summary>
     public enum FieldType
     {
