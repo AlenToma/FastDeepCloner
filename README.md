@@ -8,3 +8,5 @@ Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 How to use 
 
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar)
+
+nuget:https://www.nuget.org/packages/FastDeepCloner/1.0.8
