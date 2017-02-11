@@ -7,11 +7,9 @@ namespace FastDeepCloner
 {
     internal static class FastDeepClonerCachedItems
     {
-
-        private static Dictionary<Type, FieldInfo[]> _cachedFields = new Dictionary<Type, FieldInfo[]>();
-        private static Dictionary<Type, PropertyInfo[]> _cachedPropertyInfo = new Dictionary<Type, PropertyInfo[]>();
+        private static Dictionary<Type, List<IFastDeepClonerProperty>> _cachedFields = new Dictionary<Type, List<IFastDeepClonerProperty>>();
+        private static Dictionary<Type, List<IFastDeepClonerProperty>> _cachedPropertyInfo = new Dictionary<Type, List<IFastDeepClonerProperty>>();
         private static Dictionary<Type, Type> _cachedTypes = new Dictionary<Type, Type>();
-
         internal static Type GetIListType(this Type type)
         {
             if (_cachedTypes.ContainsKey(type))
@@ -20,53 +18,57 @@ namespace FastDeepCloner
                 _cachedTypes.Add(type, type.GetElementType());
             else
                 _cachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
-
             return _cachedTypes[type];
         }
 
 
-        internal static FieldInfo[] GetFastDeepClonerFields(this Type primaryType)
+        internal static bool GetField(this FieldInfo field, List<IFastDeepClonerProperty> properties)
+        {
+            var f = new FastDeepClonerProperty(field);
+            if (f.CanRead)
+                properties.Add(f);
+            return true;
+        }
+
+        internal static bool GetField(this PropertyInfo field, List<IFastDeepClonerProperty> properties)
+        {
+            var f = new FastDeepClonerProperty(field);
+            if (f.CanRead)
+                properties.Add(f);
+            return true;
+        }
+
+        internal static List<IFastDeepClonerProperty> GetFastDeepClonerFields(this Type primaryType)
         {
             if (!_cachedFields.ContainsKey(primaryType))
             {
-                var properties = new List<FieldInfo>();
+                var properties = new List<IFastDeepClonerProperty>();
                 if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
                 {
-                    properties.AddRange(primaryType.GetTypeInfo().BaseType.GetRuntimeFields().ToList());
-                    properties.AddRange(primaryType.GetRuntimeFields().Where(x => !properties.Any(p => p.Name == x.Name)));
+                   primaryType.GetTypeInfo().BaseType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
+                    primaryType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
                 }
-                else properties.AddRange(primaryType.GetRuntimeFields().ToList());
-
-                properties.RemoveAll(x => x.GetCustomAttribute<FastDeepClonerIgnore>() != null);
-                _cachedFields.Add(primaryType, properties.ToArray());
+                else primaryType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
+                _cachedFields.Add(primaryType, properties);
             }
-
-
-
             return _cachedFields[primaryType];
         }
 
 
-        internal static PropertyInfo[] GetFastDeepClonerProperties(this Type primaryType)
+        internal static List<IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type primaryType)
         {
-
-            if (!_cachedPropertyInfo.ContainsKey(primaryType))
+            if (!_cachedFields.ContainsKey(primaryType))
             {
-                var properties = new List<PropertyInfo>();
+                var properties = new List<IFastDeepClonerProperty>();
                 if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
                 {
-                    properties.AddRange(primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().ToList());
-                    properties.AddRange(primaryType.GetRuntimeProperties().Where(x => !properties.Any(p => p.Name == x.Name)));
+                    primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
+                    primaryType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
                 }
-                else properties.AddRange(primaryType.GetRuntimeProperties().ToList());
-
-                properties.RemoveAll(x => x.GetCustomAttribute<FastDeepClonerIgnore>() != null);
-                _cachedPropertyInfo.Add(primaryType, properties.ToArray());
+                else primaryType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
+                _cachedFields.Add(primaryType, properties);
             }
-
-
-            return _cachedPropertyInfo[primaryType];
+            return _cachedFields[primaryType];
         }
-
     }
 }

@@ -43,7 +43,9 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="FastDeepClonerCachedItems.cs" />
     <Compile Include="FastDeepClonerIgnore.cs" />
+    <Compile Include="FastDeepClonerProperty.cs" />
     <Compile Include="FieldType.cs" />
+    <Compile Include="IFastDeepClonerProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

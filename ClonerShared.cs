@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FastDeepCloner
 {
@@ -26,8 +27,7 @@ namespace FastDeepCloner
                     object clonedIteam = null;
                     if (item != null)
                     {
-                        var underlyingSystemType = item.GetType();
-                        clonedIteam = underlyingSystemType.IsInternalType()
+                        clonedIteam = item.GetType().IsInternalType()
                             ? item
                             : Clone(item, fieldType, _alreadyCloned);
                     }
@@ -50,8 +50,7 @@ namespace FastDeepCloner
                     object clonedIteam = null;
                     if (item != null)
                     {
-                        var underlyingSystemType = item.GetType();
-                        clonedIteam = underlyingSystemType.IsInternalType()
+                        clonedIteam = item.GetType().IsInternalType()
                             ? item
                             : Clone(item, fieldType, _alreadyCloned);
                     }
@@ -62,63 +61,26 @@ namespace FastDeepCloner
             {
                 resObject = Activator.CreateInstance(_primaryType);
                 var fullPath = _primaryType.Name;
-                if (fieldType == FieldType.FieldInfo)
+                foreach (IFastDeepClonerProperty property in (fieldType == FieldType.FieldInfo ? _primaryType.GetFastDeepClonerFields() : _primaryType.GetFastDeepClonerProperties()))
                 {
-                    foreach (var property in _primaryType.GetFastDeepClonerFields())
+                    var value = property.GetValue(objectToBeCloned);
+                    if (value == null)
+                        continue;
+                    var key = fullPath + property.Name;
+                    var clonedItem = new ClonedItems() { Value = value, Key = key };
+                    if (_alreadyCloned.ContainsKey(clonedItem))
                     {
-
-                        // Validate if the property is a writable one.
-                        if (property.IsInitOnly || property.FieldType == typeof(IntPtr))
-                            continue;
-
-                        var value = property.GetValue(objectToBeCloned);
-                        if (value == null)
-                            continue;
-                        var key = fullPath + property.Name;
-                        var clonedItem = new ClonedItems() { Value = value, Key = key };
-                        if (_alreadyCloned.ContainsKey(clonedItem))
-                        {
-                            property.SetValue(resObject, _alreadyCloned[clonedItem]);
-                            continue;
-                        }
-
-
-                        if (property.FieldType.IsInternalType())
-                            property.SetValue(resObject, value);
-                        else
-                        {
-                            var tValue = Clone(value, fieldType, _alreadyCloned);
-                            _alreadyCloned.Add(clonedItem, tValue);
-                            property.SetValue(resObject, tValue);
-                        }
+                        property.SetValue(resObject, _alreadyCloned[clonedItem]);
+                        continue;
                     }
-                }
-                else
-                {
-                    foreach (var property in _primaryType.GetFastDeepClonerProperties())
-                    {
-                        // Validate if the property is a writable one.
-                        if (!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr))
-                            continue;
-                        var value = property.GetValue(objectToBeCloned);
-                        if (value == null)
-                            continue;
-                        var key = fullPath + property.Name;
-                        var clonedItem = new ClonedItems() { Value = value, Key = key };
-                        if (_alreadyCloned.ContainsKey(clonedItem))
-                        {
-                            property.SetValue(resObject, _alreadyCloned[clonedItem]);
-                            continue;
-                        }
 
-                        if (property.PropertyType.IsInternalType())
-                            property.SetValue(resObject, value);
-                        else
-                        {
-                            var tValue = Clone(value, fieldType, _alreadyCloned);
-                            _alreadyCloned.Add(clonedItem, tValue);
-                            property.SetValue(resObject, tValue);
-                        }
+                    if (property.IsInternalType)
+                        property.SetValue(resObject, value);
+                    else
+                    {
+                        var tValue = Clone(value, fieldType, _alreadyCloned);
+                        _alreadyCloned.Add(clonedItem, tValue);
+                        property.SetValue(resObject, tValue);
                     }
                 }
             }
