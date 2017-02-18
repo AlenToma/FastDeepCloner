@@ -5,13 +5,18 @@ Update
 Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 usie FastDeepClonerSettings to override CreateInstance
 how to use
+
 var settings = new FastDeepCloner.FastDeepClonerSettings() {
                 FieldType = FastDeepCloner.FieldType.FieldInfo,
                 OnCreateInstance = new FastDeepCloner.Extensions.CreateInstance((Type type) =>
                 {
                     return FormatterServices.GetUninitializedObject(type);
                 })
+                
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
+
 How to use
+
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
+
 nuget:https://www.nuget.org/packages/FastDeepCloner/
