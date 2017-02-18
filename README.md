@@ -18,6 +18,7 @@ var settings = new FastDeepCloner.FastDeepClonerSettings() {
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
 
 //OR
+
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
 
 </code> 
