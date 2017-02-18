@@ -4,6 +4,7 @@ FastDeepCloner is very fast portable library, This is a C# based .NET 4+ library
 Update
 Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 usie FastDeepClonerSettings to override CreateInstance
+
 how to use
 
 <code>
