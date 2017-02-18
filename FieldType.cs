@@ -7,6 +7,7 @@
     public enum FieldType
     {
         PropertyInfo,
-        FieldInfo
+        FieldInfo,
+        Both
     }
 }

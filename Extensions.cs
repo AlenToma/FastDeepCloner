@@ -2,8 +2,10 @@
 
 namespace FastDeepCloner
 {
-    internal static class Extensions
+    public static class Extensions
     {
+        public delegate object CreateInstance(Type type);
+
         /// <summary>
         /// Determines if the specified type is an internal type.
         /// </summary>
