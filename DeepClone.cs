@@ -11,7 +11,7 @@ namespace FastDeepCloner
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
         /// <returns></returns>
-        public static T Clone<T>(T objectToBeCloned, FastDeepClonerSettings settings) where T : class
+        public static T Clone<T>(T objectToBeCloned, FastDeepClonerSettings settings) where T : class, new()
         {
             return (T)new ClonerShared(settings).Clone(objectToBeCloned);
         }
@@ -34,7 +34,7 @@ namespace FastDeepCloner
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
         /// <returns></returns>
-        public static T Clone<T>(T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
+        public static T Clone<T>(T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class, new()
         {
             return (T)new ClonerShared(fieldType).Clone(objectToBeCloned);
         }
@@ -45,7 +45,7 @@ namespace FastDeepCloner
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T CreateInstance<T>() where T : class
+        public static T CreateInstance<T>() where T : class, new()
         {
             return (T)typeof(T).Creator();
         }

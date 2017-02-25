@@ -5,7 +5,7 @@ namespace FastDeepCloner
     /// <summary>
     /// Ignore Properties or Field that containe this attribute
     /// </summary>
-    public class FastDeepClonerIgnore : Attribute
+    public sealed class FastDeepClonerIgnore : Attribute
     {
     }
 }

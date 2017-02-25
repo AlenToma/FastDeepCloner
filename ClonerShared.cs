@@ -58,6 +58,9 @@ namespace FastDeepCloner
             if (_primaryType.IsArray && _primaryType.GetArrayRank() > 1)
                 return ((Array)objectToBeCloned).Clone();
 
+            if (objectToBeCloned.IsInternalObject())
+                return objectToBeCloned;
+
             Object resObject;
             if (_primaryType.IsArray || (objectToBeCloned as IList) != null)
             {
