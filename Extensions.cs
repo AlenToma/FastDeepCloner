@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace FastDeepCloner
@@ -6,6 +7,41 @@ namespace FastDeepCloner
     public static class Extensions
     {
         public delegate object CreateInstance(Type type);
+        private static Dictionary<Type, int> typeDict = new Dictionary<Type, int>
+        {
+         {typeof(int),0},
+         {typeof(double),0},
+         {typeof(float),0},
+         {typeof(bool),0},
+         {typeof(decimal),0},
+         {typeof(long),0},
+         {typeof(DateTime),0},
+         {typeof(ushort),0},
+         {typeof(short),0},
+         {typeof(sbyte),0},
+         {typeof(byte),0},
+         {typeof(ulong),0},
+         {typeof(uint),0},
+         {typeof(char),0},
+         {typeof(TimeSpan),0},
+         {typeof(decimal?),0},
+         {typeof(int?),0},
+         {typeof(double?),0},
+         {typeof(float?),0},
+         {typeof(bool?),0},
+         {typeof(long?),0},
+         {typeof(DateTime?),0},
+         {typeof(ushort?),0},
+         {typeof(short?),0},
+         {typeof(sbyte?),0},
+         {typeof(byte?),0},
+         {typeof(ulong?),0},
+         {typeof(uint?),0},
+         {typeof(char?),0},
+         {typeof(TimeSpan?),0},
+         {typeof(string),0},
+        };
+
 
 
         /// <summary>
@@ -16,7 +52,7 @@ namespace FastDeepCloner
         internal static bool IsInternalObject(this object o)
         {
             return o is Enum;
-           
+
         }
 
         /// <summary>
@@ -26,38 +62,7 @@ namespace FastDeepCloner
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         internal static bool IsInternalType(this Type underlyingSystemType)
         {
-            return
-                underlyingSystemType == typeof(string) |
-                underlyingSystemType == typeof(decimal) |
-                underlyingSystemType == typeof(int) |
-                underlyingSystemType == typeof(double) |
-                underlyingSystemType == typeof(float) |
-                underlyingSystemType == typeof(bool) |
-                underlyingSystemType == typeof(long) |
-                underlyingSystemType == typeof(DateTime) |
-                underlyingSystemType == typeof(ushort) |
-                underlyingSystemType == typeof(short) |
-                underlyingSystemType == typeof(sbyte) |
-                underlyingSystemType == typeof(byte) |
-                underlyingSystemType == typeof(ulong) |
-                underlyingSystemType == typeof(uint) |
-                underlyingSystemType == typeof(char) |
-                underlyingSystemType == typeof(TimeSpan) |
-                underlyingSystemType == typeof(decimal?) |
-                underlyingSystemType == typeof(int?) |
-                underlyingSystemType == typeof(double?) |
-                underlyingSystemType == typeof(float?) |
-                underlyingSystemType == typeof(bool?) |
-                underlyingSystemType == typeof(long?) |
-                underlyingSystemType == typeof(DateTime?) |
-                underlyingSystemType == typeof(ushort?) |
-                underlyingSystemType == typeof(short?) |
-                underlyingSystemType == typeof(sbyte?) |
-                underlyingSystemType == typeof(byte?) |
-                underlyingSystemType == typeof(ulong?) |
-                underlyingSystemType == typeof(uint?) |
-                underlyingSystemType == typeof(char?) |
-                underlyingSystemType == typeof(TimeSpan?);
+            return typeDict.ContainsKey(underlyingSystemType);
         }
     }
 }

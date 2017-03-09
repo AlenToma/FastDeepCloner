@@ -35,17 +35,13 @@ namespace FastDeepCloner
 
         internal static bool GetField(this FieldInfo field, List<IFastDeepClonerProperty> properties)
         {
-            var f = new FastDeepClonerProperty(field);
-            if (f.CanRead)
-                properties.Add(f);
+            properties.Add(new FastDeepClonerProperty(field));
             return true;
         }
 
         internal static bool GetField(this PropertyInfo field, List<IFastDeepClonerProperty> properties)
         {
-            var f = new FastDeepClonerProperty(field);
-            if (f.CanRead)
-                properties.Add(f);
+            properties.Add(new FastDeepClonerProperty(field));
             return true;
         }
 

@@ -27,6 +27,8 @@ namespace FastDeepCloner
             var fullPath = _primaryType.Name;
             foreach (IFastDeepClonerProperty property in properties)
             {
+                if (!property.CanRead || property.FastDeepClonerIgnore)
+                    continue;
                 var value = property.GetValue(objectToBeCloned);
                 if (value == null)
                     continue;
