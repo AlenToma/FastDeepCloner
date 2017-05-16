@@ -40,7 +40,7 @@ namespace FastDeepCloner
                     continue;
                 }
 
-                if (property.IsInternalType)
+                if (property.IsInternalType || value.GetType().IsInternalType())
                     property.SetValue(resObject, value);
                 else
                 {
