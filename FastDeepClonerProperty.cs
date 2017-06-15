@@ -59,6 +59,16 @@ namespace FastDeepCloner
             return Attributes?.Any(x => x.GetType() == typeof(T)) ?? false;
         }
 
+        public T GetCustomAttribute<T>() where T : Attribute, new()
+        {
+            return (T)Attributes?.FirstOrDefault(x => x.GetType() == typeof(T));
+        }
+
+        public Attribute GetCustomAttribute(Type type)
+        {
+            return Attributes?.FirstOrDefault(x => x.GetType() == type);
+        }
+
         public bool ContainAttribute(Type type)
         {
             return Attributes?.Any(x => x.GetType() == type) ?? false;

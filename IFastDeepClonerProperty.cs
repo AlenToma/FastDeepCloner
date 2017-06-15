@@ -35,5 +35,9 @@ namespace FastDeepCloner
 
         bool ContainAttribute(Type type);
 
+        T GetCustomAttribute<T>() where T : Attribute, new();
+
+        Attribute GetCustomAttribute(Type type);
+
     }
 }
