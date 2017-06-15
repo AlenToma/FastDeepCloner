@@ -31,5 +31,9 @@ namespace FastDeepCloner
         /// </summary>
         bool IsInternalType { get; }
 
+        bool ContainAttribute<T>() where T : Attribute, new();
+
+        bool ContainAttribute(Type type);
+
     }
 }

@@ -7,7 +7,6 @@ namespace FastDeepCloner
 {
     internal class FastDeepClonerProperty : IFastDeepClonerProperty
     {
-
         private Func<object, object> _propertyGet;
 
         private Action<object, object> _propertySet;
@@ -53,6 +52,16 @@ namespace FastDeepCloner
             PropertyType = property.PropertyType;
             IsInternalType = property.PropertyType.IsInternalType();
             IsVirtual = property.GetMethod.IsVirtual;
+        }
+
+        public bool ContainAttribute<T>() where T : Attribute, new()
+        {
+            return Attributes?.Any(x => x.GetType() == typeof(T)) ?? false;
+        }
+
+        public bool ContainAttribute(Type type)
+        {
+            return Attributes?.Any(x => x.GetType() == type) ?? false;
         }
 
         public void SetValue(object o, object value)
