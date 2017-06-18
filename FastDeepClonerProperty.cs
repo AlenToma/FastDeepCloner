@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
@@ -25,13 +24,14 @@ namespace FastDeepCloner
 
         public bool? IsVirtual { get; private set; }
 
-        public List<Attribute> Attributes { get; set; }
+        public AttributesCollections Attributes { get; set; }
 
         internal FastDeepClonerProperty(FieldInfo field)
         {
+
             CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr));
             FastDeepClonerIgnore = field.GetCustomAttribute<FastDeepClonerIgnore>() != null;
-            Attributes = field.GetCustomAttributes().ToList();
+            Attributes = new AttributesCollections(field.GetCustomAttributes().ToList());
             _propertyGet = field.GetValue;
             _propertySet = field.SetValue;
             Name = field.Name;
@@ -46,7 +46,7 @@ namespace FastDeepCloner
             FastDeepClonerIgnore = property.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             _propertyGet = property.GetValue;
             _propertySet = property.SetValue;
-            Attributes = property.GetCustomAttributes().ToList();
+            Attributes = new AttributesCollections(property.GetCustomAttributes().ToList());
             Name = property.Name;
             FullName = property.PropertyType.FullName;
             PropertyType = property.PropertyType;
@@ -56,22 +56,22 @@ namespace FastDeepCloner
 
         public bool ContainAttribute<T>() where T : Attribute, new()
         {
-            return Attributes?.Any(x => x.GetType() == typeof(T)) ?? false;
+            return Attributes?.ContainedAttributestypes.ContainsKey(typeof(T)) ?? false;
         }
 
         public T GetCustomAttribute<T>() where T : Attribute, new()
         {
-            return (T)Attributes?.FirstOrDefault(x => x.GetType() == typeof(T));
+            return ContainAttribute<T>() ? (T)Attributes?.ContainedAttributestypes[typeof(T)] : null;
         }
 
         public Attribute GetCustomAttribute(Type type)
         {
-            return Attributes?.FirstOrDefault(x => x.GetType() == type);
+            return ContainAttribute(type) ? Attributes?.ContainedAttributestypes[type] : null;
         }
 
         public bool ContainAttribute(Type type)
         {
-            return Attributes?.Any(x => x.GetType() == type) ?? false;
+            return Attributes?.ContainedAttributestypes.ContainsKey(type) ?? false;
         }
 
         public void SetValue(object o, object value)

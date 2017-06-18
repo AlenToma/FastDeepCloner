@@ -20,7 +20,7 @@ namespace FastDeepCloner
         bool FastDeepClonerIgnore { get; }
 
         // All available attributes
-        List<Attribute> Attributes { get; set; }
+        AttributesCollections Attributes { get; set; }
 
         Type PropertyType { get; }
 

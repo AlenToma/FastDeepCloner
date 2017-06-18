@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributesCollections.cs" />
     <Compile Include="ClonedItems.cs" />
     <Compile Include="ClonerShared.cs" />
     <Compile Include="DeepClone.cs" />
