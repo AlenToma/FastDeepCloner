@@ -54,12 +54,12 @@ namespace FastDeepCloner
             IsVirtual = property.GetMethod.IsVirtual;
         }
 
-        public bool ContainAttribute<T>() where T : Attribute, new()
+        public bool ContainAttribute<T>() where T : Attribute
         {
             return Attributes?.ContainedAttributestypes.ContainsKey(typeof(T)) ?? false;
         }
 
-        public T GetCustomAttribute<T>() where T : Attribute, new()
+        public T GetCustomAttribute<T>() where T : Attribute
         {
             return ContainAttribute<T>() ? (T)Attributes?.ContainedAttributestypes[typeof(T)] : null;
         }
