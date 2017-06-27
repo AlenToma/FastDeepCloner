@@ -20,7 +20,12 @@ namespace FastDeepCloner
                 _cachedTypes.Add(type, type.GetElementType());
             else
             {
-                _cachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
+
+                if (type.GenericTypeArguments.Any())
+                    _cachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
+                else if (type.FullName.Contains("List`1"))
+                    _cachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                else _cachedTypes.Add(type, type);
             }
             return _cachedTypes[type];
         }
