@@ -1,0 +1,8 @@
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\net451\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\net451\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\net451\FastDeepCloner.csprojResolveAssemblyReference.cache

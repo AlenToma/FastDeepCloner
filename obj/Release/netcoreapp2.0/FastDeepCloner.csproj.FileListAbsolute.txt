@@ -1,0 +1,9 @@
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netcoreapp2.0\FastDeepCloner.deps.json
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netcoreapp2.0\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netcoreapp2.0\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netcoreapp2.0\FastDeepCloner.csprojResolveAssemblyReference.cache
