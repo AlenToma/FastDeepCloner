@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace FastDeepCloner
 {
     public static class Extensions
     {
         public delegate object CreateInstance(Type type);
-        private static Dictionary<Type, int> typeDict = new Dictionary<Type, int>
+        private static readonly Dictionary<Type, int> TypeDict = new Dictionary<Type, int>
         {
          {typeof(int),0},
          {typeof(double),0},
@@ -39,14 +40,15 @@ namespace FastDeepCloner
          {typeof(char?),0},
          {typeof(TimeSpan?),0},
          {typeof(string),0},
+         {typeof(Enum),0},
         };
-
 
 
         /// <summary>
         /// Determines if the specified type is an internal type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>
+        /// <param name="o"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         internal static bool IsInternalObject(this object o)
         {
@@ -55,13 +57,13 @@ namespace FastDeepCloner
         }
 
         /// <summary>
-        /// Determines if the specified type is an internal type.
+        /// Determines if the specified type is an Class type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
-        internal static bool IsInternalType(this Type underlyingSystemType)
+        public static bool IsInternalType(this Type underlyingSystemType)
         {
-            return typeDict.ContainsKey(underlyingSystemType);
+            return !underlyingSystemType.GetTypeInfo().IsClass || TypeDict.ContainsKey(underlyingSystemType);
         }
     }
 }

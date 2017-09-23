@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FastDeepCloner
 {
     internal class ClonerShared
     {
-        private Dictionary<ClonedItems, object> _alreadyCloned = new Dictionary<ClonedItems, object>();
-        private FastDeepClonerSettings _settings;
+        private readonly Dictionary<ClonedItems, object> _alreadyCloned = new Dictionary<ClonedItems, object>();
+        private readonly FastDeepClonerSettings _settings;
 
         internal ClonerShared(FieldType fieldType)
         {
@@ -20,12 +21,12 @@ namespace FastDeepCloner
             _settings = settings;
         }
 
-        private object ReferenceTypeClone(List<IFastDeepClonerProperty> properties, Type _primaryType, object objectToBeCloned, object appendToValue = null)
+        private object ReferenceTypeClone(Dictionary<string, IFastDeepClonerProperty> properties, Type primaryType, object objectToBeCloned, object appendToValue = null)
         {
 
-            var resObject = appendToValue == null ? _settings.OnCreateInstance(_primaryType) : appendToValue;
-            var fullPath = _primaryType.Name;
-            foreach (IFastDeepClonerProperty property in properties)
+            var resObject = appendToValue ?? _settings.OnCreateInstance(primaryType);
+            var fullPath = primaryType.Name;
+            foreach (var property in properties.Values)
             {
                 if (!property.CanRead || property.FastDeepClonerIgnore)
                     continue;
@@ -56,17 +57,17 @@ namespace FastDeepCloner
         {
             if (objectToBeCloned == null)
                 return null;
-            Type _primaryType = objectToBeCloned.GetType();
-            if (_primaryType.IsArray && _primaryType.GetArrayRank() > 1)
+            var primaryType = objectToBeCloned.GetType();
+            if (primaryType.IsArray && primaryType.GetArrayRank() > 1)
                 return ((Array)objectToBeCloned).Clone();
 
             if (objectToBeCloned.IsInternalObject())
                 return objectToBeCloned;
 
-            Object resObject;
-            if (_primaryType.IsArray || (objectToBeCloned as IList) != null)
+            object resObject;
+            if (primaryType.IsArray || (objectToBeCloned as IList) != null)
             {
-                resObject = _primaryType.IsArray ? Array.CreateInstance(_primaryType.GetIListType(), (objectToBeCloned as Array).Length) : Activator.CreateInstance(_primaryType.GetIListType());
+                resObject = primaryType.IsArray ? Array.CreateInstance(primaryType.GetIListType(), (objectToBeCloned as Array).Length) : Activator.CreateInstance(primaryType.GetIListType());
                 var i = 0;
                 var ilist = resObject as IList;
                 var array = resObject as Array;
@@ -79,17 +80,17 @@ namespace FastDeepCloner
                             ? item
                             : Clone(item);
                     }
-                    if (!_primaryType.IsArray)
-                        ilist.Add(clonedIteam);
+                    if (!primaryType.IsArray)
+                        ilist?.Add(clonedIteam);
                     else
-                        array.SetValue(clonedIteam, i);
+                        array?.SetValue(clonedIteam, i);
 
                     i++;
                 }
             }
             else if (objectToBeCloned is IDictionary)
             {
-                resObject = _settings.OnCreateInstance(_primaryType);
+                resObject = Activator.CreateInstance(primaryType);
                 var resDic = resObject as IDictionary;
                 var dictionary = (IDictionary)objectToBeCloned;
                 foreach (var key in dictionary.Keys)
@@ -102,14 +103,14 @@ namespace FastDeepCloner
                             ? item
                             : Clone(item);
                     }
-                    resDic.Add(key, clonedIteam);
+                    resDic?.Add(key, clonedIteam);
                 }
             }
             else
             {
-                resObject = ReferenceTypeClone((_settings.FieldType == FieldType.FieldInfo ? _primaryType.GetFastDeepClonerFields() : _primaryType.GetFastDeepClonerProperties()), _primaryType, objectToBeCloned);
+                resObject = ReferenceTypeClone((_settings.FieldType == FieldType.FieldInfo ? primaryType.GetFastDeepClonerFields() : primaryType.GetFastDeepClonerProperties()), primaryType, objectToBeCloned);
                 if (_settings.FieldType == FieldType.Both)
-                    resObject = ReferenceTypeClone(_primaryType.GetFastDeepClonerFields().FindAll(x => !_primaryType.GetFastDeepClonerProperties().Exists(a => a.Name == x.Name)), _primaryType, objectToBeCloned, resObject);
+                    resObject = ReferenceTypeClone(primaryType.GetFastDeepClonerFields().Values.ToList().Where(x => !primaryType.GetFastDeepClonerProperties().ContainsKey(x.Name)).ToDictionary(x => x.Name, x => x), primaryType, objectToBeCloned, resObject);
             }
 
             return resObject;

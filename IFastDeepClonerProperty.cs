@@ -27,7 +27,7 @@ namespace FastDeepCloner
         bool? IsVirtual { get; }
 
         /// <summary>
-        /// Is a reference type eg IsClass
+        /// Is a reference type eg not GetTypeInfo().IsClass
         /// </summary>
         bool IsInternalType { get; }
 

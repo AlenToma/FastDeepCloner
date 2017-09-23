@@ -6,9 +6,9 @@ namespace FastDeepCloner
 {
     internal class FastDeepClonerProperty : IFastDeepClonerProperty
     {
-        private Func<object, object> _propertyGet;
+        private readonly Func<object, object> _propertyGet;
 
-        private Action<object, object> _propertySet;
+        private readonly Action<object, object> _propertySet;
 
         public bool CanRead { get; private set; }
 
