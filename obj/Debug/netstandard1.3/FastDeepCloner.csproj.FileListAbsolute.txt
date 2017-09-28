@@ -1,0 +1,9 @@
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Debug\netstandard1.3\FastDeepCloner.deps.json
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Debug\netstandard1.3\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Debug\netstandard1.3\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.csprojResolveAssemblyReference.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\netstandard1.3\FastDeepCloner.pdb
