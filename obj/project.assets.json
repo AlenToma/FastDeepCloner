@@ -2004,7 +2004,7 @@
   },
   "libraries": {
     "Microsoft.NETCore.App/2.0.0": {
-      "sha512": "UgLFu/TV7rW877PLif+UzSUAPB8m1IKe7pTt+tOzuBlI6sPQd+D0jkMj7PXwmDTkzogVzitQlq22QBS10qALmA==",
+      "sha512": "/mzXF+UtZef+VpzzN88EpvFq5U6z4rj54ZMq/J968H6pcvyLOmcupmTRpJ3CJm8ILoCGh9WI7qpDdiKtuzswrQ==",
       "type": "package",
       "path": "microsoft.netcore.app/2.0.0",
       "files": [
@@ -2282,7 +2282,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetAppHost/2.0.0": {
-      "sha512": "/YYpG22M4I8L/hu6gWf4Z8FLolRTvQMEkADiodusc2MixzPqjr7/R4U0po6qZwG9bTTCKPaZpRs8phzXTYuufA==",
+      "sha512": "L4GGkcI/Mxl8PKLRpFdGmLb5oI8sGIR05bDTGkzCoamAjdUl1Zhkov2swjEsZvKYT8kkdiz39LtwyGYuCJxm1A==",
       "type": "package",
       "path": "microsoft.netcore.dotnetapphost/2.0.0",
       "files": [
@@ -2294,7 +2294,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetHostPolicy/2.0.0": {
-      "sha512": "touwui61xa3ngqyb+IDYMoIQMiZA1qQrULt+AV6o0t7ni6dKg/Rfi/nW0rQR/HBcr3mJfaB9BiKJ8yb8pq60dQ==",
+      "sha512": "rm7mMn0A93fwyAwVhbyOCcPuu2hZNL0A0dAur9sNG9pEkONPfCEQeF7m2mC8KpqZO0Ol6tpV5J0AF3HTXT3GXA==",
       "type": "package",
       "path": "microsoft.netcore.dotnethostpolicy/2.0.0",
       "files": [
@@ -2306,7 +2306,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetHostResolver/2.0.0": {
-      "sha512": "+qbMwTuhUDUDNMjR/dQi837Md05RQyH7bRC7BNp9kkm3u5+9yuKZMHft38m1qw2uwGYPmEZVcCzT8eUcvIEIkw==",
+      "sha512": "uBbjpeSrwsaTCADZCzRk+3aBzNnMqkC4zftJWBsL+Zk+8u+W+/lMb2thM5Y4hiVrv1YQg9t6dKldXzOKkY+pQw==",
       "type": "package",
       "path": "microsoft.netcore.dotnethostresolver/2.0.0",
       "files": [
@@ -2331,7 +2331,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
-      "sha512": "2eSLlBatGu7R/oiGt7yZg0s4/z7OOy1frMCPFwEE9twcsguskAc6M6foByg1A0dTmFDVfF6FOeJY+UxfnMTbaA==",
+      "sha512": "VdLJOCXhZaEMY7Hm2GKiULmn7IEPFE4XC5LPSfBVCUIA8YLZVh846gtfBJalsPQF2PlzdD7ecX7DZEulJ402ZQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.0.0",
       "files": [
@@ -2406,7 +2406,7 @@
       ]
     },
     "NETStandard.Library/2.0.0": {
-      "sha512": "cASAG/k02sYeTgulN1lSYp6J0LbX553iCRbztqSgL4g0Si8g5NHCfHRrCOQ28Gh/KXddddXG/3IYc96H/vPVZA==",
+      "sha512": "7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
       "type": "package",
       "path": "netstandard.library/2.0.0",
       "files": [
@@ -5285,11 +5285,11 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alen.toma\\.nuget\\packages\\": {},
+    "C:\\Users\\Alen.Toma\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.19",
+    "version": "1.0.21",
     "restoreSettings": {
       "hideWarningsAndErrors": true
     },
@@ -5297,7 +5297,7 @@
       "projectUniqueName": "D:\\Projects\\FastDeepCloner\\FastDeepCloner-New-\\FastDeepCloner.csproj",
       "projectName": "FastDeepCloner",
       "projectPath": "D:\\Projects\\FastDeepCloner\\FastDeepCloner-New-\\FastDeepCloner.csproj",
-      "packagesPath": "C:\\Users\\alen.toma\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Alen.Toma\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\FastDeepCloner\\FastDeepCloner-New-\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
@@ -5305,42 +5305,42 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\alen.toma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alen.Toma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp2.0",
-        "net461",
         "net451",
         "net46",
-        "netstandard2.0",
+        "net461",
+        "netcoreapp2.0",
+        "netstandard1.3",
         "netstandard1.5",
-        "netstandard1.3"
+        "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net46": {
-          "projectReferences": {}
-        },
-        "netstandard1.5": {
-          "projectReferences": {}
-        },
-        "netstandard1.3": {
-          "projectReferences": {}
-        },
-        "netstandard2.0": {
+        "netcoreapp2.0": {
           "projectReferences": {}
         },
         "net451": {
           "projectReferences": {}
         },
+        "net46": {
+          "projectReferences": {}
+        },
         "net461": {
           "projectReferences": {}
         },
-        "netcoreapp2.0": {
+        "netstandard1.3": {
+          "projectReferences": {}
+        },
+        "netstandard1.5": {
+          "projectReferences": {}
+        },
+        "netstandard2.0": {
           "projectReferences": {}
         }
       },
@@ -5351,31 +5351,12 @@
       }
     },
     "frameworks": {
-      "net46": {},
-      "netstandard1.5": {
+      "netcoreapp2.0": {
         "dependencies": {
-          "NETStandard.Library": {
-            "target": "Package",
-            "version": "1.6.1",
-            "autoReferenced": true
-          }
-        }
-      },
-      "netstandard1.3": {
-        "dependencies": {
-          "NETStandard.Library": {
-            "target": "Package",
-            "version": "1.6.1",
-            "autoReferenced": true
-          }
-        }
-      },
-      "netstandard2.0": {
-        "dependencies": {
-          "NETStandard.Library": {
+          "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },
@@ -5386,13 +5367,32 @@
         "warn": true
       },
       "net451": {},
+      "net46": {},
       "net461": {},
-      "netcoreapp2.0": {
+      "netstandard1.3": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
+          "NETStandard.Library": {
+            "target": "Package",
+            "version": "[1.6.1, )",
+            "autoReferenced": true
+          }
+        }
+      },
+      "netstandard1.5": {
+        "dependencies": {
+          "NETStandard.Library": {
+            "target": "Package",
+            "version": "[1.6.1, )",
+            "autoReferenced": true
+          }
+        }
+      },
+      "netstandard2.0": {
+        "dependencies": {
+          "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           }
         },

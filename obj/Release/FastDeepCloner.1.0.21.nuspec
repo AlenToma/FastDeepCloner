@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>FastDeepCloner</id>
+    <version>1.0.21</version>
+    <authors>Alen.Toma</authors>
+    <owners>Alen.Toma</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/Alenah091/FastDeepCloner-New-</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/AlenToma/FastDeepCloner-New-/master/Clone_Object.ico</iconUrl>
+    <description>FastDeepCloner is very fast portable library, This is a C# based .NET 4+ library that is used to deep clone objects, whether they are serializable or not. It intends to be much faster than the normal binary serialization method of deep cloning objects.</description>
+    <copyright>Copyright (c) 2016 Alen Toma</copyright>
+    <tags>Clone DeepClone Reflections deep copy clone reflections</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6" />
+      <group targetFramework=".NETStandard1.5">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETFramework4.5.1" />
+      <group targetFramework=".NETFramework4.6.1" />
+      <group targetFramework=".NETStandard2.0" />
+      <group targetFramework=".NETCoreApp2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\net451\FastDeepCloner.dll" target="lib\net451\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\net46\FastDeepCloner.dll" target="lib\net46\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\net461\FastDeepCloner.dll" target="lib\net461\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netcoreapp2.0\FastDeepCloner.dll" target="lib\netcoreapp2.0\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netcoreapp2.0\FastDeepCloner.xml" target="lib\netcoreapp2.0\FastDeepCloner.xml" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard1.3\FastDeepCloner.dll" target="lib\netstandard1.3\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard1.5\FastDeepCloner.dll" target="lib\netstandard1.5\FastDeepCloner.dll" />
+    <file src="D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard2.0\FastDeepCloner.dll" target="lib\netstandard2.0\FastDeepCloner.dll" />
+  </files>
+</package>

@@ -58,8 +58,9 @@ namespace FastDeepCloner
                 var properties = new Dictionary<string, IFastDeepClonerProperty>();
                 if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
                 {
-                    primaryType.GetTypeInfo().BaseType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
                     primaryType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
+                    primaryType.GetTypeInfo().BaseType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
+                   
                 }
                 else primaryType.GetRuntimeFields().Where(x => x.GetField(properties)).ToList();
                 CachedFields.Add(primaryType, properties);
@@ -75,8 +76,9 @@ namespace FastDeepCloner
                 var properties = new Dictionary<string, IFastDeepClonerProperty>();
                 if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
                 {
-                    primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
                     primaryType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
+                    primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
+                   
                 }
                 else primaryType.GetRuntimeProperties().Where(x => x.GetField(properties)).ToList();
                 CachedPropertyInfo.Add(primaryType, properties);

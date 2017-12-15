@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastDeepCloner</name>
+    </assembly>
+    <members>
+        <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FastDeepClonerSettings)">
+            <summary>
+            
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.Clone(System.Object,FastDeepCloner.FieldType)">
+            <summary>
+            
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FieldType)">
+            <summary>
+            
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CreateInstance``1">
+            <summary>
+            Create CreateInstance()
+            this will use expression to create new object from the cached expression
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CreateInstance(System.Type)">
+            <summary>
+            Create CreateInstance()
+            this will use expression to create new object from the cached expression
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetFastDeepClonerFields(System.Type)">
+            <summary>
+            will return fieldInfo from the cached fieldinfo. Get and set value is much faster.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetFastDeepClonerProperties(System.Type)">
+            <summary>
+            will return propertyInfo from the cached propertyInfo. Get and set value is much faster.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsInternalObject(System.Object)">
+            <summary>
+            Determines if the specified type is an internal type.
+            </summary>
+            <param name="underlyingSystemType"></param>
+            <param name="o"></param>
+            <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsInternalType(System.Type)">
+            <summary>
+            Determines if the specified type is an Class type.
+            </summary>
+            <param name="underlyingSystemType"></param>
+            <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerIgnore">
+            <summary>
+            Ignore Properties or Field that containe this attribute
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.FastDeepClonerSettings.OnCreateInstance">
+            <summary>
+            override Activator CreateInstance and use your own method
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.FieldType">
+            <summary>
+            PropertyField for property
+            FielInfo for property
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.IsInternalType">
+            <summary>
+            Is a reference type eg not GetTypeInfo().IsClass
+            </summary>
+        </member>
+    </members>
+</doc>

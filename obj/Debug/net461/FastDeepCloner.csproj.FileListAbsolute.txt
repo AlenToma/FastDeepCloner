@@ -5,3 +5,4 @@ D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\net461\FastDeepCloner.A
 D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\net461\FastDeepCloner.AssemblyInfo.cs
 D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\net461\FastDeepCloner.dll
 D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\net461\FastDeepCloner.pdb
+D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Debug\net461\FastDeepCloner.csprojResolveAssemblyReference.cache
