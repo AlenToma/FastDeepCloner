@@ -41,6 +41,7 @@ namespace FastDeepCloner
          {typeof(TimeSpan?),0},
          {typeof(string),0},
          {typeof(Enum),0},
+         {typeof(byte[]),0},
         };
 
 
@@ -63,7 +64,7 @@ namespace FastDeepCloner
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         public static bool IsInternalType(this Type underlyingSystemType)
         {
-            return !underlyingSystemType.GetTypeInfo().IsClass || TypeDict.ContainsKey(underlyingSystemType);
+            return TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass;
         }
     }
 }

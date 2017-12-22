@@ -6,6 +6,12 @@ namespace FastDeepCloner
 {
     public static class DeepCloner
     {
+
+        public static void CleanCachedItems()
+        {
+            FastDeepClonerCachedItems.CleanCachedItems();
+        }
+
         /// <summary>
         /// 
         /// </summary>

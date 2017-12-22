@@ -12,6 +12,17 @@ namespace FastDeepCloner
         private static readonly Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>> CachedPropertyInfo = new Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>>();
         private static readonly Dictionary<Type, Type> CachedTypes = new Dictionary<Type, Type>();
         private static readonly Dictionary<Type, Func<object>> CachedConstructor = new Dictionary<Type, Func<object>>();
+
+
+
+        public static void CleanCachedItems()
+        {
+            CachedFields.Clear();
+            CachedTypes.Clear();
+            CachedConstructor.Clear();
+            CachedPropertyInfo.Clear();
+        }
+
         internal static Type GetIListType(this Type type)
         {
             if (CachedTypes.ContainsKey(type))
