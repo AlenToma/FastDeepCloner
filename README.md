@@ -18,7 +18,7 @@ Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 The library using Activator.CreateInstance for creating an object, you could override this setting and use FormatterServices.GetUninitializedObject and handle the creation of the object by assigning FastDeepClonerSettings.
 In this case im ignoring all constructors by using GetUninitializedObject, unfortunately its not included in .net Core. 
 
-### Code Example with Manually creating an instance
+#### Code Example with Manually creating an instance
 ```
 var settings = new FastDeepCloner.FastDeepClonerSettings() {
 FieldType = FastDeepCloner.FieldType.FieldInfo,
@@ -30,7 +30,7 @@ return FormatterServices.GetUninitializedObject(type);
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
 
 ```
-### Using the default eg Activator.CreateInstance
+#### Using the default eg Activator.CreateInstance
 
 You will get an error if you dont have a default constructor
 
