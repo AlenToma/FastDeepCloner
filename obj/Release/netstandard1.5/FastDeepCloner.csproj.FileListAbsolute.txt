@@ -1,9 +1,0 @@
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard1.5\FastDeepCloner.deps.json
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard1.5\FastDeepCloner.dll
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\bin\Release\netstandard1.5\FastDeepCloner.pdb
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.csproj.CoreCompileInputs.cache
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.AssemblyInfoInputs.cache
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.AssemblyInfo.cs
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.dll
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.pdb
-D:\Projects\FastDeepCloner\FastDeepCloner-New-\obj\Release\netstandard1.5\FastDeepCloner.csprojResolveAssemblyReference.cache
