@@ -7,6 +7,8 @@ namespace FastDeepCloner
     {
         public FieldType FieldType { get; set; }
 
+        public CloneLevel CloneLevel { get; set; }
+
         /// <summary>
         /// override Activator CreateInstance and use your own method
         /// </summary>

@@ -45,6 +45,8 @@ namespace FastDeepCloner
                     property.SetValue(resObject, value);
                 else
                 {
+                    if (_settings.CloneLevel == CloneLevel.FirstLevelOnly)
+                        continue;
                     var tValue = Clone(value);
                     _alreadyCloned.Add(clonedItem, tValue);
                     property.SetValue(resObject, tValue);
@@ -76,9 +78,7 @@ namespace FastDeepCloner
                     object clonedIteam = null;
                     if (item != null)
                     {
-                        clonedIteam = item.GetType().IsInternalType()
-                            ? item
-                            : Clone(item);
+                        clonedIteam = item.GetType().IsInternalType() ? item : Clone(item);
                     }
                     if (!primaryType.IsArray)
                         ilist?.Add(clonedIteam);
@@ -99,9 +99,7 @@ namespace FastDeepCloner
                     object clonedIteam = null;
                     if (item != null)
                     {
-                        clonedIteam = item.GetType().IsInternalType()
-                            ? item
-                            : Clone(item);
+                        clonedIteam = item.GetType().IsInternalType() ? item : Clone(item);
                     }
                     resDic?.Add(key, clonedIteam);
                 }
