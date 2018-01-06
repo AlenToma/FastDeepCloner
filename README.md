@@ -26,5 +26,3 @@ Or Use the default and you will get an error if you dont have a default construc
 ```csharp
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
 ```
-
-nuget:https://www.nuget.org/packages/FastDeepCloner/
