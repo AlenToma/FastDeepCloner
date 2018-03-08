@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace FastDeepCloner
 {
-    internal class FastDeepClonerProperty : IFastDeepClonerProperty
+    public class FastDeepClonerProperty : IFastDeepClonerProperty
     {
-        private readonly Func<object, object> _propertyGet;
+        public Func<object, object> GetMethod { get; set; }
 
-        private readonly Action<object, object> _propertySet;
+        public Action<object, object> SetMethod { get; set; }
 
         public bool CanRead { get; private set; }
 
@@ -26,14 +26,18 @@ namespace FastDeepCloner
 
         public AttributesCollections Attributes { get; set; }
 
+        public MethodInfo PropertyGetValue { get; private set; }
+
+        public MethodInfo PropertySetValue { get; private set; }
+
         internal FastDeepClonerProperty(FieldInfo field)
         {
 
-            CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr));
+            CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
             FastDeepClonerIgnore = field.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             Attributes = new AttributesCollections(field.GetCustomAttributes().ToList());
-            _propertyGet = field.GetValue;
-            _propertySet = field.SetValue;
+            GetMethod = field.GetValue;
+            SetMethod = field.SetValue;
             Name = field.Name;
             FullName = field.FieldType.FullName;
             PropertyType = field.FieldType;
@@ -42,16 +46,19 @@ namespace FastDeepCloner
 
         internal FastDeepClonerProperty(PropertyInfo property)
         {
-            CanRead = !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr));
+            CanRead = !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
             FastDeepClonerIgnore = property.GetCustomAttribute<FastDeepClonerIgnore>() != null;
-            _propertyGet = property.GetValue;
-            _propertySet = property.SetValue;
+            GetMethod = property.GetValue;
+            SetMethod = property.SetValue;
             Attributes = new AttributesCollections(property.GetCustomAttributes().ToList());
             Name = property.Name;
             FullName = property.PropertyType.FullName;
             PropertyType = property.PropertyType;
             IsInternalType = property.PropertyType.IsInternalType();
             IsVirtual = property.GetMethod.IsVirtual;
+            PropertyGetValue = property.GetMethod;
+            PropertySetValue = property.SetMethod;
+
         }
 
         public bool ContainAttribute<T>() where T : Attribute
@@ -76,12 +83,12 @@ namespace FastDeepCloner
 
         public void SetValue(object o, object value)
         {
-            _propertySet(o, value);
+            SetMethod(o, value);
         }
 
         public object GetValue(object o)
         {
-            return _propertyGet(o);
+            return GetMethod(o);
         }
     }
 }

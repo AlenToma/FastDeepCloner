@@ -6,6 +6,11 @@ namespace FastDeepCloner
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Override create instance default is emit
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public delegate object CreateInstance(Type type);
         private static readonly Dictionary<Type, int> TypeDict = new Dictionary<Type, int>
         {

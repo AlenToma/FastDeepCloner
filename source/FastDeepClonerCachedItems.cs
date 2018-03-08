@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-//#if NETSTANDARD2_0 || NETSTANDARD1_3 || NETSTANDARD1_5
-
-//#else
-//using System.Reflection;
-//using System.Reflection.Emit;
-//#endif
 
 namespace FastDeepCloner
 {
     internal static class FastDeepClonerCachedItems
     {
-        public delegate object ObjectActivator();
+        internal delegate object ObjectActivator();
         private static readonly Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>> CachedFields = new Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>>();
         private static readonly Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>> CachedPropertyInfo = new Dictionary<Type, Dictionary<string, IFastDeepClonerProperty>>();
         private static readonly Dictionary<Type, Type> CachedTypes = new Dictionary<Type, Type>();

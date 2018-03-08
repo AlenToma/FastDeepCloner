@@ -6,7 +6,9 @@ namespace FastDeepCloner
 {
     public static class DeepCloner
     {
-
+        /// <summary>
+        /// Clear cached data
+        /// </summary>
         public static void CleanCachedItems()
         {
             FastDeepClonerCachedItems.CleanCachedItems();
@@ -16,7 +18,7 @@ namespace FastDeepCloner
         /// 
         /// </summary>
         /// <param name="objectToBeCloned">Desire object to cloned</param>
-        /// <param name="fieldType">Clone Method</param>
+        /// <param name="settings"></param>
         /// <returns></returns>
         public static T Clone<T>(T objectToBeCloned, FastDeepClonerSettings settings) where T : class
         {
@@ -48,7 +50,7 @@ namespace FastDeepCloner
 
         /// <summary>
         /// Create CreateInstance()
-        /// this will use expression to create new object from the cached expression
+        /// this will use ILGenerator to create new object from the cached ILGenerator
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -59,7 +61,7 @@ namespace FastDeepCloner
 
         /// <summary>
         /// Create CreateInstance()
-        /// this will use expression to create new object from the cached expression
+        /// this will use ILGenerator to create new object from the cached ILGenerator
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -88,6 +90,12 @@ namespace FastDeepCloner
             return type.GetFastDeepClonerProperties().Values.ToList();
         }
 
+        /// <summary>
+        /// Get fild by Name
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static IFastDeepClonerProperty GetField(this Type type, string name)
         {
             return type.GetFastDeepClonerFields().ContainsKey(name)
@@ -95,6 +103,12 @@ namespace FastDeepCloner
                 : null;
         }
 
+        /// <summary>
+        /// Get Property by name
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static IFastDeepClonerProperty GetProperty(this Type type, string name)
         {
             return type.GetFastDeepClonerProperties().ContainsKey(name)
