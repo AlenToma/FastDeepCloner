@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace FastDeepCloner
 {
+    /// <summary>
+    /// FastDeepCloner Extensions
+    /// </summary>
     public static class Extensions
     {
         /// <summary>

@@ -3,6 +3,9 @@ using static FastDeepCloner.Extensions;
 
 namespace FastDeepCloner
 {
+    /// <summary>
+    /// FastDeepClonerSettings
+    /// </summary>
     public class FastDeepClonerSettings
     {
         /// <summary>

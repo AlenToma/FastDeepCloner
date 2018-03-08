@@ -3,5 +3,5 @@
 ################################################################################
 
 /solution/.vs/FastDeepCloner/v15/Server/sqlite3
-/source/bin
-/source/obj
+/source/FastDeepCloner/bin
+/source/FastDeepCloner/obj
