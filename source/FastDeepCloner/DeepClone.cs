@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace FastDeepCloner
 {
+    /// <summary>
+    /// DeepCloner
+    /// </summary>
     public static class DeepCloner
     {
         /// <summary>

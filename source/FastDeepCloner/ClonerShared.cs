@@ -73,6 +73,7 @@ namespace FastDeepCloner
                 var i = 0;
                 var ilist = resObject as IList;
                 var array = resObject as Array;
+
                 foreach (var item in (objectToBeCloned as IList))
                 {
                     object clonedIteam = null;
@@ -86,6 +87,27 @@ namespace FastDeepCloner
                         array?.SetValue(clonedIteam, i);
 
                     i++;
+                }
+
+                foreach (var prop in primaryType.GetFastDeepClonerProperties().Where(x => !typeof(List<string>).GetFastDeepClonerProperties().Any(a => a.Key == x.Key)))
+                {
+                    var property = prop.Value;
+                    if (!property.CanRead || property.FastDeepClonerIgnore)
+                        continue;
+                    var value = property.GetValue(objectToBeCloned);
+                    if (value == null)
+                        continue;
+
+
+                    if (property.IsInternalType || value.GetType().IsInternalType())
+                        property.SetValue(resObject, value);
+                    else
+                    {
+                        if (_settings.CloneLevel == CloneLevel.FirstLevelOnly)
+                            continue;
+                        var tValue = Clone(value);;
+                        property.SetValue(resObject, tValue);
+                    }
                 }
             }
             else if (objectToBeCloned is IDictionary)
