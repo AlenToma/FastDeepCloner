@@ -9,20 +9,7 @@ use FastDeepClonerSettings to override CreateInstance
 
 The library using IL for creating an object, you could override this setting and use FormatterServices.GetUninitializedObject or Expression and handle the creation of the object by assigning FastDeepClonerSettings.
 In this case im ignoring all constructors by using GetUninitializedObject, unfortunately its not included in .net Core. 
-```csharp
-var settings = new FastDeepCloner.FastDeepClonerSettings() {
-FieldType = FastDeepCloner.FieldType.FieldInfo,
-OnCreateInstance = new FastDeepCloner.Extensions.CreateInstance((Type type) =>
-{
-return FormatterServices.GetUninitializedObject(type);
-})
-        
-var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
 
-```
-
-Or Use the default and you will get an error if you dont have a default constructor
-
-```csharp
-var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
-```
+## Code Example
+* [Clone](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Clone.md)
+* [InternalType ](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/InternalTypes.md)
