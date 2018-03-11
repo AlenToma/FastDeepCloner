@@ -18,5 +18,6 @@
 
   <PropertyGroup>
     <DocumentationFile>bin\Release\$(TargetFramework)\FastDeepCloner.xml</DocumentationFile>
+    <PackageReleaseNotes>Handle Types with parameters constructor</PackageReleaseNotes>
   </PropertyGroup>
 </Project>

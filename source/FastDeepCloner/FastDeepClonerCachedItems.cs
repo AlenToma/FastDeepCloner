@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+#if !NETSTANDARD1_3
+using System.Runtime.Serialization;
+#endif
 
 namespace FastDeepCloner
 {
@@ -14,6 +17,7 @@ namespace FastDeepCloner
         private static readonly Dictionary<Type, Type> CachedTypes = new Dictionary<Type, Type>();
         private static readonly Dictionary<Type, Func<object>> CachedConstructor = new Dictionary<Type, Func<object>>();
         private static readonly Dictionary<Type, ObjectActivator> CachedDynamicMethod = new Dictionary<Type, ObjectActivator>();
+        private static readonly Dictionary<Type, ConstructorInfo> DefaultConstructor = new Dictionary<Type, ConstructorInfo>();
 
 
         public static void CleanCachedItems()
@@ -42,31 +46,44 @@ namespace FastDeepCloner
             return CachedTypes[type];
         }
 
-    
-
         internal static object Creator(this Type type)
         {
-#if NETSTANDARD2_0 || NETSTANDARD1_3 || NETSTANDARD1_5
-            if (CachedConstructor.ContainsKey(type))
-                return CachedConstructor[type].Invoke();
-            CachedConstructor.Add(type, Expression.Lambda<Func<object>>(Expression.New(type)).Compile());
-            return CachedConstructor[type].Invoke();
-#else
-            if (CachedDynamicMethod.ContainsKey(type))
-                return CachedDynamicMethod[type]();
-            lock (CachedDynamicMethod)
-            {
-                var emptyConstructor = type.GetConstructor(Type.EmptyTypes);
-                var dynamicMethod = new System.Reflection.Emit.DynamicMethod("CreateInstance", type, Type.EmptyTypes, true);
-                System.Reflection.Emit.ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
-                ilGenerator.Emit(System.Reflection.Emit.OpCodes.Nop);
-                ilGenerator.Emit(System.Reflection.Emit.OpCodes.Newobj, emptyConstructor);
-                ilGenerator.Emit(System.Reflection.Emit.OpCodes.Ret);
-                CachedDynamicMethod.Add(type, (ObjectActivator)dynamicMethod.CreateDelegate(typeof(ObjectActivator)));
-
-            }
-            return CachedDynamicMethod[type]();
+#if !NETSTANDARD1_3
+            if (!DefaultConstructor.ContainsKey(type))
+                DefaultConstructor.Add(type, type.GetConstructor(Type.EmptyTypes));
 #endif
+
+            if (DefaultConstructor[type] != null)
+            {
+#if NETSTANDARD2_0 || NETSTANDARD1_3 || NETSTANDARD1_5
+                if (CachedConstructor.ContainsKey(type))
+                    return CachedConstructor[type].Invoke();
+                CachedConstructor.Add(type, Expression.Lambda<Func<object>>(Expression.New(type)).Compile());
+                return CachedConstructor[type].Invoke();
+#else
+                if (CachedDynamicMethod.ContainsKey(type))
+                    return CachedDynamicMethod[type]();
+                lock (CachedDynamicMethod)
+                {
+                    var emptyConstructor = DefaultConstructor[type];
+                    var dynamicMethod = new System.Reflection.Emit.DynamicMethod("CreateInstance", type, Type.EmptyTypes, true);
+                    System.Reflection.Emit.ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
+                    ilGenerator.Emit(System.Reflection.Emit.OpCodes.Nop);
+                    ilGenerator.Emit(System.Reflection.Emit.OpCodes.Newobj, emptyConstructor);
+                    ilGenerator.Emit(System.Reflection.Emit.OpCodes.Ret);
+                    CachedDynamicMethod.Add(type, (ObjectActivator)dynamicMethod.CreateDelegate(typeof(ObjectActivator)));
+
+                }
+                return CachedDynamicMethod[type]();
+#endif
+            }
+            else
+            {
+#if !NETSTANDARD1_3
+                return FormatterServices.GetUninitializedObject(type);
+#endif
+                throw new Exception("Default constructor is require for NETSTANDARD1_3");
+            }
         }
 
 
