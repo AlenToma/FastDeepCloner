@@ -12,7 +12,7 @@ var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
 
 
 ```
-### Or Use the default and you will get an error if you dont have a default constructor
+### Or Use the default
 
 ```csharp
 var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
