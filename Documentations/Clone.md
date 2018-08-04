@@ -16,5 +16,5 @@ var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
 ### Or Use the default
 
 ```csharp
-var mycar = FastDeepCloner.DeepCloner.Clone(mycar);
+var mycar = FastDeepCloner.DeepCloner.Clone(car);
 ```
