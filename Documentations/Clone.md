@@ -9,7 +9,7 @@ OnCreateInstance = new FastDeepCloner.Extensions.CreateInstance((Type type) =>
 return FormatterServices.GetUninitializedObject(type);
 })
         
-var mycar = FastDeepCloner.DeepCloner.Clone(mycar,settings);
+var mycar = FastDeepCloner.DeepCloner.Clone(car,settings);
 
 
 ```
