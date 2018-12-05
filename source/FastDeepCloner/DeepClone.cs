@@ -23,7 +23,7 @@ namespace FastDeepCloner
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static T Clone<T>(T objectToBeCloned, FastDeepClonerSettings settings) where T : class
+        public static T Clone<T>(this T objectToBeCloned, FastDeepClonerSettings settings) where T : class
         {
             return (T)new ClonerShared(settings).Clone(objectToBeCloned);
         }
@@ -35,7 +35,7 @@ namespace FastDeepCloner
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
         /// <returns></returns>
-        public static object Clone(object objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo)
+        public static object Clone(this object objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo)
         {
             return new ClonerShared(fieldType).Clone(objectToBeCloned);
         }
@@ -46,7 +46,7 @@ namespace FastDeepCloner
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
         /// <returns></returns>
-        public static T Clone<T>(T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
+        public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
         {
             return (T)new ClonerShared(fieldType).Clone(objectToBeCloned);
         }
@@ -68,7 +68,7 @@ namespace FastDeepCloner
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static object CreateInstance(Type type)
+        public static object CreateInstance(this Type type)
         {
             return type.Creator();
         }
@@ -78,9 +78,9 @@ namespace FastDeepCloner
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<IFastDeepClonerProperty> GetFastDeepClonerFields(Type type)
+        public static List<IFastDeepClonerProperty> GetFastDeepClonerFields(this Type type)
         {
-            return type.GetFastDeepClonerFields().Values.ToList();
+            return FastDeepClonerCachedItems.GetFastDeepClonerFields(type).Values.ToList();
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace FastDeepCloner
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<IFastDeepClonerProperty> GetFastDeepClonerProperties(Type type)
+        public static List<IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type type)
         {
-            return type.GetFastDeepClonerProperties().Values.ToList();
+            return FastDeepClonerCachedItems.GetFastDeepClonerProperties(type).Values.ToList();
         }
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static IFastDeepClonerProperty GetField(this Type type, string name)
         {
-            return type.GetFastDeepClonerFields().ContainsKey(name)
-                ? type.GetFastDeepClonerFields()[name]
+            return FastDeepClonerCachedItems.GetFastDeepClonerFields(type).ContainsKey(name)
+                ? FastDeepClonerCachedItems.GetFastDeepClonerFields(type)[name]
                 : null;
         }
 
@@ -114,8 +114,8 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static IFastDeepClonerProperty GetProperty(this Type type, string name)
         {
-            return type.GetFastDeepClonerProperties().ContainsKey(name)
-                ? type.GetFastDeepClonerProperties()[name]
+            return FastDeepClonerCachedItems.GetFastDeepClonerProperties(type).ContainsKey(name)
+                ? FastDeepClonerCachedItems.GetFastDeepClonerProperties(type)[name]
                 : null;
         }
     }

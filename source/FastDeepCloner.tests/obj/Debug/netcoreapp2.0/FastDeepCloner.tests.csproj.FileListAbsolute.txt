@@ -9,10 +9,10 @@ D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\bin\Debug\netcoreapp2.0\F
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\bin\Debug\netcoreapp2.0\FastDeepCloner.dll
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\bin\Debug\netcoreapp2.0\FastDeepCloner.pdb
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\bin\Debug\netcoreapp2.0\FastDeepCloner.xml
-D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.csprojResolveAssemblyReference.cache
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.csproj.CoreCompileInputs.cache
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.AssemblyInfoInputs.cache
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.AssemblyInfo.cs
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.csproj.CopyComplete
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.dll
 D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.pdb
+D:\Projects\FastDeepCloner\source\FastDeepCloner.tests\obj\Debug\netcoreapp2.0\FastDeepCloner.tests.csprojAssemblyReference.cache

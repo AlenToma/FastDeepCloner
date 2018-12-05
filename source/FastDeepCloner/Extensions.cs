@@ -72,7 +72,7 @@ namespace FastDeepCloner
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         public static bool IsInternalType(this Type underlyingSystemType)
         {
-            return TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass;
+            return (TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass) && !underlyingSystemType.GetTypeInfo().IsInterface;
         }
     }
 }

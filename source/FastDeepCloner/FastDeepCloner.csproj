@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;net451;netstandard2.0;netstandard1.3</TargetFrameworks>
-    <Version>1.1.0</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.1.2</Version>
+    <AssemblyVersion>1.0.1.2</AssemblyVersion>
+    <FileVersion>1.0.1.2</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>FastDeepCloner is very fast portable library, This is a C# based .NET 4+ library that is used to deep clone objects, whether they are serializable or not. It intends to be much faster than the normal binary serialization method of deep cloning objects.</Description>
+    <Description>FastDeepCloner is very fast portable library, This is a C# cross platform library that is used to deep clone objects, whether they are serializable or not. It intends to be much faster than the normal binary serialization method of deep cloning objects.</Description>
     <PackageProjectUrl>https://github.com/Alenah091/FastDeepCloner-New-</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/AlenToma/FastDeepCloner-New-/master/Clone_Object.ico</PackageIconUrl>
     <Copyright>Copyright (c) 2016 Alen Toma</Copyright>
@@ -18,6 +18,6 @@
 
   <PropertyGroup>
     <DocumentationFile>bin\Release\$(TargetFramework)\FastDeepCloner.xml</DocumentationFile>
-    <PackageReleaseNotes>Handle Types with parameters constructor</PackageReleaseNotes>
+    <PackageReleaseNotes>Able to Clone Interface PropertyTypes</PackageReleaseNotes>
   </PropertyGroup>
 </Project>

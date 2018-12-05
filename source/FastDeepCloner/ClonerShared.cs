@@ -41,7 +41,7 @@ namespace FastDeepCloner
                     continue;
                 }
 
-                if (property.IsInternalType || value.GetType().IsInternalType())
+                if ((property.IsInternalType || value.GetType().IsInternalType()))
                     property.SetValue(resObject, value);
                 else
                 {
@@ -89,7 +89,7 @@ namespace FastDeepCloner
                     i++;
                 }
 
-                foreach (var prop in primaryType.GetFastDeepClonerProperties().Where(x => !typeof(List<string>).GetFastDeepClonerProperties().Any(a => a.Key == x.Key)))
+                foreach (var prop in FastDeepClonerCachedItems.GetFastDeepClonerProperties(primaryType).Where(x => !FastDeepClonerCachedItems.GetFastDeepClonerProperties(typeof(List<string>)).Any(a => a.Key == x.Key)))
                 {
                     var property = prop.Value;
                     if (!property.CanRead || property.FastDeepClonerIgnore)
@@ -97,17 +97,8 @@ namespace FastDeepCloner
                     var value = property.GetValue(objectToBeCloned);
                     if (value == null)
                         continue;
-
-
-                    if (property.IsInternalType || value.GetType().IsInternalType())
-                        property.SetValue(resObject, value);
-                    else
-                    {
-                        if (_settings.CloneLevel == CloneLevel.FirstLevelOnly)
-                            continue;
-                        var tValue = Clone(value);;
-                        property.SetValue(resObject, tValue);
-                    }
+                    var clonedIteam = value.GetType().IsInternalType() ? value : Clone(value);
+                    property.SetValue(resObject, clonedIteam);
                 }
             }
             else if (objectToBeCloned is IDictionary)
@@ -128,9 +119,9 @@ namespace FastDeepCloner
             }
             else
             {
-                resObject = ReferenceTypeClone((_settings.FieldType == FieldType.FieldInfo ? primaryType.GetFastDeepClonerFields() : primaryType.GetFastDeepClonerProperties()), primaryType, objectToBeCloned);
+                resObject = ReferenceTypeClone((_settings.FieldType == FieldType.FieldInfo ? FastDeepClonerCachedItems.GetFastDeepClonerFields(primaryType) : FastDeepClonerCachedItems.GetFastDeepClonerProperties(primaryType)), primaryType, objectToBeCloned);
                 if (_settings.FieldType == FieldType.Both)
-                    resObject = ReferenceTypeClone(primaryType.GetFastDeepClonerFields().Values.ToList().Where(x => !primaryType.GetFastDeepClonerProperties().ContainsKey(x.Name)).ToDictionary(x => x.Name, x => x), primaryType, objectToBeCloned, resObject);
+                    resObject = ReferenceTypeClone(FastDeepClonerCachedItems.GetFastDeepClonerFields(primaryType).Values.ToList().Where(x => !FastDeepClonerCachedItems.GetFastDeepClonerProperties(primaryType).ContainsKey(x.Name)).ToDictionary(x => x.Name, x => x), primaryType, objectToBeCloned, resObject);
             }
 
             return resObject;

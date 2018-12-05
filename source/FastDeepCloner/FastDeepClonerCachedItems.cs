@@ -53,7 +53,7 @@ namespace FastDeepCloner
                 DefaultConstructor.Add(type, type.GetConstructor(Type.EmptyTypes));
 #endif
 
-            if (DefaultConstructor[type] != null)
+            if (DefaultConstructor.ContainsKey(type) && DefaultConstructor[type] != null)
             {
 #if NETSTANDARD2_0 || NETSTANDARD1_3 || NETSTANDARD1_5
                 if (CachedConstructor.ContainsKey(type))
@@ -81,8 +81,19 @@ namespace FastDeepCloner
             {
 #if !NETSTANDARD1_3
                 return FormatterServices.GetUninitializedObject(type);
+#else
+                try
+                {
+                    if (CachedConstructor.ContainsKey(type))
+                        return CachedConstructor[type].Invoke();
+                    CachedConstructor.Add(type, Expression.Lambda<Func<object>>(Expression.New(type)).Compile());
+                    return CachedConstructor[type].Invoke();
+                }
+                catch
+                {
+                    throw new Exception("CloneError: Default constructor is require for NETSTANDARD1_3 for type " + type.FullName);
+                }
 #endif
-                throw new Exception("Default constructor is require for NETSTANDARD1_3");
             }
         }
 
