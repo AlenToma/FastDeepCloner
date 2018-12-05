@@ -3,13 +3,6 @@
 
 Add Attribute [FastDeepClonerIgnore] to ignore cloning a property
 
-use FastDeepClonerSettings to override CreateInstance
-
-## How to use
-
-The library using IL for creating an object, you could override this setting and use FormatterServices.GetUninitializedObject or Expression and handle the creation of the object by assigning FastDeepClonerSettings.
-In this case im ignoring all constructors by using GetUninitializedObject, unfortunately its not included in .net Core. 
-
 ## Code Example
 * [Clone](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Clone.md)
 * [InternalType ](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/InternalTypes.md)
