@@ -28,21 +28,6 @@ namespace FastDeepCloner.tests
         }
 
         [TestMethod]
-        public void ObservableCollectionClone()
-        {
-            var e = new Enterprise();
-            e.Promoties = new ObservableCollection<User>() { new User() { Name = "Alen" } };
-            e.OpeningHours.Add(new Entitys.testClasses.OpeningHour());
-            e.Addresses.Add(new Entitys.testClasses.Address());
-            e.Email = "alen.toma@gmail.com";
-            var c = e.Clone();
-
-            c.Promoties.First().Name = "djh";
-            Assert.AreNotEqual(e.Promoties.First().Name, c.Promoties.First().Name);
-        }
-
-
-        [TestMethod]
         public void CloneCollection()
         {
             var user = new UserCollections();
