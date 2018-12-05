@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -38,9 +39,20 @@ namespace FastDeepCloner
             else
             {
                 if (type.GenericTypeArguments.Any())
-                    CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
-                else if (type.FullName.Contains("List`1"))
-                    CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                {
+                    if (type.FullName.Contains("ObservableCollection`1"))
+                        CachedTypes.Add(type, typeof(ObservableCollection<>).MakeGenericType(type.GenericTypeArguments.First()));
+                    else
+                        CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
+
+                }
+                else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
+                {
+                    if (type.FullName.Contains("ObservableCollection`1"))
+                        CachedTypes.Add(type, typeof(ObservableCollection<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                    else
+                        CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                }
                 else CachedTypes.Add(type, type);
             }
             return CachedTypes[type];
