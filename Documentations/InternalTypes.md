@@ -39,13 +39,13 @@
         };
         
          /// <summary>
-        /// Determines if the specified type is an Class type.
+        /// Determines if the specified type is a Class type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         public static bool IsInternalType(this Type underlyingSystemType)
         {
-            return TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass;
+            return (TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass) && !underlyingSystemType.GetTypeInfo().IsInterface;
         }
 
 ```
