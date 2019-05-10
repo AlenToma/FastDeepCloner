@@ -29,7 +29,7 @@
         </member>
         <member name="M:FastDeepCloner.DeepCloner.Clone(System.Object,FastDeepCloner.FieldType)">
             <summary>
-            
+            DeepClone object
             </summary>
             <param name="objectToBeCloned">Desire object to cloned</param>
             <param name="fieldType">Clone Method</param>
@@ -37,10 +37,17 @@
         </member>
         <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FieldType)">
             <summary>
-            
+            DeepClone object
             </summary>
             <param name="objectToBeCloned">Desire object to cloned</param>
             <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CloneDynamic(System.Object)">
+            <summary>
+            DeepClone dynamic(AnonymousType) object
+            </summary>
+            <param name="objectToBeCloned">Desire AnonymousType object</param>
             <returns></returns>
         </member>
         <member name="M:FastDeepCloner.DeepCloner.CreateInstance``1">
@@ -108,6 +115,14 @@
             <param name="underlyingSystemType"></param>
             <param name="o"></param>
             <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsAnonymousType(System.Type)">
+            <summary>
+            Validate if type is AnonymousType
+            This is the very basic validation
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
         </member>
         <member name="M:FastDeepCloner.Extensions.IsInternalType(System.Type)">
             <summary>
