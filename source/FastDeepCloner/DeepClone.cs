@@ -30,7 +30,7 @@ namespace FastDeepCloner
 
 
         /// <summary>
-        /// 
+        /// DeepClone object
         /// </summary>
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
@@ -41,7 +41,7 @@ namespace FastDeepCloner
         }
 
         /// <summary>
-        /// 
+        /// DeepClone object
         /// </summary>
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="fieldType">Clone Method</param>
@@ -49,6 +49,16 @@ namespace FastDeepCloner
         public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
         {
             return (T)new ClonerShared(fieldType).Clone(objectToBeCloned);
+        }
+
+        /// <summary>
+        /// DeepClone dynamic(AnonymousType) object
+        /// </summary>
+        /// <param name="objectToBeCloned">Desire AnonymousType object</param>
+        /// <returns></returns>
+        public static dynamic CloneDynamic(this object objectToBeCloned)
+        {
+            return new ClonerShared(FieldType.PropertyInfo).Clone(objectToBeCloned);
         }
 
         /// <summary>

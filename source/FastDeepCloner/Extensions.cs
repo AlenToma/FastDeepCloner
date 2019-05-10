@@ -66,6 +66,17 @@ namespace FastDeepCloner
         }
 
         /// <summary>
+        /// Validate if type is AnonymousType
+        /// This is the very basic validation
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsAnonymousType(this Type type)
+        {
+            return type.Name.Contains("AnonymousType") && (type.Name.StartsWith("<>") || type.Name.StartsWith("VB$"));
+        }
+
+        /// <summary>
         /// Determines if the specified type is an Class type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>

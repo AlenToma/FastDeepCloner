@@ -20,4 +20,11 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\FastDeepCloner.xml</DocumentationFile>
     <PackageReleaseNotes>Able to Clone Interface PropertyTypes</PackageReleaseNotes>
   </PropertyGroup>
+
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+
 </Project>

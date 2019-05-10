@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace FastDeepCloner
 {
@@ -85,7 +88,6 @@ namespace FastDeepCloner
                         ilist?.Add(clonedIteam);
                     else
                         array?.SetValue(clonedIteam, i);
-
                     i++;
                 }
 
@@ -115,6 +117,22 @@ namespace FastDeepCloner
                         clonedIteam = item.GetType().IsInternalType() ? item : Clone(item);
                     }
                     resDic?.Add(key, clonedIteam);
+                }
+            }
+            else if (primaryType.IsAnonymousType()) // dynamic types
+            {
+
+                var props = FastDeepClonerCachedItems.GetFastDeepClonerProperties(primaryType);
+                resObject = new ExpandoObject();
+                var d = resObject as IDictionary<string, object>;
+                foreach (var prop in props.Values)
+                {
+                    var item = prop.GetValue(objectToBeCloned);
+                    if (item == null)
+                        continue;
+                    var value = prop.IsInternalType ? item : Clone(item);
+                    if (!d.ContainsKey(prop.Name))
+                        d.Add(prop.Name, value);
                 }
             }
             else

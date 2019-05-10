@@ -1,10 +1,7 @@
 ﻿using FastDeepCloner.tests.Entitys;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace FastDeepCloner.tests
 {
@@ -25,6 +22,21 @@ namespace FastDeepCloner.tests
 
             var cloned = FastDeepCloner.DeepCloner.Clone(user);
             Assert.AreEqual(user.First().Name, cloned.First().Name);
+        }
+
+        [TestMethod]
+        
+        public void DynamicClone()
+        {
+            dynamic originalAnonnymousObject = new
+            {
+                prop1 = "p1"
+            ,
+                prop2 = 10
+            };
+            dynamic clonedAnonnymousObject = FastDeepCloner.DeepCloner.CloneDynamic(originalAnonnymousObject);
+            Assert.AreEqual(clonedAnonnymousObject.prop1, originalAnonnymousObject.prop1);
+
         }
 
         [TestMethod]
