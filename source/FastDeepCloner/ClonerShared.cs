@@ -128,9 +128,7 @@ namespace FastDeepCloner
                 foreach (var prop in props.Values)
                 {
                     var item = prop.GetValue(objectToBeCloned);
-                    if (item == null)
-                        continue;
-                    var value = prop.IsInternalType ? item : Clone(item);
+                    var value = item == null || prop.IsInternalType || (item?.IsInternalObject() ?? true) ? item : Clone(item);
                     if (!d.ContainsKey(prop.Name))
                         d.Add(prop.Name, value);
                 }
