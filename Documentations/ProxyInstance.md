@@ -17,7 +17,7 @@ public class User {
   /// this is optional, FastDeepCloner will detect this method if it exist.
   private void PropertyChanged(object sender, PropertyChangedEventArgs e)
   {
-    // you code here
+    // your code here
   }
 }
 
@@ -30,7 +30,7 @@ Now simple create the ProxyInstance
   User pUser = DeepCloner.CreateProxyInstance<User>();     
                /// if you choose to not include the PropertyChanged in the class, you could simple bind it here 
                (pUser as INotifyPropertyChanged).PropertyChanged += ((sender, e)=> {  
-                // you code here
+                // your code here
                });
                
                pUser.Name = "testo";
