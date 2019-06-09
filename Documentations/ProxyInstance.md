@@ -26,7 +26,7 @@ public class User {
 Now simple create the ProxyInstance
 
 ```csharp
- // its very importend to have a empty constructor(without any parameters)  
+
   User pUser = DeepCloner.CreateProxyInstance<User>();     
                /// if you choose to not include the PropertyChanged in the class, you could simple bind it here 
                (pUser as INotifyPropertyChanged).PropertyChanged += ((sender, e)=> {  
