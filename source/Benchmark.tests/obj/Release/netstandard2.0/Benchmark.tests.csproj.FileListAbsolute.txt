@@ -1,0 +1,13 @@
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\Benchmark.tests.deps.json
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\Benchmark.tests.dll
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\Benchmark.tests.pdb
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\FastDeepCloner.dll
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\FastDeepCloner.pdb
+E:\Projects\FastDeepCloner\source\Benchmark.tests\bin\Release\netstandard2.0\FastDeepCloner.xml
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.csprojAssemblyReference.cache
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.csproj.CoreCompileInputs.cache
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.AssemblyInfoInputs.cache
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.AssemblyInfo.cs
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.csproj.CopyComplete
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.dll
+E:\Projects\FastDeepCloner\source\Benchmark.tests\obj\Release\netstandard2.0\Benchmark.tests.pdb

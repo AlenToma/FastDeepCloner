@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Benchmark.tests.FastDeepCloner_tests-20190609-122027</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17134.765 (1803/April2018Update/Redstone4)
+Intel Core i7-3820 CPU 3.60GHz (Ivy Bridge), 1 CPU, 8 logical and 4 physical cores
+Frequency=3515670 Hz, Resolution=284.4408 ns, Timer=TSC
+.NET Core SDK=2.2.300
+  [Host] : .NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT  [AttachedDebugger]
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>   Method</th><th>Job</th><th>Runtime</th><th>Mean</th><th>Error</th><th>Ratio</th><th>RatioSD</th><th>Rank</th>
+</tr>
+</thead><tbody><tr><td>ProxyTest</td><td>Clr</td><td>Clr</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>ProxyTest</td><td>Core</td><td>Core</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>ProxyTest</td><td>CoreRT</td><td>CoreRT</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>Clone</td><td>Clr</td><td>Clr</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>Clone</td><td>Core</td><td>Core</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>Clone</td><td>CoreRT</td><td>CoreRT</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicClone</td><td>Clr</td><td>Clr</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicClone</td><td>Core</td><td>Core</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicClone</td><td>CoreRT</td><td>CoreRT</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>CloneCollection</td><td>Clr</td><td>Clr</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>CloneCollection</td><td>Core</td><td>Core</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr><tr><td>CloneCollection</td><td>CoreRT</td><td>CoreRT</td><td>NA</td><td>NA</td><td>?</td><td>?</td><td>?</td>
+</tr></tbody></table>
+</body>
+</html>

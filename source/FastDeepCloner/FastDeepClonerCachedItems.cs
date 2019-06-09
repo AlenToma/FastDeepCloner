@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -19,7 +20,8 @@ namespace FastDeepCloner
         private static readonly Dictionary<Type, Func<object>> CachedConstructor = new Dictionary<Type, Func<object>>();
         private static readonly Dictionary<Type, ObjectActivator> CachedDynamicMethod = new Dictionary<Type, ObjectActivator>();
         private static readonly Dictionary<Type, ConstructorInfo> DefaultConstructor = new Dictionary<Type, ConstructorInfo>();
-
+        private static readonly Dictionary<Type, Type> ProxyTypes = new Dictionary<Type, Type>();
+        private static readonly Dictionary<Type, MethodInfo> ProxyTypesPropertyChanged = new Dictionary<Type, MethodInfo>();
 
         public static void CleanCachedItems()
         {
@@ -28,6 +30,7 @@ namespace FastDeepCloner
             CachedConstructor.Clear();
             CachedPropertyInfo.Clear();
             CachedDynamicMethod.Clear();
+            ProxyTypes.Clear();
         }
 
         internal static Type GetIListType(this Type type)
@@ -58,6 +61,45 @@ namespace FastDeepCloner
             return CachedTypes[type];
         }
 
+#if NETSTANDARD2_0 || NETCOREAPP2_0 || NET451
+        internal static INotifyPropertyChanged ProxyCreator(this Type type)
+        {
+            lock (ProxyTypes)
+            {
+                try
+                {
+                    MethodInfo method;
+                    if (ProxyTypesPropertyChanged.ContainsKey(type))
+                        method = ProxyTypesPropertyChanged[type];
+                    else
+                    {
+                        method = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault(x => x.GetParameters().Any(a => a.ParameterType == typeof(object)) && x.GetParameters().Any(a => a.ParameterType == typeof(PropertyChangedEventArgs)));
+                        ProxyTypesPropertyChanged.Add(type, method);
+                    }
+                    INotifyPropertyChanged item;
+                    if (ProxyTypes.ContainsKey(type))
+                        item = ProxyTypes[type].Creator() as INotifyPropertyChanged;
+                    else
+                    {
+                        ProxyTypes.Add(type, INotifyPropertyChangedProxyTypeGenerator.GenerateProxy(type));
+                        item = ProxyTypes[type].Creator() as INotifyPropertyChanged;
+                    }
+
+                    if (method != null)
+                        item.PropertyChanged += (PropertyChangedEventHandler)Delegate.CreateDelegate(typeof(PropertyChangedEventHandler), item, method);
+
+
+
+                    return item;
+
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+#endif
         internal static object Creator(this Type type)
         {
 #if !NETSTANDARD1_3
@@ -103,7 +145,7 @@ namespace FastDeepCloner
                 }
                 catch
                 {
-                    throw new Exception("CloneError: Default constructor is require for NETSTANDARD1_3 for type " + type.FullName);
+                    throw new Exception("DeepClonerError: Default constructor is require for NETSTANDARD1_3 for type " + type.FullName);
                 }
 #endif
             }

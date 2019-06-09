@@ -8,6 +8,15 @@ namespace FastDeepCloner.tests
     [TestClass]
     public class DeepClonerTests
     {
+
+        [TestMethod]
+        public void ProxyTest()
+        {
+            var pUser = DeepCloner.CreateProxyInstance<User>();
+            pUser.Name = "testo";
+        }
+
+
         [TestMethod]
         /// <summary>
         /// 
@@ -25,7 +34,7 @@ namespace FastDeepCloner.tests
         }
 
         [TestMethod]
-        
+
         public void DynamicClone()
         {
             dynamic originalAnonnymousObject = new

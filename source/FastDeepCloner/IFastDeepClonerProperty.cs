@@ -44,11 +44,21 @@ namespace FastDeepCloner
 
         /// <summary>
         /// CanRead= !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
-        /// or 
+        /// or for PropertyInfo
         /// CanRead= !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
         /// </summary>
         // able to process or clone
         bool CanRead { get; }
+
+        /// <summary>
+        /// If you could write to the propertyInfo
+        /// </summary>
+        bool CanWrite { get; }
+
+        /// <summary>
+        /// Simple can read. this should have been called CanRead to bad we alread have CanRead Property, its a pain to change it now.
+        /// </summary>
+        bool ReadAble { get; }
 
         /// <summary>
         /// Ignored

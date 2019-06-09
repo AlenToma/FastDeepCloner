@@ -6,8 +6,8 @@ namespace FastDeepCloner.tests.Entitys
 {
     public abstract class Entity
     {
-        public long Id { get; set; } = 0;
+        public virtual long Id { get; set; } = 0;
 
-        public Guid Id2 { get; set; } = Guid.NewGuid();
+        public virtual Guid Id2 { get; set; } = Guid.NewGuid();
     }
 }

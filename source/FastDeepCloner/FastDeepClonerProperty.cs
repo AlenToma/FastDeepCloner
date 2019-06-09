@@ -12,6 +12,10 @@ namespace FastDeepCloner
 
         public bool CanRead { get; private set; }
 
+        public bool CanWrite { get; private set; }
+
+        public bool ReadAble { get; private set; }
+
         public bool FastDeepClonerIgnore { get; private set; }
 
         public string Name { get; private set; }
@@ -30,10 +34,13 @@ namespace FastDeepCloner
 
         public MethodInfo PropertySetValue { get; private set; }
 
+
         internal FastDeepClonerProperty(FieldInfo field)
         {
 
             CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
+            CanWrite = CanRead;
+            ReadAble = CanRead;
             FastDeepClonerIgnore = field.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             Attributes = new AttributesCollections(field.GetCustomAttributes().ToList());
             GetMethod = field.GetValue;
@@ -47,6 +54,8 @@ namespace FastDeepCloner
         internal FastDeepClonerProperty(PropertyInfo property)
         {
             CanRead = !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
+            CanWrite = property.CanWrite;
+            ReadAble = property.CanRead;
             FastDeepClonerIgnore = property.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             GetMethod = property.GetValue;
             SetMethod = property.SetValue;

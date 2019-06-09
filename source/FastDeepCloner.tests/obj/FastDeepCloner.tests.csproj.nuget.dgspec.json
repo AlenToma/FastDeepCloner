@@ -14,7 +14,7 @@
         "outputPath": "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner.tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
@@ -75,7 +75,7 @@
       }
     },
     "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj": {
-      "version": "1.1.5",
+      "version": "1.1.8",
       "restore": {
         "projectUniqueName": "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj",
         "projectName": "FastDeepCloner",
@@ -85,7 +85,7 @@
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
@@ -160,6 +160,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "System.Reflection.Emit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

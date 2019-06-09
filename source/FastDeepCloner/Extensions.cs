@@ -56,7 +56,6 @@ namespace FastDeepCloner
         /// <summary>
         /// Determines if the specified type is an internal type.
         /// </summary>
-        /// <param name="underlyingSystemType"></param>
         /// <param name="o"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
         internal static bool IsInternalObject(this object o)
@@ -77,7 +76,7 @@ namespace FastDeepCloner
         }
 
         /// <summary>
-        /// Determines if the specified type is an Class type.
+        /// Determines if the specified type is a Class type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>

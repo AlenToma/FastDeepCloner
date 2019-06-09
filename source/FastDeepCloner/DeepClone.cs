@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace FastDeepCloner
@@ -83,6 +84,30 @@ namespace FastDeepCloner
             return type.Creator();
         }
 
+#if NETSTANDARD2_0 || NETCOREAPP2_0 || NET451
+        /// <summary>
+        /// Create a type that implement INotifyPropertyChanged PropertyChanged.
+        /// Note it will only include properties that are virtual.
+        /// If type containe PropertyChanged(object sender, PropertyChangedEventArgs e) it will be bound automatically otherwise you will have to add it manually
+        /// <returns></returns>
+        public static T CreateProxyInstance<T>()
+        {
+            return (T)typeof(T).ProxyCreator();
+        }
+
+        /// <summary>
+        /// Create a type that implement PropertyChanged.
+        /// Note it will only include properties that are virtual
+        /// If type containe PropertyChanged(object sender, PropertyChangedEventArgs e) it will be bound automatically otherwise you will have to add it manually
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static INotifyPropertyChanged CreateProxyInstance(this Type type)
+        {
+            return type.ProxyCreator();
+        }
+
+#endif
         /// <summary>
         /// will return fieldInfo from the cached fieldinfo. Get and set value is much faster.
         /// </summary>
@@ -104,7 +129,7 @@ namespace FastDeepCloner
         }
 
         /// <summary>
-        /// Get fild by Name
+        /// Get field by Name
         /// </summary>
         /// <param name="type"></param>
         /// <param name="name"></param>

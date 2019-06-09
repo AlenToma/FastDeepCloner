@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;net451;netstandard2.0;netstandard1.3</TargetFrameworks>
-    <Version>1.1.5</Version>
-    <AssemblyVersion>1.0.1.5</AssemblyVersion>
-    <FileVersion>1.0.1.5</FileVersion>
+    <Version>1.1.8</Version>
+    <AssemblyVersion>1.0.1.8</AssemblyVersion>
+    <FileVersion>1.0.1.8</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>FastDeepCloner is very fast portable library, This is a C# cross platform library that is used to deep clone objects, whether they are serializable or not. It intends to be much faster than the normal binary serialization method of deep cloning objects.</Description>
     <PackageProjectUrl>https://github.com/Alenah091/FastDeepCloner-New-</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/AlenToma/FastDeepCloner-New-/master/Clone_Object.ico</PackageIconUrl>
     <Copyright>Copyright (c) 2016 Alen Toma</Copyright>
-    <PackageTags>Clone DeepClone Reflections deep copy clone reflections</PackageTags>
+    <PackageTags>Clone DeepClone Reflections deep copy clone system.reflection</PackageTags>
     <Authors>Alen.Toma</Authors>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
@@ -18,9 +18,14 @@
 
   <PropertyGroup>
     <DocumentationFile>bin\Release\$(TargetFramework)\FastDeepCloner.xml</DocumentationFile>
-    <PackageReleaseNotes>Clone AnonymousType objects</PackageReleaseNotes>
+    <PackageReleaseNotes>You could now CreateProxyInstance that implement INotifyPropertyChanged, without extra code needed.
+See the Github Documentation to learn how to use it.</PackageReleaseNotes>
   </PropertyGroup>
 
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
+  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
