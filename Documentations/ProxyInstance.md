@@ -15,7 +15,7 @@ public class User {
  public string Name { get; set; }
  
   // this is optional, FastDeepCloner will detect this method if it exist.
-  // the name is also optional the importend things is that it has those parameters blow
+  // the name is also optional the importend things is that it has those parameters below
   private void PropertyChanged(object sender, PropertyChangedEventArgs e)
   {
     // your code here
