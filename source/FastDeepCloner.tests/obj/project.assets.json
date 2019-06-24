@@ -1612,7 +1612,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.1.8": {
+      "FastDeepCloner/1.1.9": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "compile": {
@@ -5777,7 +5777,7 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "FastDeepCloner/1.1.8": {
+    "FastDeepCloner/1.1.9": {
       "type": "project",
       "path": "../FastDeepCloner/FastDeepCloner.csproj",
       "msbuildProject": "../FastDeepCloner/FastDeepCloner.csproj"
@@ -5785,7 +5785,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "FastDeepCloner >= 1.1.8",
+      "FastDeepCloner >= 1.1.9",
       "MSTest.TestAdapter >= 1.2.0",
       "MSTest.TestFramework >= 1.2.0",
       "Microsoft.NET.Test.Sdk >= 15.5.0",

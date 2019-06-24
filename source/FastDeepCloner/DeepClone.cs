@@ -65,26 +65,50 @@ namespace FastDeepCloner
         /// <summary>
         /// Create CreateInstance()
         /// this will use ILGenerator to create new object from the cached ILGenerator
+        /// This is alot faster then using Activator or GetUninitializedObject.
+        /// TThe library will be using ILGenerator or Expression depending on the platform and then cach both the contructorinfo and the type,
+        /// so it can be reused later on 
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="args">Optional</param>
         /// <returns></returns>
-        public static T CreateInstance<T>() where T : class
+        public static T CreateInstance<T>(params object[] args) where T : class
         {
-            return (T)typeof(T).Creator();
+            return (T)typeof(T).Creator(args);
         }
 
         /// <summary>
         /// Create CreateInstance()
         /// this will use ILGenerator to create new object from the cached ILGenerator
+        /// This is alot faster then using Activator or GetUninitializedObject.
+        /// The library will be using ILGenerator or Expression depending on the platform and then cach both the contructorinfo and the type,
+        /// so it can be reused later on 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <param name="args">Optional</param>
         /// <returns></returns>
-        public static object CreateInstance(this Type type)
+        public static object CreateInstance(this Type type, params object[] args)
         {
-            return type.Creator();
+            return type.Creator(args);
         }
 
-#if NETSTANDARD2_0 || NETCOREAPP2_0 || NET451
+
+#if !NETSTANDARD1_3
+
+        /// <summary>
+        /// This will try and load the assembly and cached
+        /// then from that assembly it will load typePath and also cach it, so it will load much faster next time
+        /// </summary>
+        /// <param name="typePath">xxxx</param>
+        /// <param name="assembly">xxx.dll</param>
+        /// <returns></returns>
+        public static Type GetObjectType(this string typePath, string assembly)
+        {
+            return typePath.GetFastType(assembly);
+        }
+
+
+
         /// <summary>
         /// Create a type that implement INotifyPropertyChanged PropertyChanged.
         /// Note it will only include properties that are virtual.

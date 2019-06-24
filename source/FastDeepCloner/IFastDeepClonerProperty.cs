@@ -74,7 +74,7 @@ namespace FastDeepCloner
         /// <summary>
         /// Type
         /// </summary>
-        Type PropertyType { get; }
+        Type PropertyType { get; set; }
 
         /// <summary>
         /// IsVirtual
@@ -123,5 +123,11 @@ namespace FastDeepCloner
         /// Exist only for PropertyInfo
         /// </summary>
         MethodInfo PropertySetValue { get; }
+
+        /// <summary>
+        /// Using this method will trigger ConfigrationManager.OnAttributeCollectionChanged
+        /// </summary>
+        /// <param name="attr"></param>
+        void Add(Attribute attr);
     }
 }

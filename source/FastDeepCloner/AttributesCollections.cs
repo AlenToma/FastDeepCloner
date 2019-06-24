@@ -5,27 +5,23 @@ namespace FastDeepCloner
 {
     public class AttributesCollections : List<Attribute>
     {
-        internal Dictionary<Attribute, Attribute> ContainedAttributes = new Dictionary<Attribute, Attribute>();
-        internal Dictionary<Type, Attribute> ContainedAttributestypes = new Dictionary<Type, Attribute>();
+        internal SafeValueType<Attribute, Attribute> ContainedAttributes = new SafeValueType<Attribute, Attribute>();
+        internal SafeValueType<Type, Attribute> ContainedAttributestypes = new SafeValueType<Type, Attribute>();
 
         public AttributesCollections(List<Attribute> attrs)
         {
             if (attrs == null)
                 return;
-            foreach(Attribute attr in attrs)
-            {
-                ContainedAttributes.Add(attr, attr);
-                ContainedAttributestypes.Add(attr.GetType(), attr);
-                base.Add(attr);
-            }
-          
+            foreach (Attribute attr in attrs)
+                Add(attr);
         }
 
         public new void Add(Attribute attr)
         {
-            ContainedAttributes.Add(attr, attr);
-            ContainedAttributestypes.Add(attr.GetType(), attr);
+            ContainedAttributes.TryAdd(attr, attr, true);
+            ContainedAttributestypes.TryAdd(attr.GetType(), attr, true);
             base.Add(attr);
+
         }
 
         public new void Remove(Attribute attr)

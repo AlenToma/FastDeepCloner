@@ -24,7 +24,17 @@ namespace FastDeepCloner
 
         public bool IsInternalType { get; private set; }
 
-        public Type PropertyType { get; private set; }
+        private Type _propertyType;
+        public Type PropertyType
+        {
+            get => _propertyType;
+            set
+            {
+                if (ConfigrationManager.OnPropertTypeSet != null)
+                    _propertyType = _propertyType = ConfigrationManager.OnPropertTypeSet?.Invoke(this);
+                else _propertyType = value;
+            }
+        }
 
         public bool? IsVirtual { get; private set; }
 
@@ -42,13 +52,14 @@ namespace FastDeepCloner
             CanWrite = CanRead;
             ReadAble = CanRead;
             FastDeepClonerIgnore = field.GetCustomAttribute<FastDeepClonerIgnore>() != null;
-            Attributes = new AttributesCollections(field.GetCustomAttributes().ToList());
             GetMethod = field.GetValue;
             SetMethod = field.SetValue;
             Name = field.Name;
             FullName = field.FieldType.FullName;
             PropertyType = field.FieldType;
+            Attributes = new AttributesCollections(field.GetCustomAttributes().ToList());
             IsInternalType = field.FieldType.IsInternalType();
+            ConfigrationManager.OnAttributeCollectionChanged?.Invoke(this);
         }
 
         internal FastDeepClonerProperty(PropertyInfo property)
@@ -59,14 +70,15 @@ namespace FastDeepCloner
             FastDeepClonerIgnore = property.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             GetMethod = property.GetValue;
             SetMethod = property.SetValue;
-            Attributes = new AttributesCollections(property.GetCustomAttributes().ToList());
             Name = property.Name;
             FullName = property.PropertyType.FullName;
-            PropertyType = property.PropertyType;
             IsInternalType = property.PropertyType.IsInternalType();
             IsVirtual = property.GetMethod.IsVirtual;
             PropertyGetValue = property.GetMethod;
             PropertySetValue = property.SetMethod;
+            PropertyType = property.PropertyType;
+            Attributes = new AttributesCollections(property.GetCustomAttributes().ToList());
+            ConfigrationManager.OnAttributeCollectionChanged?.Invoke(this);
 
         }
 
@@ -98,6 +110,12 @@ namespace FastDeepCloner
         public object GetValue(object o)
         {
             return GetMethod(o);
+        }
+
+        public void Add(Attribute attr)
+        {
+            Attributes.Add(attr);
+            ConfigrationManager.OnAttributeCollectionChanged?.Invoke(this);
         }
     }
 }
