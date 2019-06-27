@@ -12,7 +12,7 @@ public class User {
 
  public virtual string Name { get; set; }
  /// none virtual properties wont be included
- public string Name { get; set; }
+ public string LastName { get; set; }
  
   // this is optional, FastDeepCloner will detect this method if it exist.
   // the name is also optional the importend things is that it has those parameters below
