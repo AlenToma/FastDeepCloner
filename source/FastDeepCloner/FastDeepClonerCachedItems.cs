@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -76,6 +77,7 @@ namespace FastDeepCloner
 
 #if !NETSTANDARD1_3
 
+
         internal static Type GetFastType(this string typeName, string assembly)
         {
             if (string.IsNullOrEmpty(assembly))
@@ -87,7 +89,15 @@ namespace FastDeepCloner
             if (CachedStringTypes.ContainsKey(key))
                 return CachedStringTypes.Get(key);
 
-            if (!CachedAssembly.ContainsKey(assembly))
+            var type = Type.GetType($"{typeName}, {assembly.Substring(0, assembly.ToLower().IndexOf(".dll"))}");
+            if (type != null)
+            {
+                if (!CachedAssembly.ContainsKey(assembly))
+                    CachedAssembly.TryAdd(assembly, type.Assembly);
+                return CachedStringTypes.GetOrAdd(key, type);
+            }
+            else
+              if (!CachedAssembly.ContainsKey(assembly))
                 CachedAssembly.TryAdd(assembly, Assembly.LoadFrom(assembly));
 
             return CachedStringTypes.GetOrAdd(key, CachedAssembly.Get(assembly).GetType(typeName, true, true));
