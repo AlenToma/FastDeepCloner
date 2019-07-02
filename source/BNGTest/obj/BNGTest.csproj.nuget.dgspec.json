@@ -13,6 +13,7 @@
         "packagesPath": "C:\\Users\\alent\\.nuget\\packages\\",
         "outputPath": "E:\\Projects\\FastDeepCloner\\source\\BNGTest\\obj\\",
         "projectStyle": "PackageReference",
+        "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -23,14 +24,30 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.2"
+          "net472",
+          "netcoreapp2.0",
+          "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.2": {
+          "netcoreapp2.0": {
+            "projectReferences": {
+              "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj": {
+                "projectPath": "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj"
+              }
+            }
+          },
+          "net472": {
+            "projectReferences": {
+              "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj": {
+                "projectPath": "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj"
+              }
+            }
+          },
+          "netstandard2.0": {
             "projectReferences": {
               "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj": {
                 "projectPath": "E:\\Projects\\FastDeepCloner\\source\\FastDeepCloner\\FastDeepCloner.csproj"
@@ -45,16 +62,20 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.2": {
+        "netcoreapp2.0": {
           "dependencies": {
             "BenchmarkDotNet": {
               "target": "Package",
               "version": "[0.11.5, )"
             },
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.0, )",
+              "version": "[2.0.0, )",
               "autoReferenced": true
             }
           },
@@ -63,6 +84,46 @@
           ],
           "assetTargetFallback": true,
           "warn": true
+        },
+        "net472": {
+          "dependencies": {
+            "BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[0.11.5, )"
+            },
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          }
+        },
+        "netstandard2.0": {
+          "dependencies": {
+            "BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[0.11.5, )"
+            },
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
         }
       }
     },

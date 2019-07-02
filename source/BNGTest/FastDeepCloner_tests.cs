@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BNGTest
 {
-    //[ClrJob]
+    //[ClrJob, CoreJob]
     //[RPlotExporter, RankColumn]
     public class FastDeepCloner_tests
     {

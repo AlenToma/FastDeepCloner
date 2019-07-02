@@ -1,0 +1,146 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 12 benchmark(s) in total *****
+// ***** Building 3 exe(s) in Parallel: Start   *****
+// ***** Done, took 00:00:00 (0.21 sec)   *****
+// Found 12 benchmarks:
+//   FastDeepCloner_tests.ProxyTest: MycoreJob(Runtime=Clr, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.Clone: MycoreJob(Runtime=Clr, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.DynamicClone: MycoreJob(Runtime=Clr, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.CloneCollection: MycoreJob(Runtime=Clr, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.ProxyTest: MycoreJob(Runtime=Core, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.Clone: MycoreJob(Runtime=Core, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.DynamicClone: MycoreJob(Runtime=Core, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.CloneCollection: MycoreJob(Runtime=Core, IterationCount=1, LaunchCount=1, RunStrategy=ColdStart, UnrollFactor=1, WarmupCount=1)
+//   FastDeepCloner_tests.ProxyTest: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.Clone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.DynamicClone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.CloneCollection: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// Generate Exception: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj
+// Build Error: Exception! 
+Message: Unable to find BNGTest in E:\Projects\FastDeepCloner\source\BNGTest\bin\Release\netcoreapp2.0 and its subfolders. Most probably the name of output exe is different than the name of the .(c/f)sproj,
+Stack trace:
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GetProjectFilePath(Type benchmarkTarget, ILogger logger)
+   at BenchmarkDotNet.Toolchains.CsProj.CsProjGenerator.GenerateProject(BuildPartition buildPartition, ArtifactsPaths artifactsPaths, ILogger logger)
+   at BenchmarkDotNet.Toolchains.GeneratorBase.GenerateProject(BuildPartition buildPartition, ILogger logger, String rootArtifactsFolderPath)
+
+// **************************
+// Benchmark: FastDeepCloner_tests.ProxyTest: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-TQWZXR(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 203659.62 ns, 203.6596 us/op
+WorkloadJitting  1: 1 op, 24768820.74 ns, 24.7688 ms/op
+
+OverheadJitting  2: 16 op, 321986.99 ns, 20.1242 us/op
+WorkloadJitting  2: 16 op, 686924.54 ns, 42.9328 us/op
+
+WorkloadPilot    1: 16 op, 116336.29 ns, 7.2710 us/op
+WorkloadPilot    2: 32 op, 193988.63 ns, 6.0621 us/op
+WorkloadPilot    3: 64 op, 376030.74 ns, 5.8755 us/op
+WorkloadPilot    4: 128 op, 725892.93 ns, 5.6710 us/op
+WorkloadPilot    5: 256 op, 1428746.16 ns, 5.5810 us/op
+WorkloadPilot    6: 512 op, 2854647.90 ns, 5.5755 us/op
+WorkloadPilot    7: 1024 op, 5704744.76 ns, 5.5710 us/op
+WorkloadPilot    8: 2048 op, 11323303.95 ns, 5.5290 us/op
+WorkloadPilot    9: 4096 op, 22729949.06 ns, 5.5493 us/op
+WorkloadPilot   10: 8192 op, 45540679.30 ns, 5.5592 us/op
+WorkloadPilot   11: 16384 op, 91986733.68 ns, 5.6144 us/op
+WorkloadPilot   12: 32768 op, 180605688.25 ns, 5.5116 us/op
+WorkloadPilot   13: 65536 op, 375369417.49 ns, 5.7277 us/op
+WorkloadPilot   14: 131072 op, 729211217.21 ns, 5.5634 us/op
+
+OverheadWarmup   1: 131072 op, 232388.14 ns, 1.7730 ns/op
+OverheadWarmup   2: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadWarmup   3: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadWarmup   4: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadWarmup   5: 131072 op, 232388.14 ns, 1.7730 ns/op
+OverheadWarmup   6: 131072 op, 230681.49 ns, 1.7600 ns/op
+
+OverheadActual   1: 131072 op, 230965.93 ns, 1.7621 ns/op
+OverheadActual   2: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   3: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   4: 131072 op, 230965.93 ns, 1.7621 ns/op
+OverheadActual   5: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   6: 131072 op, 232388.14 ns, 1.7730 ns/op
+OverheadActual   7: 131072 op, 230397.05 ns, 1.7578 ns/op
+OverheadActual   8: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   9: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  10: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  11: 131072 op, 231819.25 ns, 1.7686 ns/op
+OverheadActual  12: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  13: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  14: 131072 op, 230397.05 ns, 1.7578 ns/op
+OverheadActual  15: 131072 op, 230681.49 ns, 1.7600 ns/op
+
+WorkloadWarmup   1: 131072 op, 720447596.05 ns, 5.4966 us/op
+WorkloadWarmup   2: 131072 op, 719969451.06 ns, 5.4929 us/op
+WorkloadWarmup   3: 131072 op, 738149200.58 ns, 5.6316 us/op
+
+WorkloadActual   1: 131072 op, 719192074.34 ns, 5.4870 us/op
+WorkloadActual   2: 131072 op, 718251713.04 ns, 5.4798 us/op
+WorkloadActual   3: 131072 op, 717152633.78 ns, 5.4714 us/op
+
+WorkloadResult   1: 131072 op, 7189

@@ -1,0 +1,381 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 4 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// ***** Done, took 00:00:00 (0.19 sec)   *****
+// Found 4 benchmarks:
+//   FastDeepCloner_tests.ProxyTest: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.Clone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.DynamicClone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   FastDeepCloner_tests.CloneCollection: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)// **************************
+// Benchmark: FastDeepCloner_tests.ProxyTest: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-AYUOBZ(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 201099.65 ns, 201.0996 us/op
+WorkloadJitting  1: 1 op, 26677702.97 ns, 26.6777 ms/op
+
+OverheadJitting  2: 16 op, 345026.69 ns, 21.5642 us/op
+WorkloadJitting  2: 16 op, 717359.71 ns, 44.8350 us/op
+
+WorkloadPilot    1: 16 op, 136531.59 ns, 8.5332 us/op
+WorkloadPilot    2: 32 op, 197970.80 ns, 6.1866 us/op
+WorkloadPilot    3: 64 op, 383995.08 ns, 5.9999 us/op
+WorkloadPilot    4: 128 op, 752345.93 ns, 5.8777 us/op
+WorkloadPilot    5: 256 op, 1483358.79 ns, 5.7944 us/op
+WorkloadPilot    6: 512 op, 2967286.46 ns, 5.7955 us/op
+WorkloadPilot    7: 1024 op, 5904422.20 ns, 5.7660 us/op
+WorkloadPilot    8: 2048 op, 12690610.89 ns, 6.1966 us/op
+WorkloadPilot    9: 4096 op, 25357044.32 ns, 6.1907 us/op
+WorkloadPilot   10: 8192 op, 48491183.76 ns, 5.9193 us/op
+WorkloadPilot   11: 16384 op, 110151407.84 ns, 6.7231 us/op
+WorkloadPilot   12: 32768 op, 200198824.12 ns, 6.1096 us/op
+WorkloadPilot   13: 65536 op, 385370640.59 ns, 5.8803 us/op
+WorkloadPilot   14: 131072 op, 767578015.00 ns, 5.8562 us/op
+
+OverheadWarmup   1: 131072 op, 310040.48 ns, 2.3654 ns/op
+OverheadWarmup   2: 131072 op, 239783.60 ns, 1.8294 ns/op
+OverheadWarmup   3: 131072 op, 255427.84 ns, 1.9488 ns/op
+OverheadWarmup   4: 131072 op, 364084.23 ns, 2.7777 ns/op
+OverheadWarmup   5: 131072 op, 230397.05 ns, 1.7578 ns/op
+OverheadWarmup   6: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadWarmup   7: 131072 op, 230397.05 ns, 1.7578 ns/op
+
+OverheadActual   1: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   2: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   3: 131072 op, 230397.05 ns, 1.7578 ns/op
+OverheadActual   4: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   5: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   6: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   7: 131072 op, 230397.05 ns, 1.7578 ns/op
+OverheadActual   8: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual   9: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  10: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  11: 131072 op, 239783.60 ns, 1.8294 ns/op
+OverheadActual  12: 131072 op, 230681.49 ns, 1.7600 ns/op
+OverheadActual  13: 131072 op, 230965.93 ns, 1.7621 ns/op
+OverheadActual  14: 131072 op, 231819.25 ns, 1.7686 ns/op
+OverheadActual  15: 131072 op, 230681.49 ns, 1.7600 ns/op
+
+WorkloadWarmup   1: 131072 op, 755385744.40 ns, 5.7631 us/op
+WorkloadWarmup   2: 131072 op, 784216948.69 ns, 5.9831 us/op
+WorkloadWarmup   3: 131072 op, 754406130.27 ns, 5.7557 us/op
+
+WorkloadActual   1: 131072 op, 767789923.40 ns, 5.8578 us/op
+WorkloadActual   2: 131072 op, 783902926.04 ns, 5.9807 us/op
+WorkloadActual   3: 131072 op, 782038132.13 ns, 5.9665 us/op
+
+WorkloadResult   1: 131072 op, 767559241.91 ns, 5.8560 us/op
+WorkloadResult   2: 131072 op, 783672244.55 ns, 5.9789 us/op
+WorkloadResult   3: 131072 op, 781807450.64 ns, 5.9647 us/op
+GC:  0 0 0 0 0
+
+
+Mean = 5.9332 us, StdErr = 0.0388 us (0.65%); N = 3, StdDev = 0.0672 us
+Min = 5.8560 us, Q1 = 5.8560 us, Median = 5.9647 us, Q3 = 5.9789 us, Max = 5.9789 us
+IQR = 0.1229 us, LowerFence = 5.6716 us, UpperFence = 6.1633 us
+ConfidenceInterval = [4.7064 us; 7.1600 us] (CI 99.9%), Margin = 1.2268 us (20.68% of Mean)
+Skewness = -0.37, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: FastDeepCloner_tests.Clone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-AYUOBZ(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 346733.34 ns, 346.7333 us/op
+WorkloadJitting  1: 1 op, 25381506.23 ns, 25.3815 ms/op
+
+OverheadJitting  2: 16 op, 373470.78 ns, 23.3419 us/op
+WorkloadJitting  2: 16 op, 601876.74 ns, 37.6173 us/op
+
+WorkloadPilot    1: 16 op, 158433.53 ns, 9.9021 us/op
+WorkloadPilot    2: 32 op, 313738.21 ns, 9.8043 us/op
+WorkloadPilot    3: 64 op, 613254.37 ns, 9.5821 us/op
+WorkloadPilot    4: 128 op, 1115861.27 ns, 8.7177 us/op
+WorkloadPilot    5: 256 op, 2271828.70 ns, 8.8743 us/op
+WorkloadPilot    6: 512 op, 4307571.53 ns, 8.4132 us/op
+WorkloadPilot    7: 1024 op, 8846962.31 ns, 8.6396 us/op
+WorkloadPilot    8: 2048 op, 17672307.13 ns, 8.6291 us/op
+WorkloadPilot    9: 4096 op, 36986406.57 ns, 9.0299 us/op
+WorkloadPilot   10: 8192 op, 71689322.38 ns, 8.7511 us/op
+WorkloadPilot   11: 16384 op, 138266674.63 ns, 8.4391 us/op
+WorkloadPilot   12: 32768 op, 275787829.92 ns, 8.4164 us/op
+WorkloadPilot   13: 65536 op, 551595286.25 ns, 8.4167 us/op
+
+OverheadWarmup   1: 65536 op, 117189.61 ns, 1.7882 ns/op
+OverheadWarmup   2: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadWarmup   3: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadWarmup   4: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadWarmup   5: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadWarmup   6: 65536 op, 116051.85 ns, 1.7708 ns/op
+OverheadWarmup   7: 65536 op, 115482.97 ns, 1.7621 ns/op
+
+OverheadActual   1: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual   2: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual   3: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadActual   4: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadActual   5: 65536 op, 115198.53 ns, 1.7578 ns/op
+OverheadActual   6: 65536 op, 133118.30 ns, 2.0312 ns/op
+OverheadActual   7: 65536 op, 116051.85 ns, 1.7708 ns/op
+OverheadActual   8: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadActual   9: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual  10: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual  11: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual  12: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadActual  13: 65536 op, 115198.53 ns, 1.7578 ns/op
+OverheadActual  14: 65536 op, 115482.97 ns, 1.7621 ns/op
+OverheadActual  15: 65536 op, 116051.85 ns, 1.7708 ns/op
+
+WorkloadWarmup   1: 65536 op, 555674167.37 ns, 8.4789 us/op
+WorkloadWarmup   2: 65536 op, 550610552.18 ns, 8.4017 us/op
+WorkloadWarmup   3: 65536 op, 551298614.49 ns, 8.4121 us/op
+
+WorkloadActual   1: 65536 op, 550255285.62 ns, 8.3962 us/op
+WorkloadActual   2: 65536 op, 553270358.14 ns, 8.4422 us/op
+WorkloadActual   3: 65536 op, 550128709.46 ns, 8.3943 us/op
+
+WorkloadResult   1: 65536 op, 550139802.65 ns, 8.3945 us/op
+WorkloadResult   2: 65536 op, 553154875.17 ns, 8.4405 us/op
+WorkloadResult   3: 65536 op, 550013226.50 ns, 8.3925 us/op
+GC:  0 0 0 0 0
+
+
+Mean = 8.4092 us, StdErr = 0.0157 us (0.19%); N = 3, StdDev = 0.0271 us
+Min = 8.3925 us, Q1 = 8.3925 us, Median = 8.3945 us, Q3 = 8.4405 us, Max = 8.4405 us
+IQR = 0.0479 us, LowerFence = 8.3206 us, UpperFence = 8.5124 us
+ConfidenceInterval = [7.9141 us; 8.9042 us] (CI 99.9%), Margin = 0.4951 us (5.89% of Mean)
+Skewness = 0.38, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: FastDeepCloner_tests.DynamicClone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-AYUOBZ(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 409025.88 ns, 409.0259 us/op
+WorkloadJitting  1: 1 op, 87626540.60 ns, 87.6265 ms/op
+
+WorkloadPilot    1: 2 op, 81350.07 ns, 40.6750 us/op
+WorkloadPilot    2: 3 op, 15359.80 ns, 5.1199 us/op
+WorkloadPilot    3: 4 op, 16782.01 ns, 4.1955 us/op
+WorkloadPilot    4: 5 op, 43519.44 ns, 8.7039 us/op
+WorkloadPilot    5: 6 op, 23324.15 ns, 3.8874 us/op
+WorkloadPilot    6: 7 op, 24177.47 ns, 3.4539 us/op
+WorkloadPilot    7: 8 op, 38115.07 ns, 4.7644 us/op
+WorkloadPilot    8: 9 op, 24461.91 ns, 2.7180 us/op
+WorkloadPilot    9: 10 op, 33279.57 ns, 3.3280 us/op
+WorkloadPilot   10: 11 op, 52621.55 ns, 4.7838 us/op
+WorkloadPilot   11: 12 op, 45510.53 ns, 3.7925 us/op
+WorkloadPilot   12: 13 op, 31004.05 ns, 2.3849 us/op
+WorkloadPilot   13: 14 op, 31857.37 ns, 2.2755 us/op
+WorkloadPilot   14: 15 op, 48639.38 ns, 3.2426 us/op
+WorkloadPilot   15: 16 op, 46079.41 ns, 2.8800 us/op
+WorkloadPilot   16: 32 op, 80496.75 ns, 2.5155 us/op
+WorkloadPilot   17: 64 op, 134824.94 ns, 2.1066 us/op
+WorkloadPilot   18: 128 op, 221294.95 ns, 1.7289 us/op
+WorkloadPilot   19: 256 op, 408172.55 ns, 1.5944 us/op
+WorkloadPilot   20: 512 op, 810940.73 ns, 1.5839 us/op
+WorkloadPilot   21: 1024 op, 1628708.04 ns, 1.5905 us/op
+WorkloadPilot   22: 2048 op, 3184030.36 ns, 1.5547 us/op
+WorkloadPilot   23: 4096 op, 6460788.41 ns, 1.5773 us/op
+WorkloadPilot   24: 8192 op, 13023122.19 ns, 1.5897 us/op
+WorkloadPilot   25: 16384 op, 25702639.90 ns, 1.5688 us/op
+WorkloadPilot   26: 32768 op, 52481319.35 ns, 1.6016 us/op
+WorkloadPilot   27: 65536 op, 101626716.96 ns, 1.5507 us/op
+WorkloadPilot   28: 131072 op, 203530479.25 ns, 1.5528 us/op
+WorkloadPilot   29: 262144 op, 404481649.30 ns, 1.5430 us/op
+WorkloadPilot   30: 524288 op, 825438109.95 ns, 1.5744 us/op
+
+WorkloadWarmup   1: 524288 op, 807101633.54 ns, 1.5394 us/op
+WorkloadWarmup   2: 524288 op, 809238637.30 ns, 1.5435 us/op
+WorkloadWarmup   3: 524288 op, 809283010.07 ns, 1.5436 us/op
+
+WorkloadActual   1: 524288 op, 819001214.56 ns, 1.5621 us/op
+WorkloadActual   2: 524288 op, 807014025.78 ns, 1.5393 us/op
+WorkloadActual   3: 524288 op, 808868295.37 ns, 1.5428 us/op
+
+WorkloadResult   1: 524288 op, 819001214.56 ns, 1.5621 us/op
+WorkloadResult   2: 524288 op, 807014025.78 ns, 1.5393 us/op
+WorkloadResult   3: 524288 op, 808868295.37 ns, 1.5428 us/op
+GC:  0 0 0 0 0
+
+
+Mean = 1.5481 us, StdErr = 0.0071 us (0.46%); N = 3, StdDev = 0.0123 us
+Min = 1.5393 us, Q1 = 1.5393 us, Median = 1.5428 us, Q3 = 1.5621 us, Max = 1.5621 us
+IQR = 0.0229 us, LowerFence = 1.5050 us, UpperFence = 1.5964 us
+ConfidenceInterval = [1.3235 us; 1.7726 us] (CI 99.9%), Margin = 0.2245 us (14.50% of Mean)
+Skewness = 0.35, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: FastDeepCloner_tests.CloneCollection: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: Job-AYUOBZ(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 366359.76 ns, 366.3598 us/op
+WorkloadJitting  1: 1 op, 1508674.02 ns, 1.5087 ms/op
+
+OverheadJitting  2: 16 op, 487247.10 ns, 30.4529 us/op
+WorkloadJitting  2: 16 op, 642267.33 ns, 40.1417 us/op
+
+WorkloadPilot    1: 16 op, 252867.87 ns, 15.8042 us/op
+WorkloadPilot    2: 32 op, 531904.30 ns, 16.6220 us/op
+WorkloadPilot    3: 64 op, 981605.21 ns, 15.3376 us/op
+WorkloadPilot    4: 128 op, 1978854.67 ns, 15.4598 us/op
+WorkloadPilot    5: 256 op, 3860430.59 ns, 15.0798 us/op
+WorkloadPilot    6: 512 op, 8034314.94 ns, 15.6920 us/op
+WorkloadPilot    7: 1024 op, 15320835.00 ns, 14.9618 us/op
+WorkloadPilot    8: 2048 op, 30794414.72 ns, 15.0363 us/op
+WorkloadPilot    9: 4096 op, 61494395.09 ns, 15.0133 us/op
+WorkloadPilot   10: 8192 op, 123362260.96 ns, 15.0589 us/op
+WorkloadPilot   11: 16384 op, 249497819.76 ns, 15.2281 us/op
+WorkloadPilot   12: 32768 op, 487983798.25 ns, 14.8921 us/op
+WorkloadPilot   13: 65536 op, 1084440803.60 ns, 16.5473 us/op
+
+OverheadWarmup   1: 65536 op, 118611.82 ns, 1.8099 ns/op
+OverheadWarmup   2: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadWarmup   3: 65536 op, 114914.08 ns, 1.7534 ns/op
+OverheadWarmup   4: 65536 op, 114629.64 ns, 1.7491 ns/op
+OverheadWarmup   5: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadWarmup   6: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadWarmup   7: 65536 op, 114914.08 ns, 1.7534 ns/op
+
+OverheadActual   1: 65536 op, 114629.64 ns, 1.7491 ns/op
+OverheadActual   2: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual   3: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual   4: 65536 op, 114914.08 ns, 1.7534 ns/op
+OverheadActual   5: 65536 op, 114629.64 ns, 1.7491 ns/op
+OverheadActual   6: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual   7: 65536 op, 115767.41 ns, 1.7665 ns/op
+OverheadActual   8: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual   9: 65536 op, 114914.08 ns, 1.7534 ns/op
+OverheadActual  10: 65536 op, 137100.47 ns, 2.0920 ns/op
+OverheadActual  11: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual  12: 65536 op, 114914.08 ns, 1.7534 ns/op
+OverheadActual  13: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual  14: 65536 op, 114345.20 ns, 1.7448 ns/op
+OverheadActual  15: 65536 op, 115767.41 ns, 1.7665 ns/op
+
+WorkloadWarmup   1: 65536 op, 993424866.38 ns, 15.1585 us/op
+WorkloadWarmup   2: 65536 op, 976780243.88 ns, 14.9045 us/op
+WorkloadWarmup   3: 65536 op, 978649873.28 ns, 14.9330 us/op
+
+WorkloadActual   1: 65536 op, 975589005.79 ns, 14.8863 us/op
+WorkloadActual   2: 65536 op, 999237983.09 ns, 15.2472 us/op
+WorkloadActual   3: 65536 op, 978273273.66 ns, 14.9273 us/op
+
+WorkloadResult   1: 65536 op, 975474376.15 ns, 14.8846 us/op
+WorkloadResult   2: 65536 op, 999123353.44 ns, 15.2454 us/op
+WorkloadResult   3: 65536 op, 978158644.01 ns, 14.9255 us/op
+GC:  0 0 0 0 0
+
+
+Mean = 15.0185 us, StdErr = 0.1141 us (0.76%); N = 3, StdDev = 0.1976 us
+Min = 14.8846 us, Q1 = 14.8846 us, Median = 14.9255 us, Q3 = 15.2454 us, Max = 15.2454 us
+IQR = 0.3609 us, LowerFence = 14.3433 us, UpperFence = 15.7867 us
+ConfidenceInterval = [11.4139 us; 18.6231 us] (CI 99.9%), Margin = 3.6046 us (24.00% of Mean)
+Skewness = 0.37, Kurtosis = 0.67, MValue = 2
+
+Successfully reverted power plan (GUID: 381b4222-f694-41f0-9685-ff5bb260df2e FriendlyName: Balanced)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\BNGTest.FastDeepCloner_tests-report.csv
+  BenchmarkDotNet.Artifacts\results\BNGTest.FastDeepCloner_tests-report-github.md
+  BenchmarkDotNet.Artifacts\results\BNGTest.FastDeepCloner_tests-report.html
+
+// * Detailed results *
+FastDeepCloner_tests.ProxyTest: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = ; GC = 
+Mean = 5.9332 us, StdErr = 0.0388 us (0.65%); N = 3, StdDev = 0.0672 us
+Min = 5.8560 us, Q1 = 5.8560 us, Median = 5.9647 us, Q3 = 5.9789 us, Max = 5.9789 us
+IQR = 0.1229 us, LowerFence = 5.6716 us, UpperFence = 6.1633 us
+ConfidenceInterval = [4.7064 us; 7.1600 us] (CI 99.9%), Margin = 1.2268 us (20.68% of Mean)
+Skewness = -0.37, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[5.815 us ; 6.020 us) | @@@
+---------------------------------------------------
+
+FastDeepCloner_tests.Clone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = ; GC = 
+Mean = 8.4092 us, StdErr = 0.0157 us (0.19%); N = 3, StdDev = 0.0271 us
+Min = 8.3925 us, Q1 = 8.3925 us, Median = 8.3945 us, Q3 = 8.4405 us, Max = 8.4405 us
+IQR = 0.0479 us, LowerFence = 8.3206 us, UpperFence = 8.5124 us
+ConfidenceInterval = [7.9141 us; 8.9042 us] (CI 99.9%), Margin = 0.4951 us (5.89% of Mean)
+Skewness = 0.38, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[8.376 us ; 8.457 us) | @@@
+---------------------------------------------------
+
+FastDeepCloner_tests.DynamicClone: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = ; GC = 
+Mean = 1.5481 us, StdErr = 0.0071 us (0.46%); N = 3, StdDev = 0.0123 us
+Min = 1.5393 us, Q1 = 1.5393 us, Median = 1.5428 us, Q3 = 1.5621 us, Max = 1.5621 us
+IQR = 0.0229 us, LowerFence = 1.5050 us, UpperFence = 1.5964 us
+ConfidenceInterval = [1.3235 us; 1.7726 us] (CI 99.9%), Margin = 0.2245 us (14.50% of Mean)
+Skewness = 0.35, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[1.532 us ; 1.570 us) | @@@
+---------------------------------------------------
+
+FastDeepCloner_tests.CloneCollection: ShortRun(Toolchain=InProcessEmitToolchain, IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = ; GC = 
+Mean = 15.0185 us, StdErr = 0.1141 us (0.76%); N = 3, StdDev = 0.1976 us
+Min = 14.8846 us, Q1 = 14.8846 us, Median = 14.9255 us, Q3 = 15.2454 us, Max = 15.2454 us
+IQR = 0.3609 us, LowerFence = 14.3433 us, UpperFence = 15.7867 us
+ConfidenceInterval = [11.4139 us; 18.6231 us] (CI 99.9%), Margin = 3.6046 us (24.00% of Mean)
+Skewness = 0.37, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[14.765 us ; 15.365 us) | @@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17134.829 (1803/April2018Update/Redstone4)
+Intel Core i7-3820 CPU 3.60GHz (Ivy Bridge), 1 CPU, 8 logical and 4 physical cores
+Frequency=3515670 Hz, Resolution=284.4408 ns, Timer=TSC
+.NET Core SDK=2.2.300
+  [Host] : .NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), 64bit RyuJIT
+
+Job=ShortRun  Toolchain=InProcessEmitToolchain  IterationCount=3  
+LaunchCount=1  WarmupCount=3  
+
+|          Method |      Mean |     Error |    StdDev |
+|---------------- |----------:|----------:|----------:|
+|       ProxyTest |  5.933 us | 1.2268 us | 0.0672 us |
+|           Clone |  8.409 us | 0.4951 us | 0.0271 us |
+|    DynamicClone |  1.548 us | 0.2245 us | 0.0123 us |
+| CloneCollection | 15.018 us | 3.6046 us | 0.1976 us |
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  1 us   : 1 Microsecond (0.000001 sec)
+
+// ***** BenchmarkRunner: End *****
+// ** Remained 0 benchmark(s) to run **
+Run time: 00:00:26 (26.97 sec), executed benchmarks: 4
+
+Global total time: 00:00:27 (27.17 sec), executed benchmarks: 4
+// * Artifacts cleanup *

@@ -10,9 +10,9 @@ namespace BNGTest
     {
         static void Main(string[] args)
         {
-            var config = ManualConfig.Create(DefaultConfig.Instance);
-            config.Add(Job.ShortRun.With(InProcessEmitToolchain.Instance));
-            var summary = BenchmarkRunner.Run<FastDeepCloner_tests>(config);
+            //var config = ManualConfig.Create(DefaultConfig.Instance);
+            //config.Add(Job.ShortRun.With(InProcessEmitToolchain.Instance));
+            var summary = BenchmarkRunner.Run<FastDeepCloner_tests>(new Config());
 
             //Console.WriteLine("Hello World!");
         }
