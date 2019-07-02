@@ -18,8 +18,6 @@ namespace BNGTest
             pUser.Name = "testo";
         }
 
-
-
         [Benchmark]
         public void Clone()
         {
@@ -27,9 +25,7 @@ namespace BNGTest
             user.Add(new User() { Name = "Alen" });
 
             var cloned = DeepCloner.Clone(user);
-
         }
-
 
         [Benchmark]
         public void DynamicClone()
@@ -41,7 +37,6 @@ namespace BNGTest
                 prop2 = 10
             };
             dynamic clonedAnonnymousObject = DeepCloner.CloneDynamic(originalAnonnymousObject);
-
         }
 
         [Benchmark]
@@ -52,7 +47,6 @@ namespace BNGTest
             user.TestValue = "Alen";
             user.us = new User() { Name = "Toma" };
             var cloned = DeepCloner.Clone(user);
-
         }
     }
 }
