@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>BNGTest.FastDeepCloner_tests-20190624-123017</title>
+<title>BNGTest.FastDeepCloner_tests-20190702-102359</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -15,23 +15,21 @@
 <pre><code>
 BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17134.829 (1803/April2018Update/Redstone4)
 Intel Core i7-3820 CPU 3.60GHz (Ivy Bridge), 1 CPU, 8 logical and 4 physical cores
-Frequency=3515663 Hz, Resolution=284.4414 ns, Timer=TSC
+Frequency=3515670 Hz, Resolution=284.4408 ns, Timer=TSC
 .NET Core SDK=2.2.300
   [Host] : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
 </code></pre>
-<pre><code></code></pre>
+<pre><code>Job=ShortRun  Toolchain=InProcessEmitToolchain  IterationCount=3  
+LaunchCount=1  WarmupCount=3  
+</code></pre>
 
 <table>
-<thead><tr><th>   Method</th><th>Job</th><th>Runtime</th><th>       Toolchain</th><th>IterationCount</th><th>LaunchCount</th><th>WarmupCount</th><th>Mean</th><th>Error</th><th>StdDev</th>
+<thead><tr><th>   Method</th><th>Mean</th><th>Error</th><th>StdDev</th>
 </tr>
-</thead><tbody><tr><td>ProxyTest</td><td>Clr</td><td>Clr</td><td>Default</td><td>Default</td><td>Default</td><td>Default</td><td>NA</td><td>NA</td><td>NA</td>
-</tr><tr><td>Clone</td><td>Clr</td><td>Clr</td><td>Default</td><td>Default</td><td>Default</td><td>Default</td><td>NA</td><td>NA</td><td>NA</td>
-</tr><tr><td>DynamicClone</td><td>Clr</td><td>Clr</td><td>Default</td><td>Default</td><td>Default</td><td>Default</td><td>NA</td><td>NA</td><td>NA</td>
-</tr><tr><td>CloneCollection</td><td>Clr</td><td>Clr</td><td>Default</td><td>Default</td><td>Default</td><td>Default</td><td>NA</td><td>NA</td><td>NA</td>
-</tr><tr><td>ProxyTest</td><td>ShortRun</td><td>Core</td><td>InProcessEmitToolchain</td><td>3</td><td>1</td><td>3</td><td>6.024 us</td><td>0.5737 us</td><td>0.0314 us</td>
-</tr><tr><td>Clone</td><td>ShortRun</td><td>Core</td><td>InProcessEmitToolchain</td><td>3</td><td>1</td><td>3</td><td>8.885 us</td><td>3.5352 us</td><td>0.1938 us</td>
-</tr><tr><td>DynamicClone</td><td>ShortRun</td><td>Core</td><td>InProcessEmitToolchain</td><td>3</td><td>1</td><td>3</td><td>2.012 us</td><td>1.1436 us</td><td>0.0627 us</td>
-</tr><tr><td>CloneCollection</td><td>ShortRun</td><td>Core</td><td>InProcessEmitToolchain</td><td>3</td><td>1</td><td>3</td><td>15.545 us</td><td>4.0534 us</td><td>0.2222 us</td>
+</thead><tbody><tr><td>ProxyTest</td><td>5.339 us</td><td>2.2928 us</td><td>0.1257 us</td>
+</tr><tr><td>Clone</td><td>8.321 us</td><td>0.3805 us</td><td>0.0209 us</td>
+</tr><tr><td>DynamicClone</td><td>1.951 us</td><td>0.0963 us</td><td>0.0053 us</td>
+</tr><tr><td>CloneCollection</td><td>14.884 us</td><td>2.1868 us</td><td>0.1199 us</td>
 </tr></tbody></table>
 </body>
 </html>

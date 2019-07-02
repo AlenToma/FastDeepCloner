@@ -9,7 +9,7 @@
       "BNGTest/1.0.0": {
         "dependencies": {
           "BenchmarkDotNet": "0.11.5",
-          "FastDeepCloner": "1.1.9"
+          "FastDeepCloner": "1.2.0"
         },
         "runtime": {
           "BNGTest.dll": {}
@@ -1073,7 +1073,7 @@
           }
         }
       },
-      "FastDeepCloner/1.1.9": {
+      "FastDeepCloner/1.2.0": {
         "runtime": {
           "FastDeepCloner.dll": {}
         }
@@ -1702,7 +1702,7 @@
       "path": "system.xml.xpath.xmldocument/4.3.0",
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
-    "FastDeepCloner/1.1.9": {
+    "FastDeepCloner/1.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
