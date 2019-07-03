@@ -10,7 +10,7 @@ namespace FastDeepCloner
 {
     internal class ClonerShared
     {
-        private readonly Dictionary<ClonedItems, object> _alreadyCloned = new Dictionary<ClonedItems, object>();
+        private readonly SafeValueType<string, object> _alreadyCloned = new SafeValueType<string, object>();
         private readonly FastDeepClonerSettings _settings;
 
         internal ClonerShared(FieldType fieldType)
@@ -21,14 +21,22 @@ namespace FastDeepCloner
 
         internal ClonerShared(FastDeepClonerSettings settings)
         {
-            _settings = settings;
+            if (settings != null)
+                _settings = settings;
+            else _settings = new FastDeepClonerSettings() { FieldType = FieldType.PropertyInfo };
         }
 
         private object ReferenceTypeClone(Dictionary<string, IFastDeepClonerProperty> properties, Type primaryType, object objectToBeCloned, object appendToValue = null)
         {
+            var identifier = objectToBeCloned.GetFastDeepClonerIdentifier();
+            if (identifier != null && _alreadyCloned.ContainsKey(identifier))
+                return _alreadyCloned[identifier];
 
             var resObject = appendToValue ?? _settings.OnCreateInstance(primaryType);
-            var fullPath = primaryType.Name;
+
+            if (identifier != null)
+                _alreadyCloned.Add(identifier, resObject);
+
             foreach (var property in properties.Values)
             {
                 if (!property.CanRead || property.FastDeepClonerIgnore)
@@ -36,13 +44,6 @@ namespace FastDeepCloner
                 var value = property.GetValue(objectToBeCloned);
                 if (value == null)
                     continue;
-                var key = fullPath + property.Name;
-                var clonedItem = new ClonedItems() { Value = value, Key = key };
-                if (_alreadyCloned.ContainsKey(clonedItem))
-                {
-                    property.SetValue(resObject, _alreadyCloned[clonedItem]);
-                    continue;
-                }
 
                 if ((property.IsInternalType || value.GetType().IsInternalType()))
                     property.SetValue(resObject, value);
@@ -50,9 +51,7 @@ namespace FastDeepCloner
                 {
                     if (_settings.CloneLevel == CloneLevel.FirstLevelOnly)
                         continue;
-                    var tValue = Clone(value);
-                    _alreadyCloned.Add(clonedItem, tValue);
-                    property.SetValue(resObject, tValue);
+                    property.SetValue(resObject, Clone(value));
                 }
             }
 

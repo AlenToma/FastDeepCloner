@@ -19,7 +19,7 @@ namespace FastDeepCloner
         }
 
         /// <summary>
-        /// 
+        /// DeepClone object
         /// </summary>
         /// <param name="objectToBeCloned">Desire object to cloned</param>
         /// <param name="settings"></param>
@@ -74,7 +74,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static T CreateInstance<T>(params object[] args) where T : class
         {
-            return (T)typeof(T).Creator(args);
+            return (T)typeof(T).Creator(true, args);
         }
 
         /// <summary>
@@ -89,11 +89,34 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static object CreateInstance(this Type type, params object[] args)
         {
-            return type.Creator(args);
+            return type.Creator(true, args);
         }
 
 
 #if !NETSTANDARD1_3
+
+        /// <summary>
+        /// Convert an object to an interface
+        /// The object dose not have to inherit from the interface as the library will handle the job of doing it
+        /// </summary>
+        /// <param name="interfaceType">interface</param>
+        /// <param name="o">the item</param>
+        /// <returns></returns>
+        public static object ActAsInterface(Type interfaceType, object o)
+        {
+            return interfaceType.ConvertToInterface(o);
+        }
+
+        /// <summary>
+        /// Convert an object to an interface
+        /// The object dose not have to inherit from the interface as the library will handle the job of doing it
+        /// </summary>
+        /// <param name="o">the item</param>
+        /// <returns></returns>
+        public static T ActAsInterface<T>(this object o)
+        {
+            return (T)typeof(T).ConvertToInterface(o);
+        }
 
         /// <summary>
         /// This will try and load the assembly and cached

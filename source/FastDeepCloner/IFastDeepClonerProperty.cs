@@ -67,6 +67,12 @@ namespace FastDeepCloner
         bool FastDeepClonerIgnore { get; }
 
         /// <summary>
+        /// Incase you have circular references in some object
+        /// You could mark an identifier or a primary key property so that fastDeepcloner could identify them
+        /// </summary>
+        bool FastDeepClonerPrimaryIdentifire { get; }
+
+        /// <summary>
         /// All available attributes
         /// </summary>
         AttributesCollections Attributes { get; set; }

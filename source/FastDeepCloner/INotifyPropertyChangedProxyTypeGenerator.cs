@@ -134,10 +134,7 @@ namespace FastDeepCloner
                 _mb = _ab.DefineDynamicModule(assmName.Name);
             }
 
-            // public class [TypeName]__proxy
-            //    : [TypeName], INotifyPropertyChanged
-            TypeBuilder typeBuilder = _mb.DefineType(
-                type.Name + "__FastDeepClonerProxyInstance", TypeAttributes.Public, type);
+            TypeBuilder typeBuilder = _mb.DefineType(type.Name + "__FastDeepClonerProxyInstance", TypeAttributes.Public, type);
 
             if (!typeof(INotifyPropertyChanged).IsAssignableFrom(type))
                 typeBuilder.AddInterfaceImplementation(typeof(INotifyPropertyChanged));

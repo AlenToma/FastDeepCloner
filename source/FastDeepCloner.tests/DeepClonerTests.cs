@@ -1,4 +1,5 @@
 ﻿using FastDeepCloner.tests.Entitys;
+using FastDeepCloner.tests.Entitys.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,28 @@ namespace FastDeepCloner.tests
         }
 
         [TestMethod]
+        public void ConvertToInterface()
+        {
+            var us = new User() { Name = "Alen" };
+            IUser pUser = us.ActAsInterface<IUser>();
+            string t = pUser.Name;
+            pUser.Name = "testo";
+        }
+
+
+        [TestMethod]
+        public void ConvertDynamicToInterface()
+        {
+
+            IUser pUser = new { Name = "Mother fuckers", Tal=15 }.ActAsInterface<IUser>();
+            string t = pUser.Name;
+            pUser.Name = "testo";
+        }
+
+        [TestMethod]
         public void CreateInstance()
         {
-            
+
             var test1 = DeepCloner.CreateInstance<ParamUsers>();
 
             var test2 = DeepCloner.CreateInstance<ParamUsers>(new object[] { "test1", "test2", 54 });
@@ -42,8 +62,25 @@ namespace FastDeepCloner.tests
             user.Add(new User() { Name = "Alen" });
 
             var cloned = FastDeepCloner.DeepCloner.Clone(user);
-            Assert.AreEqual(user.First().Name, cloned.First().Name);
+            cloned.First().Name = "Toma";
+            Assert.AreNotEqual(user.First().Name, cloned.First().Name);
         }
+
+        [TestMethod]
+        /// <summary>
+        /// Circular refernces Test
+        /// </summary>
+        /// <param name="objectToBeCloned">Desire object to cloned</param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        public void CloneCircularReferences()
+        {
+            var item = new Circular();
+            var cloned = FastDeepCloner.DeepCloner.Clone(item);
+
+            var s = cloned;
+        }
+
 
         [TestMethod]
 

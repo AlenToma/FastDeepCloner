@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -23,11 +22,14 @@ namespace FastDeepCloner
         private static readonly SafeValueType<string, Func<object>> CachedConstructor = new SafeValueType<string, Func<object>>();
         private static readonly SafeValueType<string, ObjectActivator> CachedDynamicMethod = new SafeValueType<string, ObjectActivator>();
         private static readonly SafeValueType<string, ObjectActivatorWithParameters> CachedDynamicMethodWithParameters = new SafeValueType<string, ObjectActivatorWithParameters>();
-        private static readonly SafeValueType<string, ConstructorInfo> ConstructorInfos = new SafeValueType<string, ConstructorInfo>();
+        private static readonly SafeValueType<string, ConstructorInfo> ConstructorInfo = new SafeValueType<string, ConstructorInfo>();
         private static readonly SafeValueType<Type, Type> ProxyTypes = new SafeValueType<Type, Type>();
         private static readonly SafeValueType<Type, MethodInfo> ProxyTypesPropertyChanged = new SafeValueType<Type, MethodInfo>();
         private static readonly SafeValueType<string, Assembly> CachedAssembly = new SafeValueType<string, Assembly>();
         private static readonly SafeValueType<string, Type> CachedStringTypes = new SafeValueType<string, Type>();
+        private static readonly SafeValueType<string, Type> CachedConvertedObjectToInterface = new SafeValueType<string, Type>();
+        private static readonly SafeValueType<Type, IFastDeepClonerProperty> CachedFastDeepClonerIdentifier = new SafeValueType<Type, IFastDeepClonerProperty>();
+
 
 
         public static void CleanCachedItems()
@@ -43,9 +45,19 @@ namespace FastDeepCloner
             CachedAssembly.Clear();
             CachedDynamicMethodWithParameters.Clear();
             ProxyTypesPropertyChanged.Clear();
+            CachedConvertedObjectToInterface.Clear();
+            ConstructorInfo.Clear();
+            CachedFastDeepClonerIdentifier.Clear();
         }
 
-
+        internal static string GetFastDeepClonerIdentifier(this object o)
+        {
+            if (o == null)
+                return null;
+            var type = o.GetType();
+            var p = CachedFastDeepClonerIdentifier.ContainsKey(type) ? CachedFastDeepClonerIdentifier[type] : CachedFastDeepClonerIdentifier.GetOrAdd(type, DeepCloner.GetFastDeepClonerProperties(type).FirstOrDefault(x => x.FastDeepClonerPrimaryIdentifire));
+            return p == null ? null : type.FullName + type.Name + p.Name + p.FullName + p.GetValue(o);
+        }
 
         internal static Type GetIListType(this Type type)
         {
@@ -61,7 +73,6 @@ namespace FastDeepCloner
                         CachedTypes.Add(type, typeof(ObservableCollection<>).MakeGenericType(type.GenericTypeArguments.First()));
                     else
                         CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
-
                 }
                 else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
                 {
@@ -76,6 +87,37 @@ namespace FastDeepCloner
         }
 
 #if !NETSTANDARD1_3
+
+
+        internal static object ConvertToInterface(this Type interfaceType, object item)
+        {
+            var type = item.GetType();
+            if (interfaceType.IsAssignableFrom(type))
+                return item;
+            var props = DeepCloner.GetFastDeepClonerProperties(type);
+            var args = new List<object>();
+            foreach (var p in props.Where(x => DeepCloner.GetProperty(interfaceType, x.Name) != null))
+            {
+                var value = p.GetValue(item);
+                try
+                {
+                    value = Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType);
+                    args.Add(value);
+                }
+                catch
+                {
+                    var iType = DeepCloner.GetProperty(interfaceType, p.Name).PropertyType;
+                    throw new Exception($"Property {p.Name} has different type then the interface which is of type {DeepCloner.GetProperty(interfaceType, p.Name).PropertyType}. \n (Convert.ChangeType) could not convert from {p.PropertyType} to {iType}");
+                }
+            }
+
+            var key = $"{(type.IsAnonymousType() ? string.Join(" | ", props.Select(x => x.FullName).ToArray()) : type.FullName)} | {interfaceType.FullName}";
+            var newtype = CachedConvertedObjectToInterface.ContainsKey(key) ? CachedConvertedObjectToInterface[key] : CachedConvertedObjectToInterface.GetOrAdd(key, FastDeepCloner.ConvertToInterface.Convert(interfaceType, type));
+            var returnValue = Creator(newtype, false, args.ToArray());
+            return returnValue;
+        }
+
+
 
 
         internal static Type GetFastType(this string typeName, string assembly)
@@ -145,10 +187,11 @@ namespace FastDeepCloner
         internal static ConstructorInfo GetConstructorInfo(this Type type, params object[] parameters)
         {
             var key = type.FullName + string.Join("", parameters?.Select(x => x.GetType()));
-            if (ConstructorInfos.ContainsKey(key))
-                return ConstructorInfos.Get(key);
+            if (ConstructorInfo.ContainsKey(key))
+                return ConstructorInfo.Get(key);
 #if !NETSTANDARD1_3
-            return ConstructorInfos.GetOrAdd(key, parameters == null ? type.GetConstructor(Type.EmptyTypes) : type.GetConstructor(parameters.Select(x => x.GetType()).ToArray()));
+
+            return ConstructorInfo.GetOrAdd(key, parameters == null ? type.GetConstructor(Type.EmptyTypes) : type.GetConstructor(parameters.Select(x => x.GetType()).ToArray()));
 #else
             ConstructorInfo constructor = null;
 
@@ -183,13 +226,13 @@ namespace FastDeepCloner
                         constructor = cr;
                 }
             }
-            return ConstructorInfos.GetOrAdd(key, constructor);
+            return ConstructorInfo.GetOrAdd(key, constructor);
 #endif
         }
 
 
 
-        internal static object Creator(this Type type, params object[] parameters)
+        internal static object Creator(this Type type, bool validateArgs = true, params object[] parameters)
         {
             try
             {
@@ -199,7 +242,7 @@ namespace FastDeepCloner
                 if (constructor != null)
                 {
                     var constParam = constructor.GetParameters();
-                    if (parameters?.Any() ?? false)
+                    if (validateArgs && (parameters?.Any() ?? false))
                     {
                         for (var i = 0; i < parameters.Length; i++)
                         {

@@ -6,3 +6,4 @@
 /source/FastDeepCloner/bin
 /source/FastDeepCloner/obj
 /solution/.vs/FastDeepCloner/v16
+/source/BNGTest/bin/Release/netcoreapp2.0/BenchmarkDotNet.Artifacts
