@@ -96,24 +96,31 @@ namespace FastDeepCloner
                 return item;
             var props = DeepCloner.GetFastDeepClonerProperties(type);
             var args = new List<object>();
-            foreach (var p in props.Where(x => DeepCloner.GetProperty(interfaceType, x.Name) != null))
-            {
-                var value = p.GetValue(item);
-                try
+            if (type.IsAnonymousType())
+                foreach (var p in props.Where(x => DeepCloner.GetProperty(interfaceType, x.Name) != null))
                 {
-                    value = Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType);
-                    args.Add(value);
+                    var value = p.GetValue(item);
+                    try
+                    {
+                        value = Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType);
+                        args.Add(value);
+                    }
+                    catch
+                    {
+                        var iType = DeepCloner.GetProperty(interfaceType, p.Name).PropertyType;
+                        throw new Exception($"Property {p.Name} has different type then the interface which is of type {DeepCloner.GetProperty(interfaceType, p.Name).PropertyType}. \n (Convert.ChangeType) could not convert from {p.PropertyType} to {iType}");
+                    }
                 }
-                catch
-                {
-                    var iType = DeepCloner.GetProperty(interfaceType, p.Name).PropertyType;
-                    throw new Exception($"Property {p.Name} has different type then the interface which is of type {DeepCloner.GetProperty(interfaceType, p.Name).PropertyType}. \n (Convert.ChangeType) could not convert from {p.PropertyType} to {iType}");
-                }
-            }
 
             var key = $"{(type.IsAnonymousType() ? string.Join(" | ", props.Select(x => x.FullName).ToArray()) : type.FullName)} | {interfaceType.FullName}";
             var newtype = CachedConvertedObjectToInterface.ContainsKey(key) ? CachedConvertedObjectToInterface[key] : CachedConvertedObjectToInterface.GetOrAdd(key, FastDeepCloner.ConvertToInterface.Convert(interfaceType, type));
             var returnValue = Creator(newtype, false, args.ToArray());
+
+            if (!type.IsAnonymousType())
+            {
+                foreach (var p in props)
+                    p.SetValue(returnValue, p.GetValue(item));
+            }
             return returnValue;
         }
 

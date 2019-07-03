@@ -26,17 +26,18 @@ namespace FastDeepCloner
                     _ab = AssemblyBuilder.DefineDynamicAssembly(assmName, AssemblyBuilderAccess.Run);
                     _mb = _ab.DefineDynamicModule(assmName.Name);
                 }
-
-                TypeBuilder typeBuilder = _mb.DefineType(className, TypeAttributes.Public | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit, typeof(object));
-                typeBuilder.DefineDefaultConstructor(MethodAttributes.Public);
+                var classType = type.IsAnonymousType() ? typeof(object) : type;
+                TypeBuilder typeBuilder = _mb.DefineType(className, TypeAttributes.Public | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit, classType);
 
                 var props = DeepCloner.GetFastDeepClonerProperties(interfaceType).FindAll(x => x.ReadAble);
 
-                CreateProperty(props, typeBuilder, interfaceType);
+                if (type.IsAnonymousType())
+                    CreateProperty(props, typeBuilder, interfaceType);
 
                 if (!interfaceType.IsAssignableFrom(type))
                     typeBuilder.AddInterfaceImplementation(interfaceType);
                 else return type;
+
                 return typeBuilder.CreateTypeInfo().AsType();
             }
             catch (Exception e)
@@ -50,6 +51,7 @@ namespace FastDeepCloner
             var types = props.Select(x => x.PropertyType);
             return typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, types.ToArray());
         }
+
 
 
         public static void CreateProperty(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder, Type interfaceType)

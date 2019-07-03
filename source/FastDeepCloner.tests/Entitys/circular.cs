@@ -32,23 +32,19 @@ namespace FastDeepCloner.tests.Entitys
     {
         [FastDeepClonerPrimaryIdentifire]
         public int Id { get; set; } = 1;
-        private Circular _bar;
-        public Circular myBar
+        private Circular _myFoo;
+        public Circular myFoo
         {
             get
             {
-                if (_bar == null)
-                    _bar = new Circular();
-                return _bar;
+                if (_myFoo == null)
+                    _myFoo = new Circular();
+                return _myFoo;
             }
 
-            set => _bar = value;
+            set => _myFoo = value;
 
         }
 
-        public Bar()
-        {
-
-        }
     }
 }

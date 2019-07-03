@@ -139,8 +139,7 @@ namespace FastDeepCloner
             if (!typeof(INotifyPropertyChanged).IsAssignableFrom(type))
                 typeBuilder.AddInterfaceImplementation(typeof(INotifyPropertyChanged));
 
-            FieldBuilder eventField =
-            CreatePropertyChangedEvent(typeBuilder);
+            FieldBuilder eventField = CreatePropertyChangedEvent(typeBuilder);
 
 
             MethodBuilder raisePropertyChanged = CreateRaisePropertyChanged(typeBuilder, eventField);
