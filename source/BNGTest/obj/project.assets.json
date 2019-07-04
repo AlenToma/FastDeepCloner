@@ -1777,7 +1777,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "compile": {
@@ -3917,7 +3917,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "compile": {
@@ -4898,7 +4898,7 @@
           "lib/net46/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "compile": {
@@ -5777,7 +5777,7 @@
           "lib/net46/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "compile": {
@@ -7387,7 +7387,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -9115,7 +9115,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "FastDeepCloner/1.2.0": {
+      "FastDeepCloner/1.2.3": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -14536,7 +14536,7 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "FastDeepCloner/1.2.0": {
+    "FastDeepCloner/1.2.3": {
       "type": "project",
       "path": "../FastDeepCloner/FastDeepCloner.csproj",
       "msbuildProject": "../FastDeepCloner/FastDeepCloner.csproj"
@@ -14545,18 +14545,18 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "BenchmarkDotNet >= 0.11.5",
-      "FastDeepCloner >= 1.2.0",
+      "FastDeepCloner >= 1.2.3",
       "Microsoft.CSharp >= 4.5.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ],
     ".NETFramework,Version=v4.7.2": [
       "BenchmarkDotNet >= 0.11.5",
-      "FastDeepCloner >= 1.2.0",
+      "FastDeepCloner >= 1.2.3",
       "Microsoft.CSharp >= 4.5.0"
     ],
     ".NETStandard,Version=v2.0": [
       "BenchmarkDotNet >= 0.11.5",
-      "FastDeepCloner >= 1.2.0",
+      "FastDeepCloner >= 1.2.3",
       "Microsoft.CSharp >= 4.5.0",
       "NETStandard.Library >= 2.0.3"
     ]

@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 namespace FastDeepCloner
 {
 #if NETSTANDARD2_0 || NETCOREAPP2_0 || NET451
-    internal static class ConvertToInterface
+    internal static class ConvertToInterfaceTypeGenerator
     {
 
         private static AssemblyBuilder _ab;
@@ -32,7 +32,15 @@ namespace FastDeepCloner
                 var props = DeepCloner.GetFastDeepClonerProperties(interfaceType).FindAll(x => x.ReadAble);
 
                 if (type.IsAnonymousType())
-                    CreateProperty(props, typeBuilder, interfaceType);
+                {
+                    CreateConstructor(props, typeBuilder, CreateProperty(props, typeBuilder));
+                }
+                else
+                {
+                    var typeProps = DeepCloner.GetFastDeepClonerProperties(type);
+                    var missingProps = props.FindAll(x => !typeProps.Any(a => a.Name == x.Name));
+                    CreateProperty(missingProps, typeBuilder);
+                }
 
                 if (!interfaceType.IsAssignableFrom(type))
                     typeBuilder.AddInterfaceImplementation(interfaceType);
@@ -46,15 +54,24 @@ namespace FastDeepCloner
             }
         }
 
-        public static ConstructorBuilder CreateConstructor(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder)
+        public static void CreateConstructor(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder, List<FieldBuilder> fields)
         {
             var types = props.Select(x => x.PropertyType);
-            return typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, types.ToArray());
+            var constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, types.ToArray()).GetILGenerator();
+
+            foreach (var p in props)
+            {
+                var index = props.IndexOf(p);
+                constructor.Emit(OpCodes.Ldarg_0);
+                constructor.Emit(OpCodes.Ldarg_S, index + 1);
+                constructor.Emit(OpCodes.Stfld, fields[index]);
+            }
+            constructor.Emit(OpCodes.Ret); // finish the constructor
         }
 
 
 
-        public static void CreateProperty(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder, Type interfaceType)
+        public static List<FieldBuilder> CreateProperty(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder)
         {
 
             var lstField = new List<FieldBuilder>();
@@ -87,16 +104,8 @@ namespace FastDeepCloner
                 lstField.Add(fieldBldr);
 
             }
+            return lstField;
 
-            var constructor = CreateConstructor(props, typeBuilder).GetILGenerator();
-            foreach (var p in props)
-            {
-                var index = props.IndexOf(p);
-                constructor.Emit(OpCodes.Ldarg_0);
-                constructor.Emit(OpCodes.Ldarg_S, index + 1);
-                constructor.Emit(OpCodes.Stfld, lstField[index]);
-            }
-            constructor.Emit(OpCodes.Ret); // finish the constructor
         }
     }
 #endif

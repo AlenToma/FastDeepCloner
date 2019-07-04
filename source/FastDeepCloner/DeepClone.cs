@@ -92,6 +92,16 @@ namespace FastDeepCloner
             return type.Creator(true, args);
         }
 
+        /// <summary>
+        /// Get the internal item type of the List or ObservableCollection types
+        /// </summary>
+        /// <param name="listType"></param>
+        /// <returns> will return the same value if the type is not an list type </returns>
+        public static Type GetListItemType(this Type listType)
+        {
+            return listType.GetIListItemType();
+        }
+
 
 #if !NETSTANDARD1_3
 
@@ -104,7 +114,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static object ActAsInterface(Type interfaceType, object o)
         {
-            return interfaceType.ConvertToInterface(o);
+            return interfaceType.InterFaceConverter(o);
         }
 
         /// <summary>
@@ -115,7 +125,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static T ActAsInterface<T>(this object o)
         {
-            return (T)typeof(T).ConvertToInterface(o);
+            return (T)typeof(T).InterFaceConverter(o);
         }
 
         /// <summary>

@@ -7,6 +7,18 @@
         <member name="T:FastDeepCloner.CloneLevel">
             <summary>
             CloneLevel
+            FirstLevelOnly = Only InternalTypes
+            Hierarki = All types Hierarki
+            </summary>
+        </member>
+        <member name="F:FastDeepCloner.CloneLevel.Hierarki">
+            <summary>
+            All types
+            </summary>
+        </member>
+        <member name="F:FastDeepCloner.CloneLevel.FirstLevelOnly">
+            <summary>
+            Only InternalTypes
             </summary>
         </member>
         <member name="T:FastDeepCloner.ConfigrationManager">
@@ -26,7 +38,7 @@
         </member>
         <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FastDeepClonerSettings)">
             <summary>
-            
+            DeepClone object
             </summary>
             <param name="objectToBeCloned">Desire object to cloned</param>
             <param name="settings"></param>
@@ -77,6 +89,30 @@
             </summary>
             <param name="type"></param>
             <param name="args">Optional</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetListItemType(System.Type)">
+            <summary>
+            Get the internal item type of the List or ObservableCollection types
+            </summary>
+            <param name="listType"></param>
+            <returns> will return the same value if the type is not an list type </returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ActAsInterface(System.Type,System.Object)">
+            <summary>
+            Convert an object to an interface
+            The object dose not have to inherit from the interface as the library will handle the job of doing it
+            </summary>
+            <param name="interfaceType">interface</param>
+            <param name="o">the item</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ActAsInterface``1(System.Object)">
+            <summary>
+            Convert an object to an interface
+            The object dose not have to inherit from the interface as the library will handle the job of doing it
+            </summary>
+            <param name="o">the item</param>
             <returns></returns>
         </member>
         <member name="M:FastDeepCloner.DeepCloner.GetObjectType(System.String,System.String)">
@@ -165,6 +201,12 @@
         <member name="T:FastDeepCloner.FastDeepClonerIgnore">
             <summary>
             Ignore Properties or Field that containe this attribute
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerPrimaryIdentifire">
+            <summary>
+            Incase you have circular references in some object
+            You could mark an identifier or a primary key property so that fastDeepcloner could identify them
             </summary>
         </member>
         <member name="T:FastDeepCloner.FastDeepClonerSettings">
@@ -257,6 +299,12 @@
         <member name="P:FastDeepCloner.IFastDeepClonerProperty.FastDeepClonerIgnore">
             <summary>
             Ignored
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.FastDeepClonerPrimaryIdentifire">
+            <summary>
+            Incase you have circular references in some object
+            You could mark an identifier or a primary key property so that fastDeepcloner could identify them
             </summary>
         </member>
         <member name="P:FastDeepCloner.IFastDeepClonerProperty.Attributes">

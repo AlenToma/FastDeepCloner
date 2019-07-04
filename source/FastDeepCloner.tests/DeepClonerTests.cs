@@ -2,6 +2,7 @@
 using FastDeepCloner.tests.Entitys.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace FastDeepCloner.tests
@@ -26,12 +27,20 @@ namespace FastDeepCloner.tests
             pUser.Name = "testo";
         }
 
+        [TestMethod]
+        public void ConvertToListInterface()
+        {
+            var us = new User() { Name = "Alen" };
+            var lst = new ObservableCollection<User>() { us };
+            var pUser = lst.ActAsInterface<IList<IUser>>();
+            var user = pUser.First();
+        }
+
 
         [TestMethod]
         public void ConvertDynamicToInterface()
         {
-
-            IUser pUser = new { Name = "Mother fuckers", Tal=15 }.ActAsInterface<IUser>();
+            IUser pUser = new { Name = "Mother fuckers", Tal = 15, ps="sdkjhaskdjh" }.ActAsInterface<IUser>();
             string t = pUser.Name;
             pUser.Name = "testo";
         }

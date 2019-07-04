@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ namespace FastDeepCloner
         private static readonly SafeValueType<string, Type> CachedStringTypes = new SafeValueType<string, Type>();
         private static readonly SafeValueType<string, Type> CachedConvertedObjectToInterface = new SafeValueType<string, Type>();
         private static readonly SafeValueType<Type, IFastDeepClonerProperty> CachedFastDeepClonerIdentifier = new SafeValueType<Type, IFastDeepClonerProperty>();
+        private static readonly SafeValueType<Type, Type> CachedIListInternalTypes = new SafeValueType<Type, Type>();
 
 
 
@@ -48,6 +50,7 @@ namespace FastDeepCloner
             CachedConvertedObjectToInterface.Clear();
             ConstructorInfo.Clear();
             CachedFastDeepClonerIdentifier.Clear();
+            CachedIListInternalTypes.Clear();
         }
 
         internal static string GetFastDeepClonerIdentifier(this object o)
@@ -57,6 +60,27 @@ namespace FastDeepCloner
             var type = o.GetType();
             var p = CachedFastDeepClonerIdentifier.ContainsKey(type) ? CachedFastDeepClonerIdentifier[type] : CachedFastDeepClonerIdentifier.GetOrAdd(type, DeepCloner.GetFastDeepClonerProperties(type).FirstOrDefault(x => x.FastDeepClonerPrimaryIdentifire));
             return p == null ? null : type.FullName + type.Name + p.Name + p.FullName + p.GetValue(o);
+        }
+
+        internal static Type GetIListItemType(this Type type)
+        {
+            if (CachedIListInternalTypes.ContainsKey(type))
+                return CachedIListInternalTypes[type];
+            if (type.IsArray)
+                CachedIListInternalTypes.Add(type, type.GetElementType());
+            else
+            {
+                if (type.GenericTypeArguments.Any())
+                {
+                    CachedIListInternalTypes.Add(type, type.GenericTypeArguments.First());
+                }
+                else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
+                {
+                    CachedIListInternalTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                }
+                else CachedIListInternalTypes.Add(type, type);
+            }
+            return CachedIListInternalTypes[type];
         }
 
         internal static Type GetIListType(this Type type)
@@ -88,6 +112,24 @@ namespace FastDeepCloner
 
 #if !NETSTANDARD1_3
 
+        internal static object InterFaceConverter(this Type interfaceType, object item)
+        {
+            var iType = GetIListItemType(interfaceType) != interfaceType ? GetIListItemType(interfaceType) : GetIListItemType(interfaceType);
+
+            if (item is IList)
+            {
+                var lst = GetIListType(interfaceType).CreateInstance() as IList;
+                foreach (var i in item as IList)
+                {
+                    lst.Add(ConvertToInterface(iType, i));
+                }
+
+                return lst;
+            }
+            else return ConvertToInterface(iType, item);
+
+        }
+
 
         internal static object ConvertToInterface(this Type interfaceType, object item)
         {
@@ -113,7 +155,7 @@ namespace FastDeepCloner
                 }
 
             var key = $"{(type.IsAnonymousType() ? string.Join(" | ", props.Select(x => x.FullName).ToArray()) : type.FullName)} | {interfaceType.FullName}";
-            var newtype = CachedConvertedObjectToInterface.ContainsKey(key) ? CachedConvertedObjectToInterface[key] : CachedConvertedObjectToInterface.GetOrAdd(key, FastDeepCloner.ConvertToInterface.Convert(interfaceType, type));
+            var newtype = CachedConvertedObjectToInterface.ContainsKey(key) ? CachedConvertedObjectToInterface[key] : CachedConvertedObjectToInterface.GetOrAdd(key, FastDeepCloner.ConvertToInterfaceTypeGenerator.Convert(interfaceType, type));
             var returnValue = Creator(newtype, false, args.ToArray());
 
             if (!type.IsAnonymousType())
