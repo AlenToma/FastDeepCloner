@@ -25,6 +25,12 @@ Now you could simple convert User to IUser with easy.
   
   // You could even use a AnonymousType
   IUser iUser = new { Name= "Test" }.ActAsInterface<IUser>();
-
+  
+  // as for list or ObservableCollection
+  var lst = new List<User>();
+  List<IUser> iUserList = lst.ActAsInterface<List<IUser>>();
+  // Or 
+  ObservableCollection<IUser> iUserList = lst.ActAsInterface<ObservableCollection<IUser>>();
+  
 ```
 
