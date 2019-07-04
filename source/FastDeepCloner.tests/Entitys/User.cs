@@ -12,6 +12,7 @@ namespace FastDeepCloner.tests.Entitys
 
         public virtual int PasswordLength { get; set; } = 6;
 
+        public Circular Test { get; set; } = new Circular();
 
         private void PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

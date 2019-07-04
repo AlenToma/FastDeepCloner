@@ -26,22 +26,12 @@ namespace FastDeepCloner
                     _ab = AssemblyBuilder.DefineDynamicAssembly(assmName, AssemblyBuilderAccess.Run);
                     _mb = _ab.DefineDynamicModule(assmName.Name);
                 }
-                var classType = type.IsAnonymousType() ? typeof(object) : type;
+                var classType = typeof(object);
                 TypeBuilder typeBuilder = _mb.DefineType(className, TypeAttributes.Public | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit, classType);
 
-                var props = DeepCloner.GetFastDeepClonerProperties(interfaceType).FindAll(x => x.ReadAble);
+                var props = DeepCloner.GetFastDeepClonerProperties(interfaceType);
 
-                if (type.IsAnonymousType())
-                {
-                    CreateConstructor(props, typeBuilder, CreateProperty(props, typeBuilder));
-                }
-                else
-                {
-                    var typeProps = DeepCloner.GetFastDeepClonerProperties(type);
-                    var missingProps = props.FindAll(x => !typeProps.Any(a => a.Name == x.Name));
-                    CreateProperty(missingProps, typeBuilder);
-                }
-
+                CreateConstructor(props, typeBuilder, CreateProperty(props, typeBuilder));
                 if (!interfaceType.IsAssignableFrom(type))
                     typeBuilder.AddInterfaceImplementation(interfaceType);
                 else return type;
@@ -56,17 +46,21 @@ namespace FastDeepCloner
 
         public static void CreateConstructor(List<IFastDeepClonerProperty> props, TypeBuilder typeBuilder, List<FieldBuilder> fields)
         {
-            var types = props.Select(x => x.PropertyType);
-            var constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, types.ToArray()).GetILGenerator();
-
-            foreach (var p in props)
+            typeBuilder.DefineDefaultConstructor(MethodAttributes.Public);
+            for (var i = 0; i < props.Count(); i++)
             {
-                var index = props.IndexOf(p);
-                constructor.Emit(OpCodes.Ldarg_0);
-                constructor.Emit(OpCodes.Ldarg_S, index + 1);
-                constructor.Emit(OpCodes.Stfld, fields[index]);
+                var prs = props.Where((x, y) => y <= i).ToList();
+                var types = prs.Select(x => x.PropertyType);
+                var constructor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, types.ToArray()).GetILGenerator();
+                foreach (var p in prs)
+                {
+                    var index = props.IndexOf(p);
+                    constructor.Emit(OpCodes.Ldarg_0);
+                    constructor.Emit(OpCodes.Ldarg_S, index + 1);
+                    constructor.Emit(OpCodes.Stfld, fields[index]);
+                }
+                constructor.Emit(OpCodes.Ret); // finish the constructor
             }
-            constructor.Emit(OpCodes.Ret); // finish the constructor
         }
 
 

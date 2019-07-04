@@ -4,12 +4,8 @@ using System.Text;
 
 namespace FastDeepCloner.tests.Entitys.Interface
 {
-    public interface IUser
+    public interface ITest
     {
-        string Name { get; set; }
-
-        int Tal { get; }
-
-        ITest Test { get; }
+        int Id { get; } 
     }
 }

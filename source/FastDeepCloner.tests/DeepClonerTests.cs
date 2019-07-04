@@ -48,7 +48,6 @@ namespace FastDeepCloner.tests
         [TestMethod]
         public void CreateInstance()
         {
-
             var test1 = DeepCloner.CreateInstance<ParamUsers>();
 
             var test2 = DeepCloner.CreateInstance<ParamUsers>(new object[] { "test1", "test2", 54 });

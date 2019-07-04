@@ -137,32 +137,43 @@ namespace FastDeepCloner
             if (interfaceType.IsAssignableFrom(type))
                 return item;
             var props = DeepCloner.GetFastDeepClonerProperties(type);
-            var args = new List<object>();
-            if (type.IsAnonymousType())
-                foreach (var p in props.Where(x => DeepCloner.GetProperty(interfaceType, x.Name) != null))
+            var args = new SafeValueType<string, object>();
+            foreach (var iProp in DeepCloner.GetFastDeepClonerProperties(interfaceType))
+            {
+                var p = DeepCloner.GetProperty(type, iProp.Name);
+                if (p == null)
+                    continue;
+                var value = p.GetValue(item);
+                if (value == null || p.PropertyType == iProp.PropertyType)
                 {
-                    var value = p.GetValue(item);
-                    try
-                    {
-                        value = Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType);
-                        args.Add(value);
-                    }
-                    catch
-                    {
-                        var iType = DeepCloner.GetProperty(interfaceType, p.Name).PropertyType;
-                        throw new Exception($"Property {p.Name} has different type then the interface which is of type {DeepCloner.GetProperty(interfaceType, p.Name).PropertyType}. \n (Convert.ChangeType) could not convert from {p.PropertyType} to {iType}");
-                    }
+                    args.Add(iProp.Name, value);
+                    continue;
+
                 }
+                try
+                {
+                    if (iProp.PropertyType.IsInterface)
+                        args.Add(iProp.Name, iProp.PropertyType.InterFaceConverter(value));
+                    else
+                        args.Add(iProp.Name, Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType));
+
+                }
+                catch (Exception e)
+                {
+                    var iType = iProp.PropertyType;
+                    throw new Exception($"Property {p.Name} has different type then the interface which is of type {iProp.PropertyType}. \n (Convert.ChangeType) could not convert from {p.PropertyType} to {iType}. \n Orginal Exception: {e.Message}");
+                }
+            }
 
             var key = $"{(type.IsAnonymousType() ? string.Join(" | ", props.Select(x => x.FullName).ToArray()) : type.FullName)} | {interfaceType.FullName}";
             var newtype = CachedConvertedObjectToInterface.ContainsKey(key) ? CachedConvertedObjectToInterface[key] : CachedConvertedObjectToInterface.GetOrAdd(key, FastDeepCloner.ConvertToInterfaceTypeGenerator.Convert(interfaceType, type));
-            var returnValue = Creator(newtype, false, args.ToArray());
-
-            if (!type.IsAnonymousType())
-            {
-                foreach (var p in props)
-                    p.SetValue(returnValue, p.GetValue(item));
-            }
+            var returnValue = Creator(newtype, false, args.Values.ToArray());
+            var constructor = GetConstructorInfo(newtype, args.Values.ToArray());
+            if (constructor == null)
+                foreach (var p in args)
+                {
+                    DeepCloner.GetProperty(newtype, p.Key).SetValue(returnValue, args[p.Key]);
+                }
             return returnValue;
         }
 
@@ -235,16 +246,19 @@ namespace FastDeepCloner
 #endif
         internal static ConstructorInfo GetConstructorInfo(this Type type, params object[] parameters)
         {
+
+            IEnumerable<ConstructorInfo> constructors;
             var key = type.FullName + string.Join("", parameters?.Select(x => x.GetType()));
             if (ConstructorInfo.ContainsKey(key))
                 return ConstructorInfo.Get(key);
+
 #if !NETSTANDARD1_3
-
-            return ConstructorInfo.GetOrAdd(key, parameters == null ? type.GetConstructor(Type.EmptyTypes) : type.GetConstructor(parameters.Select(x => x.GetType()).ToArray()));
+            constructors = type.GetConstructors();
 #else
+            constructors = type.GetTypeInfo().DeclaredConstructors;
+#endif
             ConstructorInfo constructor = null;
-
-            foreach (var cr in type.GetTypeInfo().DeclaredConstructors)
+            foreach (var cr in constructors)
             {
                 var index = 0;
                 var args = cr.GetParameters();
@@ -260,7 +274,20 @@ namespace FastDeepCloner
                         {
                             try
                             {
-                                Convert.ChangeType(parameters[index], prType);
+                                if ((prType.IsInternalType() && paramType.IsInternalType()))
+                                {
+                                    Convert.ChangeType(parameters[index], prType);
+                                }
+                                else
+                                {
+                                    if (prType.GetTypeInfo().IsInterface && paramType.GetTypeInfo().IsAssignableFrom(prType.GetTypeInfo()))
+                                        continue;
+                                    else
+                                    {
+                                        apply = false;
+                                        break;
+                                    }
+                                }
                             }
                             catch
                             {
@@ -275,9 +302,10 @@ namespace FastDeepCloner
                         constructor = cr;
                 }
             }
+
             return ConstructorInfo.GetOrAdd(key, constructor);
-#endif
         }
+
 
 
 
@@ -287,7 +315,8 @@ namespace FastDeepCloner
             {
                 var key = type.FullName + string.Join("", parameters?.Select(x => x.GetType().FullName));
                 var constructor = type.GetConstructorInfo(parameters ?? new object[0]);
-
+                if (constructor == null && parameters?.Length > 0)
+                    constructor = type.GetConstructorInfo(new object[0]);
                 if (constructor != null)
                 {
                     var constParam = constructor.GetParameters();
@@ -401,16 +430,16 @@ namespace FastDeepCloner
 #if !NETSTANDARD1_3
                     return FormatterServices.GetUninitializedObject(type);
 #else
-                try
-                {
+                    try
+                    {
                         if (CachedConstructor.ContainsKey(key))
                             return CachedConstructor[key]();
-                    return CachedConstructor.GetOrAdd(key, Expression.Lambda<Func<object>>(Expression.New(type)).Compile())();
-                }
-                catch
-                {
-                    throw new Exception("DeepClonerError: Default constructor is require for NETSTANDARD1_3 for type " + type.FullName);
-                }
+                        return CachedConstructor.GetOrAdd(key, Expression.Lambda<Func<object>>(Expression.New(type)).Compile())();
+                    }
+                    catch
+                    {
+                        throw new Exception("DeepClonerError: Default constructor is require for NETSTANDARD1_3 for type " + type.FullName);
+                    }
 #endif
                 }
             }

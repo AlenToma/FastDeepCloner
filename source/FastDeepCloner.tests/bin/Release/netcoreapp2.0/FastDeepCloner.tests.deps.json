@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "FastDeepCloner.tests/1.0.1": {
         "dependencies": {
-          "FastDeepCloner": "1.2.3",
+          "FastDeepCloner": "1.2.4",
           "MSTest.TestAdapter": "1.2.0",
           "MSTest.TestFramework": "1.2.0",
           "Microsoft.NET.Test.Sdk": "15.5.0"
@@ -1041,7 +1041,7 @@
           }
         }
       },
-      "FastDeepCloner/1.2.3": {
+      "FastDeepCloner/1.2.4": {
         "runtime": {
           "FastDeepCloner.dll": {}
         }
@@ -1551,7 +1551,7 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "FastDeepCloner/1.2.3": {
+    "FastDeepCloner/1.2.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
