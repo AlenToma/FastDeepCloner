@@ -8,9 +8,10 @@ Example
     {
         string Name { get; set; }
         
-        // not all the property have to match the class, the library will handle only found property and add the extra one 
+        // As you can see class user dose not have FirstName, but still
+        // not all properties have to match the class, the library will handle only found property and add the extra one 
         // to the new created object
-        string Password { get; set; }
+        string FirstName { get; set; }
     }
     
     public class User
