@@ -7,6 +7,10 @@ Example
     public interface IUser
     {
         string Name { get; set; }
+        
+        // not all the property have to match the class, the library will handle only found property and add the extra one 
+        // to the new created object
+        string Password { get; set; }
     }
     
     public class User
