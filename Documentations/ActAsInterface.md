@@ -16,9 +16,9 @@ Example
     
     public class User
     {
-        public virtual string Name { get; set; } = "sdjh";
+        public string Name { get; set; } = "sdjh";
 
-        public virtual int PasswordLength { get; set; } = 6;
+        public int PasswordLength { get; set; } = 6;
     }
 ```
 
