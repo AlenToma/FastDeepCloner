@@ -8,11 +8,6 @@ Example
     public interface IUserGroup
     {
         string Name { get; set; }
-        
-        // As you can see class user dose not have FirstName, but still
-        // not all properties have to match the class, the library will handle only found property and add the extra one 
-        // to the new created object
-        string FirstName { get; set; }
     }
 
     public interface IUser
