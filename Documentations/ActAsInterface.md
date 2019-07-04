@@ -36,7 +36,7 @@ Example
 
         public int PasswordLength { get; set; } = 6;
         
-        public Role { get; set; } = new Role();
+        public Role Role { get; set; } = new Role();
     }
     
     public class Role
