@@ -70,3 +70,16 @@ source/FastDeepCloner.tests/obj/Release/netcoreapp2.0/FastDeepCloner.tests.cspro
 source/FastDeepCloner.tests/obj/Release/netcoreapp2.0/FastDeepCloner.tests.csprojAssemblyReference.cache
 source/FastDeepCloner.tests/obj/Release/netcoreapp2.0/FastDeepCloner.tests.dll
 source/FastDeepCloner.tests/obj/Release/netcoreapp2.0/FastDeepCloner.tests.pdb
+source/BNGTest/obj/Debug/net472/BNGTest.AssemblyInfo.cs
+source/BNGTest/obj/Debug/net472/BNGTest.AssemblyInfoInputs.cache
+source/BNGTest/obj/Debug/net472/BNGTest.csproj.CoreCompileInputs.cache
+source/BNGTest/obj/Debug/net472/BNGTest.csprojAssemblyReference.cache
+source/BNGTest/obj/Debug/net472/BNGTest.exe.withSupportedRuntime.config
+source/BNGTest/obj/Debug/netcoreapp2.0/BNGTest.AssemblyInfo.cs
+source/BNGTest/obj/Debug/netcoreapp2.0/BNGTest.AssemblyInfoInputs.cache
+source/BNGTest/obj/Debug/netcoreapp2.0/BNGTest.csproj.CoreCompileInputs.cache
+source/BNGTest/obj/Debug/netcoreapp2.0/BNGTest.csprojAssemblyReference.cache
+source/BNGTest/obj/Debug/netstandard2.0/BNGTest.AssemblyInfo.cs
+source/BNGTest/obj/Debug/netstandard2.0/BNGTest.AssemblyInfoInputs.cache
+source/BNGTest/obj/Debug/netstandard2.0/BNGTest.csproj.CoreCompileInputs.cache
+source/BNGTest/obj/Debug/netstandard2.0/BNGTest.csprojAssemblyReference.cache
