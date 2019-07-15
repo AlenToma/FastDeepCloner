@@ -467,20 +467,32 @@ namespace FastDeepCloner
         }
 
 
-        internal static Dictionary<string, IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type primaryType)
+        internal static Dictionary<string, IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type primaryType, ICollection<PropertyInfo> ignorePropertyInfos = null)
         {
-            if (!CachedPropertyInfo.ContainsKey(primaryType))
+            ignorePropertyInfos = ignorePropertyInfos ?? new PropertyInfo[0];
+
+            if (!CachedPropertyInfo.ContainsKey(primaryType) && ignorePropertyInfos.None())
             {
-                var properties = new SafeValueType<string, IFastDeepClonerProperty>();
-                if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
-                {
-                    primaryType.GetRuntimeProperties().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
-                    primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
-                }
-                else primaryType.GetRuntimeProperties().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
-                CachedPropertyInfo.Add(primaryType, properties);
+                CachedPropertyInfo.Add(primaryType, GetPropertiesInternal(primaryType, ignorePropertyInfos));
             }
-            return CachedPropertyInfo[primaryType];
+            return ignorePropertyInfos.None() ? CachedPropertyInfo[primaryType] : GetPropertiesInternal(primaryType, ignorePropertyInfos);
+        }
+
+        private static SafeValueType<string, IFastDeepClonerProperty> GetPropertiesInternal(Type primaryType, ICollection<PropertyInfo> ignorePropertyInfos)
+        {
+            var properties = new SafeValueType<string, IFastDeepClonerProperty>();
+            if (primaryType.GetTypeInfo().BaseType != null && primaryType.GetTypeInfo().BaseType.Name != "Object")
+            {
+                primaryType.GetRuntimeProperties().Except(ignorePropertyInfos).ToList()
+                    .ForEach(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x)));
+                primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Except(ignorePropertyInfos).ToList()
+                    .ForEach(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x)));
+            }
+            else
+                primaryType.GetRuntimeProperties().Except(ignorePropertyInfos).ToList()
+                    .ForEach(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x)));
+
+            return properties;
         }
     }
 }

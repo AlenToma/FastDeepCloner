@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace FastDeepCloner
@@ -83,6 +84,11 @@ namespace FastDeepCloner
         public static bool IsInternalType(this Type underlyingSystemType)
         {
             return (TypeDict.ContainsKey(underlyingSystemType) || !underlyingSystemType.GetTypeInfo().IsClass) && !underlyingSystemType.GetTypeInfo().IsInterface;
+        }
+
+        internal static bool None<T>(this IEnumerable<T> enumerable)
+        {
+            return !enumerable.Any();
         }
     }
 }

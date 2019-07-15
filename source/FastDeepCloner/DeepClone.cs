@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace FastDeepCloner
 {
@@ -50,6 +52,42 @@ namespace FastDeepCloner
         public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
         {
             return (T)new ClonerShared(fieldType).Clone(objectToBeCloned);
+        }
+
+        private static PropertyInfo GetPropertyInfo<T>(Expression<Func<T, object>> propertyLambda)
+        {
+            var type = typeof(T);
+
+            if (!(propertyLambda.Body is MemberExpression member))
+                throw new ArgumentException(
+                    $"Expression '{propertyLambda}' refers to a method, not a property.");
+
+            var propInfo = member.Member as PropertyInfo;
+            if (propInfo == null)
+                throw new ArgumentException(
+                    $"Expression '{propertyLambda}' refers to a field, not a property.");
+
+            if (type != propInfo.ReflectedType &&
+                !type.IsSubclassOf(propInfo.ReflectedType))
+                throw new ArgumentException(
+                    $"Expression '{propertyLambda}' refers to a property that is not from type {type}.");
+
+            return propInfo;
+        }
+
+        public static IEnumerable<T> Clone<T>(this IEnumerable<T> objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo, params Expression<Func<T, object>>[] ignoredProperties) where T : class
+        {
+            return (IEnumerable<T>) new ClonerShared(ignoredProperties.Select(GetPropertyInfo).ToList(), fieldType).Clone(objectToBeCloned);
+        }
+
+        public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo, params Expression<Func<T, object>>[] ignoredProperties) where T : class
+        {
+            return (T)new ClonerShared(ignoredProperties.Select(GetPropertyInfo).ToList(), fieldType).Clone(objectToBeCloned);
+        }
+
+        public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo, params PropertyInfo[] ignoredProperties) where T : class
+        {
+            return (T)new ClonerShared(ignoredProperties, fieldType).Clone(objectToBeCloned);
         }
 
         /// <summary>
