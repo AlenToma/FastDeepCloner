@@ -1,0 +1,9 @@
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\net472\BNGTest.exe.config
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\net472\BNGTest.exe
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.csprojAssemblyReference.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.exe.config
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.csproj.CopyComplete
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\net472\BNGTest.exe

@@ -1,0 +1,9 @@
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\netcoreapp2.0\BNGTest.deps.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\netcoreapp2.0\BNGTest.runtimeconfig.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\netcoreapp2.0\BNGTest.runtimeconfig.dev.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\BNGTest\Debug\netcoreapp2.0\BNGTest.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\netcoreapp2.0\BNGTest.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\netcoreapp2.0\BNGTest.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\netcoreapp2.0\BNGTest.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\netcoreapp2.0\BNGTest.csproj.CopyComplete
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\BNGTest\Debug\netcoreapp2.0\BNGTest.dll

@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "FastDeepCloner/1.2.5": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.LiveUnitTesting.Runtime": "2.2.0.0"
+        },
+        "runtime": {
+          "FastDeepCloner.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.LiveUnitTesting.Runtime/2.2.0.0": {
+        "runtime": {
+          "Microsoft.CodeAnalysis.LiveUnitTesting.Runtime.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FastDeepCloner/1.2.5": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeAnalysis.LiveUnitTesting.Runtime/2.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

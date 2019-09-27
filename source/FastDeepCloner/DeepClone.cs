@@ -26,7 +26,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static T Clone<T>(this T objectToBeCloned, FastDeepClonerSettings settings) where T : class
         {
-            return (T)new ClonerShared(settings).Clone(objectToBeCloned);
+            return (T)new ReferenceClone(settings).Clone(objectToBeCloned);
         }
 
 
@@ -38,7 +38,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static object Clone(this object objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo)
         {
-            return new ClonerShared(fieldType).Clone(objectToBeCloned);
+            return new ReferenceClone(fieldType).Clone(objectToBeCloned);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static T Clone<T>(this T objectToBeCloned, FieldType fieldType = FieldType.PropertyInfo) where T : class
         {
-            return (T)new ClonerShared(fieldType).Clone(objectToBeCloned);
+            return (T)new ReferenceClone(fieldType).Clone(objectToBeCloned);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace FastDeepCloner
         /// <returns></returns>
         public static dynamic CloneDynamic(this object objectToBeCloned)
         {
-            return new ClonerShared(FieldType.PropertyInfo).Clone(objectToBeCloned);
+            return new ReferenceClone(FieldType.PropertyInfo).Clone(objectToBeCloned);
         }
 
         /// <summary>
@@ -209,6 +209,46 @@ namespace FastDeepCloner
             return FastDeepClonerCachedItems.GetFastDeepClonerProperties(type).ContainsKey(name)
                 ? FastDeepClonerCachedItems.GetFastDeepClonerProperties(type)[name]
                 : null;
+        }
+
+
+        /// <summary>
+        /// This will handle only internal types 
+        /// and noneinternal type must be of the same type to be cloned
+        /// </summary>
+        /// <param name="itemToClone"></param>
+        /// <param name="CloneToItem"></param>
+        public static void CloneTo(object itemToClone, object CloneToItem)
+        {
+            FastDeepClonerCachedItems.CloneTo(itemToClone, CloneToItem);
+        }
+
+        /// <summary>
+        /// Convert Value from Type to Type
+        /// when fail a default value will be loaded.
+        /// can handle all known types like datetime, time span, string, long etc
+        /// ex
+        ///  "1115rd" to int? will return null
+        ///  "152" to int? 152
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static T ValueConverter<T>(object value, object defaultValue = null)
+        {
+            return (T)FastDeepClonerCachedItems.Value(value, typeof(T), true, defaultValue);
+        }
+
+        /// <summary>
+        /// Get DefaultValue by type
+        /// </summary>
+        /// <param name="propertyType"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static object ValueByType(Type propertyType, object defaultValue = null)
+        {
+            return FastDeepClonerCachedItems.ValueByType(propertyType, defaultValue);
         }
     }
 }

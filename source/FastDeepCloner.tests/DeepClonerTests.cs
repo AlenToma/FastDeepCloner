@@ -75,6 +75,17 @@ namespace FastDeepCloner.tests
         }
 
         [TestMethod]
+        public void CloneTo()
+        {
+            var user = new User() { Name = "alen toma" };
+            var cloneTo =new  CloneToTest();
+
+            FastDeepCloner.DeepCloner.CloneTo(user, cloneTo);
+      
+            Assert.AreEqual(user.Name, cloneTo.FirstName);
+        }
+
+        [TestMethod]
         /// <summary>
         /// Circular refernces Test
         /// </summary>

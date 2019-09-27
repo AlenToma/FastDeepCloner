@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 #if !NETSTANDARD1_3
 using System.Runtime.Serialization;
+using System.Data.SqlTypes;
 #endif
 
 namespace FastDeepCloner
@@ -31,8 +33,24 @@ namespace FastDeepCloner
         private static readonly SafeValueType<string, Type> CachedConvertedObjectToInterface = new SafeValueType<string, Type>();
         private static readonly SafeValueType<Type, IFastDeepClonerProperty> CachedFastDeepClonerIdentifier = new SafeValueType<Type, IFastDeepClonerProperty>();
         private static readonly SafeValueType<Type, Type> CachedIListInternalTypes = new SafeValueType<Type, Type>();
+        private static readonly CultureInfo Culture;
 
-
+        static FastDeepClonerCachedItems()
+        {
+            try
+            {
+#if !NETSTANDARD1_3
+                if (Culture != null && System.Threading.Thread.CurrentThread.CurrentCulture.Name != Culture.Name) // vi behöver sätta det första gången bara. detta snabbar upp applikationen ta inte bort detta.
+                    System.Threading.Thread.CurrentThread.CurrentCulture = Culture;
+#else
+                Culture = new CultureInfo("en");
+#endif
+            }
+            catch
+            {
+                Culture = new CultureInfo("en");
+            }
+        }
 
         public static void CleanCachedItems()
         {
@@ -51,6 +69,293 @@ namespace FastDeepCloner
             ConstructorInfo.Clear();
             CachedFastDeepClonerIdentifier.Clear();
             CachedIListInternalTypes.Clear();
+        }
+
+        internal static void CloneTo(object itemToClone, object CloneToItem)
+        {
+            var type1 = itemToClone.GetType();
+            var type2 = CloneToItem.GetType();
+            var props1 = GetFastDeepClonerProperties(type1);
+            var props2 = GetFastDeepClonerProperties(type2);
+            foreach (var prop2 in props2)
+            {
+                var prop = props1.ContainsKey(prop2.Key) ? props1[prop2.Key] : null;
+                if (prop2.Value.ContainAttribute<FastDeepClonerColumn>())
+                {
+                    if (props1.ContainsKey(prop2.Value.GetCustomAttribute<FastDeepClonerColumn>().ColumnName))
+                        prop = props1[prop2.Value.GetCustomAttribute<FastDeepClonerColumn>().ColumnName];
+                }
+
+                if (prop != null)
+                {
+                    var value = prop.GetValue(itemToClone);
+                    if (value == null)
+                        continue;
+                    if (prop.PropertyType.IsInternalType())
+                    {
+                        prop2.Value.SetValue(CloneToItem, Value(value, prop2.Value.PropertyType, true));
+                    }
+                    else if (prop.PropertyType == prop2.Value.PropertyType)
+                        prop2.Value.SetValue(CloneToItem, value.Clone());
+                }
+
+            }
+        }
+
+        internal static object Value(object value, Type dataType, bool loadDefaultOnError, object defaultValue = null)
+        {
+            try
+            {
+                if (value == null)
+                {
+                    value = ValueByType(dataType, defaultValue);
+                    return value;
+                }
+
+                if (dataType == typeof(byte[]) && value.GetType() == typeof(string))
+                {
+                    if (value.ToString().Length % 4 == 0) // its a valid base64string
+                        value = Convert.FromBase64String(value.ToString());
+                    return value;
+                }
+
+                if (dataType == typeof(int?) || dataType == typeof(int))
+                {
+                    if (double.TryParse(CleanValue(dataType, value).ToString(), NumberStyles.Float, Culture, out var douTal))
+                        value = Convert.ToInt32(douTal);
+                    else
+                        if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+
+                    return value;
+                }
+
+                if (dataType == typeof(long?) || dataType == typeof(long))
+                {
+                    if (double.TryParse(CleanValue(dataType, value).ToString(), NumberStyles.Float, Culture, out var douTal))
+                        value = Convert.ToInt64(douTal);
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+
+                    return value;
+                }
+
+                if (dataType == typeof(float?) || dataType == typeof(float))
+                {
+                    if (float.TryParse(CleanValue(dataType, value).ToString(), NumberStyles.Float, Culture, out var douTal))
+                        value = douTal;
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+
+                    return value;
+                }
+
+                if (dataType == typeof(decimal?) || dataType == typeof(decimal))
+                {
+                    if (decimal.TryParse(CleanValue(dataType, value).ToString(), NumberStyles.Float, Culture, out var decTal))
+                        value = decTal;
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+
+                    return value;
+
+                }
+
+                if (dataType == typeof(double?) || dataType == typeof(double))
+                {
+                    if (double.TryParse(CleanValue(dataType, value).ToString(), NumberStyles.Float, Culture, out var douTal))
+                        value = douTal;
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+
+                    return value;
+
+                }
+
+                if (dataType == typeof(DateTime?) || dataType == typeof(DateTime))
+                {
+                    if (DateTime.TryParse(value.ToString(), Culture, DateTimeStyles.None, out var dateValue))
+                    {
+#if !NETSTANDARD1_3
+                        if (dateValue < SqlDateTime.MinValue)
+                            dateValue = SqlDateTime.MinValue.Value;
+#else
+                        if (dateValue < DateTime.MinValue)
+                            dateValue = DateTime.MinValue;
+#endif
+                        value = dateValue;
+
+                    }
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+                    return value;
+
+                }
+
+                if (dataType == typeof(bool?) || dataType == typeof(bool))
+                {
+                    if (bool.TryParse(value.ToString(), out var boolValue))
+                        value = boolValue;
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+                    return value;
+                }
+
+                if (dataType == typeof(TimeSpan?) || dataType == typeof(TimeSpan))
+                {
+                    if (TimeSpan.TryParse(value.ToString(), Culture, out var timeSpanValue))
+                        value = timeSpanValue;
+                    else
+                    if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+                    return value;
+
+
+                }
+
+                if (dataType.GetTypeInfo().IsEnum || (dataType.GenericTypeArguments?.FirstOrDefault()?.GetTypeInfo().IsEnum ?? false))
+                {
+
+                    var type = dataType;
+                    if ((dataType.GenericTypeArguments?.FirstOrDefault()?.GetTypeInfo().IsEnum ?? false))
+                        type = (dataType.GenericTypeArguments?.FirstOrDefault());
+                    if (value is int || value is long)
+                    {
+                        if (Enum.IsDefined(type, Convert.ToInt32(value)))
+                            value = Enum.ToObject(type, Convert.ToInt32(value));
+                    }
+                    else if (Enum.IsDefined(type, value))
+                        value = Enum.Parse(type, value.ToString(), true);
+                    else if (loadDefaultOnError)
+                        value = Activator.CreateInstance(dataType);
+
+                    return value;
+                }
+                else if (dataType == typeof(Guid) || dataType == typeof(Guid?))
+                {
+                    if (Guid.TryParse(value.ToString(), out Guid v))
+                        value = v;
+                    else if (loadDefaultOnError)
+                        value = ValueByType(dataType, defaultValue);
+                }
+                else if (dataType == typeof(string))
+                {
+                    value = value.ToString();
+
+                }
+                return value;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: InvalidType. ColumnType is {dataType.FullName} and the given value is of type {value.GetType().FullName} Original Exception {ex.Message}");
+
+            }
+        }
+
+        internal static object CleanValue(Type valueType, object value)
+        {
+            if ((valueType != typeof(decimal) && valueType != typeof(double)) && (valueType != typeof(decimal?) && valueType != typeof(float?) && valueType != typeof(float))) return value;
+            value = Culture.NumberFormat.NumberDecimalSeparator == "." ? value.ToString().Replace(",", ".") : value.ToString().Replace(".", ",");
+            value = System.Text.RegularExpressions.Regex.Replace(value.ToString(), @"\s", "");
+            return value;
+        }
+
+
+        internal static object ValueByType(Type propertyType, object defaultValue = null)
+        {
+            if (defaultValue != null)
+            {
+                var typeOne = propertyType;
+                var typeTwo = defaultValue.GetType();
+                if (Nullable.GetUnderlyingType(typeOne) != null)
+                    typeOne = Nullable.GetUnderlyingType(typeOne);
+                if (Nullable.GetUnderlyingType(typeTwo) != null)
+                    typeTwo = Nullable.GetUnderlyingType(typeTwo);
+
+                if (typeOne == typeTwo)
+                    return defaultValue;
+            }
+
+            if (propertyType.GetTypeInfo().IsEnum)
+                return Activator.CreateInstance(propertyType);
+
+
+            if (propertyType == typeof(int?))
+                return new int?();
+            if (propertyType == typeof(int))
+                return 0;
+
+            if (propertyType == typeof(long?))
+                return new long?();
+            if (propertyType == typeof(long))
+                return 0;
+
+            if (propertyType == typeof(float?))
+                return new long?();
+            if (propertyType == typeof(float))
+                return 0;
+
+            if (propertyType == typeof(decimal?))
+                return new decimal?();
+
+            if (propertyType == typeof(decimal))
+                return new decimal();
+
+            if (propertyType == typeof(double?))
+                return new double?();
+
+            if (propertyType == typeof(double))
+                return new double();
+
+            if (propertyType == typeof(DateTime?))
+                return new DateTime?();
+
+            if (propertyType == typeof(DateTime))
+            {
+#if !NETSTANDARD1_3
+                return SqlDateTime.MinValue.Value;
+#else
+                return DateTime.MinValue;
+#endif
+
+            }
+
+            if (propertyType == typeof(bool?))
+                return new bool?();
+
+            if (propertyType == typeof(bool))
+                return false;
+
+            if (propertyType == typeof(TimeSpan?))
+                return new TimeSpan?();
+
+            if (propertyType == typeof(TimeSpan))
+                return new TimeSpan();
+
+            if (propertyType == typeof(Guid?))
+                return new Guid?();
+
+            if (propertyType == typeof(Guid))
+                return new Guid();
+
+            if (propertyType == typeof(byte))
+                return new byte();
+
+
+            if (propertyType == typeof(byte?))
+                return new byte?();
+
+            if (propertyType == typeof(byte[]))
+                return new byte[0];
+
+            return propertyType == typeof(string) ? string.Empty : null;
         }
 
         internal static string GetFastDeepClonerIdentifier(this object o)
@@ -270,7 +575,7 @@ namespace FastDeepCloner
                         var prType = pr.ParameterType;
                         var paramType = parameters[index].GetType();
 
-                        if (prType != paramType)
+                        if (prType != paramType && prType != typeof(object))
                         {
                             try
                             {
