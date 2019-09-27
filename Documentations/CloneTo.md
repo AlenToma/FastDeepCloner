@@ -24,7 +24,7 @@ we have two diffrent classes here
     public class CloneToTest
     {
         [FastDeepCloner.FastDeepClonerColumn("Name")]
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
 
         public string PasswordLength { get; set; }
 
