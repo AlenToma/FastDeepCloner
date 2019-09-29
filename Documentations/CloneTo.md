@@ -41,6 +41,6 @@ Now simple clone object 1 to object 2
 
             FastDeepCloner.DeepCloner.CloneTo(user, cloneTo);
       
-            Assert.AreEqual(user.Name, cloneTo.FirstName);
+            Assert.AreEqual(user.Name, cloneTo.FullName);
 
 ```
