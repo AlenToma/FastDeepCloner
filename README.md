@@ -10,7 +10,9 @@ Add Attribute ```[FastDeepClonerIgnore]``` to ignore cloning a property
 
 ## Code Example
 * [Clone](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Clone.md)
+* [CloneTo](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/CloneTo.md)
 * [InternalType](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/InternalTypes.md)
 * [INotifyPropertyChanged(ProxyInstance)](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/ProxyInstance.md)
 * [Circular references](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Circular_References.md)
 * [Object to interface converter](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/ActAsInterface.md)
+
