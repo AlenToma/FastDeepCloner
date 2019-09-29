@@ -1,0 +1,13 @@
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.csprojAssemblyReference.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.deps.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.runtimeconfig.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.runtimeconfig.dev.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.csproj.CopyComplete
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner.tests\Release\netcoreapp2.0\FastDeepCloner.tests.dll

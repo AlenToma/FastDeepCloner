@@ -218,7 +218,7 @@ namespace FastDeepCloner
         /// </summary>
         /// <param name="itemToClone"></param>
         /// <param name="CloneToItem"></param>
-        public static void CloneTo(object itemToClone, object CloneToItem)
+        public static void CloneTo(this object itemToClone, object CloneToItem)
         {
             FastDeepClonerCachedItems.CloneTo(itemToClone, CloneToItem);
         }
@@ -235,9 +235,26 @@ namespace FastDeepCloner
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static T ValueConverter<T>(object value, object defaultValue = null)
+        public static T ValueConverter<T>(this object value, object defaultValue = null)
         {
             return (T)FastDeepClonerCachedItems.Value(value, typeof(T), true, defaultValue);
+        }
+
+        /// <summary>
+        /// Convert Value from Type to Type
+        /// when fail a default value will be loaded.
+        /// can handle all known types like datetime, time span, string, long etc
+        /// ex
+        ///  "1115rd" to int? will return null
+        ///  "152" to int? 152
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="datatype">eg typeof(int?)</param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static object ValueConverter(this object value,Type datatype, object defaultValue = null)
+        {
+            return FastDeepClonerCachedItems.Value(value, datatype, true, defaultValue);
         }
 
         /// <summary>
@@ -246,7 +263,7 @@ namespace FastDeepCloner
         /// <param name="propertyType"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static object ValueByType(Type propertyType, object defaultValue = null)
+        public static object ValueByType(this Type propertyType, object defaultValue = null)
         {
             return FastDeepClonerCachedItems.ValueByType(propertyType, defaultValue);
         }

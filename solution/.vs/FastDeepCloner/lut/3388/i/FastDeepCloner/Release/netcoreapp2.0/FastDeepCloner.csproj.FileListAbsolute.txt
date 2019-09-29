@@ -1,0 +1,7 @@
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.deps.json
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\b\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.dll
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.csproj.CoreCompileInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.AssemblyInfoInputs.cache
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.AssemblyInfo.cs
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.csproj.CopyComplete
+D:\Projects\FastDeepCloner\solution\.vs\FastDeepCloner\lut\0\i\FastDeepCloner\Release\netcoreapp2.0\FastDeepCloner.dll
