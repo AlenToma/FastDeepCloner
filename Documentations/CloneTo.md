@@ -5,7 +5,7 @@ Here is how
 we have two diffrent classes here
 
 ```csharp
-    public class User : Entity
+    public class User 
     {
 
         public virtual string Name { get; set; } = "sdjh";
@@ -13,11 +13,6 @@ we have two diffrent classes here
         public virtual int PasswordLength { get; set; } = 6;
 
         public Circular Test { get; set; } = new Circular();
-
-        private void PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
 
     }
     
