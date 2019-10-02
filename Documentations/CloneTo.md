@@ -20,7 +20,9 @@ we have two diffrent classes here
     {
         [FastDeepCloner.FastDeepClonerColumn("Name")]
         public string FullName { get; set; }
-
+        
+        // You see here the type could be difrrent then the orginal type. 
+        // FastDeepCloner will try to convert it, if it fail then a default value will be inserted insted
         public string PasswordLength { get; set; }
 
         public Circular Test { get; set; }
