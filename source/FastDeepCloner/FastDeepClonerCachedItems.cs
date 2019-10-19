@@ -71,37 +71,6 @@ namespace FastDeepCloner
             CachedIListInternalTypes.Clear();
         }
 
-        internal static void CloneTo(object itemToClone, object CloneToItem)
-        {
-            var type1 = itemToClone.GetType();
-            var type2 = CloneToItem.GetType();
-            var props1 = GetFastDeepClonerProperties(type1);
-            var props2 = GetFastDeepClonerProperties(type2);
-            foreach (var prop2 in props2)
-            {
-                var prop = props1.ContainsKey(prop2.Key) ? props1[prop2.Key] : null;
-                if (prop2.Value.ContainAttribute<FastDeepClonerColumn>())
-                {
-                    if (props1.ContainsKey(prop2.Value.GetCustomAttribute<FastDeepClonerColumn>().ColumnName))
-                        prop = props1[prop2.Value.GetCustomAttribute<FastDeepClonerColumn>().ColumnName];
-                }
-
-                if (prop != null)
-                {
-                    var value = prop.GetValue(itemToClone);
-                    if (value == null)
-                        continue;
-                    if (prop.PropertyType.IsInternalType())
-                    {
-                        prop2.Value.SetValue(CloneToItem, Value(value, prop2.Value.PropertyType, true));
-                    }
-                    else if (prop.PropertyType == prop2.Value.PropertyType)
-                        prop2.Value.SetValue(CloneToItem, value.Clone());
-                }
-
-            }
-        }
-
         internal static object Value(object value, Type dataType, bool loadDefaultOnError, object defaultValue = null)
         {
             try

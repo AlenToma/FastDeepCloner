@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace FastDeepCloner
 {
@@ -16,7 +17,7 @@ namespace FastDeepCloner
 
         public bool ReadAble { get; private set; }
 
-        public bool FastDeepClonerIgnore { get; private set; }
+        public bool FastDeepClonerIgnore { get => ContainAttribute<FastDeepClonerIgnore>(); }
 
         public bool FastDeepClonerPrimaryIdentifire { get; private set; }
 
@@ -52,7 +53,6 @@ namespace FastDeepCloner
             CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
             CanWrite = CanRead;
             ReadAble = CanRead;
-            FastDeepClonerIgnore = field.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             FastDeepClonerPrimaryIdentifire = field.GetCustomAttribute<FastDeepClonerPrimaryIdentifire>() != null;
             GetMethod = field.GetValue;
             SetMethod = field.SetValue;
@@ -69,7 +69,6 @@ namespace FastDeepCloner
             CanRead = !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
             CanWrite = property.CanWrite;
             ReadAble = property.CanRead;
-            FastDeepClonerIgnore = property.GetCustomAttribute<FastDeepClonerIgnore>() != null;
             FastDeepClonerPrimaryIdentifire = property.GetCustomAttribute<FastDeepClonerPrimaryIdentifire>() != null;
             GetMethod = property.GetValue;
             SetMethod = property.SetValue;
@@ -83,6 +82,16 @@ namespace FastDeepCloner
             Attributes = new AttributesCollections(property.GetCustomAttributes().ToList());
             ConfigrationManager.OnAttributeCollectionChanged?.Invoke(this);
 
+        }
+
+        public IEnumerable<T> GetCustomAttributes<T>() where T : Attribute
+        {
+            return ContainAttribute<T>() ? Attributes.Where(x => x is T).Select(x => x as T) : new List<T>();
+        }
+
+        public IEnumerable<Attribute> GetCustomAttributes(Type type)
+        {
+            return ContainAttribute(type) ? Attributes.Where(x => x.GetType() == type) : new List<Attribute>();
         }
 
         public bool ContainAttribute<T>() where T : Attribute

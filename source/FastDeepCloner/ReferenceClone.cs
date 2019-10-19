@@ -26,6 +26,59 @@ namespace FastDeepCloner
             else _settings = new FastDeepClonerSettings() { FieldType = FieldType.PropertyInfo };
         }
 
+        internal object CloneTo(object itemToClone, object CloneToItem)
+        {
+            var identifier = CloneToItem.GetFastDeepClonerIdentifier();
+            if (identifier != null && _alreadyCloned.ContainsKey(identifier))
+                return _alreadyCloned[identifier];
+
+            if (identifier != null)
+                _alreadyCloned.Add(identifier, CloneToItem);
+
+            var type1 = itemToClone.GetType();
+            var type2 = CloneToItem.GetType();
+            var props1 = FastDeepClonerCachedItems.GetFastDeepClonerProperties(type1);
+            var props2 = FastDeepClonerCachedItems.GetFastDeepClonerProperties(type2);
+            foreach (var prop2 in props2)
+            {
+                if (!prop2.Value.CanWrite)
+                    continue;
+
+                var prop = props1.ContainsKey(prop2.Key) ? props1[prop2.Key] : null;
+                foreach (var attr in prop2.Value.GetCustomAttributes<FastDeepClonerColumn>())
+                {
+                    if (props1.ContainsKey(attr.ColumnName))
+                    {
+                        prop = props1[attr.ColumnName];
+                        break;
+                    }
+                }
+
+                if (prop != null)
+                {
+                    var value = prop.GetValue(itemToClone);
+                    if (value == null)
+                        continue;
+                    if (prop.PropertyType.IsInternalType())
+                    {
+                        prop2.Value.SetValue(CloneToItem, FastDeepClonerCachedItems.Value(value, prop2.Value.PropertyType, true));
+                    }
+                    else if (prop.PropertyType.GetIListType() == prop.PropertyType && prop2.Value.PropertyType.GetIListType() == prop2.Value.PropertyType) // if not list
+                    {
+                        var value2 = prop2.Value.GetValue(CloneToItem);
+                        if (value2 == null)
+                            value2 = prop2.Value.PropertyType.CreateInstance();
+                        prop2.Value.SetValue(CloneToItem, CloneTo(value, value2));
+                    }
+                    else if (prop.PropertyType == prop2.Value.PropertyType)
+                        prop2.Value.SetValue(CloneToItem, value.Clone());
+                }
+
+            }
+
+            return CloneToItem;
+        }
+
         private object ReferenceTypeClone(Dictionary<string, IFastDeepClonerProperty> properties, Type primaryType, object objectToBeCloned, object appendToValue = null)
         {
             var identifier = objectToBeCloned.GetFastDeepClonerIdentifier();

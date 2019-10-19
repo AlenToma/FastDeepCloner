@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace FastDeepCloner
@@ -91,6 +92,21 @@ namespace FastDeepCloner
         /// Is a reference type eg not GetTypeInfo().IsClass
         /// </summary>
         bool IsInternalType { get; }
+
+        /// <summary>
+        /// Get a collection of attributes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        IEnumerable<T> GetCustomAttributes<T>() where T : Attribute;
+
+
+        /// <summary>
+        /// Get a collection of attributes
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        IEnumerable<Attribute> GetCustomAttributes(Type type);
 
         /// <summary>
         /// Validate if attribute exist

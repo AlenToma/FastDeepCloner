@@ -220,7 +220,7 @@ namespace FastDeepCloner
         /// <param name="CloneToItem"></param>
         public static void CloneTo(this object itemToClone, object CloneToItem)
         {
-            FastDeepClonerCachedItems.CloneTo(itemToClone, CloneToItem);
+            new ReferenceClone(FieldType.PropertyInfo).CloneTo(itemToClone, CloneToItem);
         }
 
         /// <summary>
