@@ -5,7 +5,7 @@ Here is how
 we have two diffrent classes here
 
 ```csharp
-    public class User : Entity
+    public class User 
     {
 
         public virtual string Name { get; set; } = "sdjh";
@@ -14,18 +14,15 @@ we have two diffrent classes here
 
         public Circular Test { get; set; } = new Circular();
 
-        private void PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
     }
     
     public class CloneToTest
     {
         [FastDeepCloner.FastDeepClonerColumn("Name")]
         public string FullName { get; set; }
-
+        
+        // You see here the type could be difrrent then the orginal type. 
+        // FastDeepCloner will try to convert it, if it fail then a default value will be inserted insted
         public string PasswordLength { get; set; }
 
         public Circular Test { get; set; }
