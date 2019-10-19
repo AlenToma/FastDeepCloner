@@ -19,7 +19,7 @@ namespace FastDeepCloner
 
         public bool FastDeepClonerIgnore { get => ContainAttribute<FastDeepClonerIgnore>(); }
 
-        public bool FastDeepClonerPrimaryIdentifire { get; private set; }
+        public bool FastDeepClonerPrimaryIdentifire { get => ContainAttribute<FastDeepClonerPrimaryIdentifire>(); }
 
         public string Name { get; private set; }
 
@@ -53,7 +53,6 @@ namespace FastDeepCloner
             CanRead = !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
             CanWrite = CanRead;
             ReadAble = CanRead;
-            FastDeepClonerPrimaryIdentifire = field.GetCustomAttribute<FastDeepClonerPrimaryIdentifire>() != null;
             GetMethod = field.GetValue;
             SetMethod = field.SetValue;
             Name = field.Name;
@@ -69,7 +68,6 @@ namespace FastDeepCloner
             CanRead = !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
             CanWrite = property.CanWrite;
             ReadAble = property.CanRead;
-            FastDeepClonerPrimaryIdentifire = property.GetCustomAttribute<FastDeepClonerPrimaryIdentifire>() != null;
             GetMethod = property.GetValue;
             SetMethod = property.SetValue;
             Name = property.Name;
