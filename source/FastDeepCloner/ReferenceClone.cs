@@ -63,6 +63,8 @@ namespace FastDeepCloner
                     {
                         prop2.Value.SetValue(CloneToItem, FastDeepClonerCachedItems.Value(value, prop2.Value.PropertyType, true));
                     }
+                    else if (prop.PropertyType == prop2.Value.PropertyType)
+                        prop2.Value.SetValue(CloneToItem, value.Clone());
                     else if (prop.PropertyType.GetIListType() == prop.PropertyType && prop2.Value.PropertyType.GetIListType() == prop2.Value.PropertyType) // if not list
                     {
                         var value2 = prop2.Value.GetValue(CloneToItem);
@@ -70,8 +72,7 @@ namespace FastDeepCloner
                             value2 = prop2.Value.PropertyType.CreateInstance();
                         prop2.Value.SetValue(CloneToItem, CloneTo(value, value2));
                     }
-                    else if (prop.PropertyType == prop2.Value.PropertyType)
-                        prop2.Value.SetValue(CloneToItem, value.Clone());
+
                 }
 
             }
