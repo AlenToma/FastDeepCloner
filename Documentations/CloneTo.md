@@ -18,7 +18,8 @@ we have two diffrent classes here
     
     public class CloneToTest
     {
-        [FastDeepCloner.FastDeepClonerColumn("Name")]
+        [FastDeepCloner.FastDeepClonerColumn("Name")] 
+        [FastDeepCloner.FastDeepClonerColumn("LastName")] // Or
         public string FullName { get; set; }
         
         // You see here the type could be difrrent then the orginal type. 
