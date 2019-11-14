@@ -25,6 +25,10 @@ we have two diffrent classes here
         // You see here the type could be difrrent then the orginal type. 
         // FastDeepCloner will try to convert it, if it fail then a default value will be inserted insted
         public string PasswordLength { get; set; }
+        
+        // You could add a path insted, remember this only work on none list items.
+        [FastDeepClonerColumn("Test.myBar.Id")]
+        public int Id { get; set; }
 
         public Circular Test { get; set; }
     }
