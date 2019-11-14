@@ -31,7 +31,7 @@ namespace FastDeepCloner.tests.Entitys
     public class Bar
     {
         [FastDeepClonerPrimaryIdentifire]
-        public int Id { get; set; } = 1;
+        public int Id { get; set; } = 60;
         private Circular _myFoo;
         public Circular myFoo
         {

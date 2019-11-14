@@ -12,6 +12,9 @@ namespace FastDeepCloner.tests
 
         public string PasswordLength { get; set; }
 
+        [FastDeepClonerColumn("Test.myBar.Id")]
+        public int Id { get; set; }
+
         public Circular Test { get; set; }
     }
 }
