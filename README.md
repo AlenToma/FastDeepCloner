@@ -15,4 +15,5 @@ Add Attribute ```[FastDeepClonerIgnore]``` to ignore cloning a property
 * [INotifyPropertyChanged(ProxyInstance)](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/ProxyInstance.md)
 * [Circular references](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Circular_References.md)
 * [Object to interface converter](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/ActAsInterface.md)
+* [ValueConverter](https://github.com/AlenToma/FastDeepCloner/blob/master/Documentations/Converter.md)
 
