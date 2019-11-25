@@ -4,8 +4,9 @@ You could use fastdeepcloner to Convert/Parse all internaltypes like string, int
 
 int? data = DeepCloner.ValueConverter<int?>("120jm") // null
 int data = DeepCloner.ValueConverter<int>("120jm") // 0
+int data = DeepCloner.ValueConverter<int>("120") // 120
 DateTime? data = DeepCloner.ValueConverter<int?>("2015-01-01sd") // null
-DateTime? data = DeepCloner.ValueConverter<int?>("2015-01-01") // DateTime
+DateTime? data = DeepCloner.ValueConverter<DateTime>("2015-01-01") // DateTime
 ```
 
 See above how we easily could convert object to any object.
