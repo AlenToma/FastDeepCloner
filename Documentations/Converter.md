@@ -22,6 +22,6 @@ Long
 DateTime
 TimeSpan
 String
-base64string to bytes
-bytes to base64string
+base64string(string) to bytes
+bytes to base64string(string)
 ```
