@@ -73,7 +73,7 @@ namespace FastDeepCloner
             Name = property.Name;
             FullName = property.PropertyType.FullName;
             IsInternalType = property.PropertyType.IsInternalType();
-            IsVirtual = property.GetMethod.IsVirtual;
+            IsVirtual = property.GetMethod?.IsVirtual;
             PropertyGetValue = property.GetMethod;
             PropertySetValue = property.SetMethod;
             PropertyType = property.PropertyType;
