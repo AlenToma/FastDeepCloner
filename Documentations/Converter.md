@@ -6,7 +6,7 @@ int? data = DeepCloner.ValueConverter<int?>("120jm") // null
 int data = DeepCloner.ValueConverter<int>("120jm") // 0
 int data = DeepCloner.ValueConverter<int>("120") // 120
 decimal? data = DeepCloner.ValueConverter<decimal>("12,5") // 12.5
-decimal? data = DeepCloner.ValueConverter<decimal>("552602.25") // 552602.25
+decimal? data = DeepCloner.ValueConverter<decimal?>("552602.25") // 552602.25
 DateTime? data = DeepCloner.ValueConverter<DateTime?>("2015-01-01sd") // null
 DateTime? data = DeepCloner.ValueConverter<DateTime>("2015-01-01") // DateTime
 
