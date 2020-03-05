@@ -39,7 +39,7 @@
         };
         
          /// <summary>
-        /// Determines if the specified type is a Class type.
+        /// Determines if the specified type is a none Class type.
         /// </summary>
         /// <param name="underlyingSystemType"></param>
         /// <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
