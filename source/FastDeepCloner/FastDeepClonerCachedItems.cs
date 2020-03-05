@@ -40,8 +40,10 @@ namespace FastDeepCloner
             try
             {
 #if !NETSTANDARD1_3
-                if (Culture != null && System.Threading.Thread.CurrentThread.CurrentCulture.Name != Culture.Name) // vi behöver sätta det första gången bara. detta snabbar upp applikationen ta inte bort detta.
+                if (Culture != null && System.Threading.Thread.CurrentThread.CurrentCulture.Name != Culture.Name)
                     System.Threading.Thread.CurrentThread.CurrentCulture = Culture;
+                else if (Culture == null)
+                    Culture = new CultureInfo("en");
 #else
                 Culture = new CultureInfo("en");
 #endif
