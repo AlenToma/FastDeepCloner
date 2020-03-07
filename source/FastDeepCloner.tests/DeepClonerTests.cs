@@ -1,6 +1,7 @@
 ﻿using FastDeepCloner.tests.Entitys;
 using FastDeepCloner.tests.Entitys.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace FastDeepCloner.tests
         [TestMethod]
         public void ConvertDynamicToInterface()
         {
-            IUser pUser = new { Name = "Mother fuckers", Tal = 15, ps="sdkjhaskdjh" }.ActAsInterface<IUser>();
+            IUser pUser = new { Name = "Mother fuckers", Tal = 15, ps = "sdkjhaskdjh" }.ActAsInterface<IUser>();
             string t = pUser.Name;
             pUser.Name = "testo";
         }
@@ -78,10 +79,10 @@ namespace FastDeepCloner.tests
         public void CloneTo()
         {
             var user = new User() { Name = "alen toma" };
-            var cloneTo =new  CloneToTest();
+            var cloneTo = new CloneToTest();
 
             FastDeepCloner.DeepCloner.CloneTo(user, cloneTo);
-      
+
             Assert.AreEqual(user.Name, cloneTo.FirstName);
         }
 
@@ -115,6 +116,23 @@ namespace FastDeepCloner.tests
             Assert.AreEqual(clonedAnonnymousObject.prop1, originalAnonnymousObject.prop1);
 
         }
+
+
+
+        [TestMethod]
+        public void Convrter()
+        {
+            var data = DeepCloner.ValueConverter<int?>("120jm"); // null
+            var data1 = DeepCloner.ValueConverter<int>("120jm"); // 0
+            var data2 = DeepCloner.ValueConverter<int>("120"); // 120
+            var data3 = DeepCloner.ValueConverter<decimal>("12,5"); // 12.5
+            var data4 = DeepCloner.ValueConverter<decimal?>("552602.25"); // 552602.25
+            var data5 = DeepCloner.ValueConverter<DateTime?>("2015-01-01sd"); // null
+            var data6 = DeepCloner.ValueConverter<DateTime>("2015-01-01"); // DateTime
+            var base64String1 = DeepCloner.ValueConverter<string>(new byte[] { 116, 101, 115, 116 }); // base64string
+            var base64String2 = DeepCloner.ValueConverter<byte[]>("dGVzdA=="); // array
+        }
+
 
         [TestMethod]
         public void CloneCollection()

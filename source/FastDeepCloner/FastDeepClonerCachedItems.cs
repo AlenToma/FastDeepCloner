@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 #if !NETSTANDARD1_3
 using System.Runtime.Serialization;
 using System.Data.SqlTypes;
@@ -37,21 +38,7 @@ namespace FastDeepCloner
 
         static FastDeepClonerCachedItems()
         {
-            try
-            {
-#if !NETSTANDARD1_3
-                if (Culture != null && System.Threading.Thread.CurrentThread.CurrentCulture.Name != Culture.Name)
-                    System.Threading.Thread.CurrentThread.CurrentCulture = Culture;
-                else if (Culture == null)
-                    Culture = new CultureInfo("en");
-#else
-                Culture = new CultureInfo("en");
-#endif
-            }
-            catch
-            {
-                Culture = new CultureInfo("en");
-            }
+            Culture = new CultureInfo("en");
         }
 
         public static void CleanCachedItems()
@@ -75,6 +62,20 @@ namespace FastDeepCloner
 
         internal static object Value(object value, Type dataType, bool loadDefaultOnError, object defaultValue = null)
         {
+
+            try
+            {
+#if !NETSTANDARD1_3
+                if (Culture != null && System.Threading.Thread.CurrentThread.CurrentCulture.Name != Culture.Name)
+                    System.Threading.Thread.CurrentThread.CurrentCulture = Culture;
+#endif
+            }
+            catch
+            {
+
+            }
+
+
             try
             {
                 if (value == null)
@@ -88,6 +89,11 @@ namespace FastDeepCloner
                     if (value.ToString().Length % 4 == 0) // its a valid base64string
                         value = Convert.FromBase64String(value.ToString());
                     return value;
+                }
+
+                if ((value.GetType() == typeof(byte[])) && dataType == typeof(string))
+                {
+                        value = Encoding.UTF8.GetString(value as byte[]);
                 }
 
                 if (dataType == typeof(int?) || dataType == typeof(int))
