@@ -9,7 +9,7 @@ decimal? data = DeepCloner.ValueConverter<decimal>("12,5") // 12.5
 decimal? data = DeepCloner.ValueConverter<decimal?>("552602.25") // 552602.25
 DateTime? data = DeepCloner.ValueConverter<DateTime?>("2015-01-01sd") // null
 DateTime? data = DeepCloner.ValueConverter<DateTime>("2015-01-01") // DateTime
-string base64String = DeepCloner.ValueConverter<string>(new byte[64]) // base64string
+string base64String =DeepCloner.ValueConverter<string>(new byte[] { 116, 101, 115, 116 }); // base64string
 byte[] base64String = DeepCloner.ValueConverter<byte[]>("dGVzdA==") // array
 
 ```
