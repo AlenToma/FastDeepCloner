@@ -74,6 +74,12 @@ namespace FastDeepCloner
         bool FastDeepClonerPrimaryIdentifire { get; }
 
         /// <summary>
+        /// Apply this to properties that cant be cloned, eg ImageSource and other controls.
+        /// Those property will still be copied insted of cloning
+        /// </summary>
+        bool NoneCloneable { get; }
+
+        /// <summary>
         /// All available attributes
         /// </summary>
         AttributesCollections Attributes { get; set; }

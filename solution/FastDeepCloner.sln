@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDeepCloner", "..\source
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDeepCloner.tests", "..\source\FastDeepCloner.tests\FastDeepCloner.tests.csproj", "{C1349EFE-27C3-44EB-9D2F-499272E524C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNGTest", "..\source\BNGTest\BNGTest.csproj", "{A3B643A6-43CD-436B-A1FB-C31FAA4111A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BNGTest", "..\source\BNGTest\BNGTest.csproj", "{A3B643A6-43CD-436B-A1FB-C31FAA4111A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormTest", "..\source\FormTest\FormTest.csproj", "{5E2FF4C3-24EC-479C-9984-E498127EE8CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{A3B643A6-43CD-436B-A1FB-C31FAA4111A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3B643A6-43CD-436B-A1FB-C31FAA4111A5}.Release|x64.ActiveCfg = Release|Any CPU
 		{A3B643A6-43CD-436B-A1FB-C31FAA4111A5}.Release|x64.Build.0 = Release|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E2FF4C3-24EC-479C-9984-E498127EE8CC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

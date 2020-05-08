@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastDeepCloner</name>
+    </assembly>
+    <members>
+        <member name="T:FastDeepCloner.CloneLevel">
+            <summary>
+            CloneLevel
+            FirstLevelOnly = Only InternalTypes
+            Hierarki = All types Hierarki
+            </summary>
+        </member>
+        <member name="F:FastDeepCloner.CloneLevel.Hierarki">
+            <summary>
+            All types
+            </summary>
+        </member>
+        <member name="F:FastDeepCloner.CloneLevel.FirstLevelOnly">
+            <summary>
+            Only InternalTypes
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.ConfigrationManager">
+            <summary>
+            globa ConfigrationManager, for managing the library settings
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.DeepCloner">
+            <summary>
+            DeepCloner
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CleanCachedItems">
+            <summary>
+            Clear cached data
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FastDeepClonerSettings)">
+            <summary>
+            DeepClone object
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="settings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.Clone(System.Object,FastDeepCloner.FieldType)">
+            <summary>
+            DeepClone object
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.Clone``1(``0,FastDeepCloner.FieldType)">
+            <summary>
+            DeepClone object
+            </summary>
+            <param name="objectToBeCloned">Desire object to cloned</param>
+            <param name="fieldType">Clone Method</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CloneDynamic(System.Object)">
+            <summary>
+            DeepClone dynamic(AnonymousType) object
+            </summary>
+            <param name="objectToBeCloned">Desire AnonymousType object</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CreateInstance``1(System.Object[])">
+            <summary>
+            Create CreateInstance()
+            this will use ILGenerator to create new object from the cached ILGenerator
+            This is alot faster then using Activator or GetUninitializedObject.
+            TThe library will be using ILGenerator or Expression depending on the platform and then cach both the contructorinfo and the type,
+            so it can be reused later on 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="args">Optional</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CreateInstance(System.Type,System.Object[])">
+            <summary>
+            Create CreateInstance()
+            this will use ILGenerator to create new object from the cached ILGenerator
+            This is alot faster then using Activator or GetUninitializedObject.
+            The library will be using ILGenerator or Expression depending on the platform and then cach both the contructorinfo and the type,
+            so it can be reused later on 
+            </summary>
+            <param name="type"></param>
+            <param name="args">Optional</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetListItemType(System.Type)">
+            <summary>
+            Get the internal item type of the List or ObservableCollection types
+            </summary>
+            <param name="listType"></param>
+            <returns> will return the same value if the type is not an list type </returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ActAsInterface(System.Type,System.Object)">
+            <summary>
+            Convert an object to an interface
+            The object dose not have to inherit from the interface as the library will handle the job of doing it
+            </summary>
+            <param name="interfaceType">interface</param>
+            <param name="o">the item</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ActAsInterface``1(System.Object)">
+            <summary>
+            Convert an object to an interface
+            The object dose not have to inherit from the interface as the library will handle the job of doing it
+            </summary>
+            <param name="o">the item</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetObjectType(System.String,System.String)">
+            <summary>
+            This will try and load the assembly and cached
+            then from that assembly it will load typePath and also cach it, so it will load much faster next time
+            </summary>
+            <param name="typePath">xxxx</param>
+            <param name="assembly">xxx.dll</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:FastDeepCloner.DeepCloner.CreateProxyInstance``1" -->
+        <member name="M:FastDeepCloner.DeepCloner.CreateProxyInstance(System.Type)">
+            <summary>
+            Create a type that implement PropertyChanged.
+            Note it will only include properties that are virtual
+            If type containe PropertyChanged(object sender, PropertyChangedEventArgs e) it will be bound automatically otherwise you will have to add it manually
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetFastDeepClonerFields(System.Type)">
+            <summary>
+            will return fieldInfo from the cached fieldinfo. Get and set value is much faster.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetFastDeepClonerProperties(System.Type)">
+            <summary>
+            will return propertyInfo from the cached propertyInfo. Get and set value is much faster.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetField(System.Type,System.String)">
+            <summary>
+            Get field by Name
+            </summary>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.GetProperty(System.Type,System.String)">
+            <summary>
+            Get Property by name
+            </summary>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.CloneTo(System.Object,System.Object)">
+            <summary>
+            This will handle only internal types 
+            and noneinternal type must be of the same type to be cloned
+            </summary>
+            <param name="itemToClone"></param>
+            <param name="CloneToItem"></param>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ValueConverter``1(System.Object,System.Object)">
+            <summary>
+            Convert Value from Type to Type
+            when fail a default value will be loaded.
+            can handle all known types like datetime, time span, string, long etc
+            ex
+             "1115rd" to int? will return null
+             "152" to int? 152
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ValueConverter(System.Object,System.Type,System.Object)">
+            <summary>
+            Convert Value from Type to Type
+            when fail a default value will be loaded.
+            can handle all known types like datetime, time span, string, long etc
+            ex
+             "1115rd" to int? will return null
+             "152" to int? 152
+            </summary>
+            <param name="value"></param>
+            <param name="datatype">eg typeof(int?)</param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.DeepCloner.ValueByType(System.Type,System.Object)">
+            <summary>
+            Get DefaultValue by type
+            </summary>
+            <param name="propertyType"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDeepCloner.Extensions">
+            <summary>
+            FastDeepCloner Extensions
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.Extensions.CreateInstance">
+            <summary>
+            Override create instance default is emit
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsInternalObject(System.Object)">
+            <summary>
+            Determines if the specified type is an internal type.
+            </summary>
+            <param name="o"></param>
+            <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsAnonymousType(System.Type)">
+            <summary>
+            Validate if type is AnonymousType
+            This is the very basic validation
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.Extensions.IsInternalType(System.Type)">
+            <summary>
+            Determines if the specified type is a Class type.
+            </summary>
+            <param name="underlyingSystemType"></param>
+            <returns><c>true</c> if type is internal, else <c>false</c>.</returns>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerColumn">
+            <summary>
+            This attribute is used be CloneTo Method
+            Add this attribute to map property from one class to another class
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.FastDeepClonerColumn.ColumnName">
+            <summary>
+            ColumnName
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.FastDeepClonerColumn.#ctor(System.String)">
+            <summary>
+            map property from one class to another class
+            </summary>
+            <param name="columnName"></param>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerIgnore">
+            <summary>
+            Ignore Properties or Field that containe this attribute
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerPrimaryIdentifire">
+            <summary>
+            Incase you have circular references in some object
+            You could mark an identifier or a primary key property so that fastDeepcloner could identify them
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.FastDeepClonerSettings">
+            <summary>
+            FastDeepClonerSettings
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.FastDeepClonerSettings.FieldType">
+            <summary>
+            Field type
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.FastDeepClonerSettings.CloneLevel">
+            <summary>
+             Clone Level
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.FastDeepClonerSettings.OnCreateInstance">
+            <summary>
+            override Activator CreateInstance and use your own method
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.FastDeepClonerSettings.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.FieldType">
+            <summary>
+            PropertyField for property
+            FielInfo for property
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.IFastDeepClonerProperty">
+            <summary>
+            Interface for FastDeepClonerProperty
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.GetMethod">
+            <summary>
+            Get Method for GetValue()
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.SetMethod">
+            <summary>
+            Set Method for SetValue()
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.Name">
+            <summary>
+            PropertyName
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.FullName">
+            <summary>
+            Property FullName
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.SetValue(System.Object,System.Object)">
+            <summary>
+            Set Value
+            </summary>
+            <param name="o"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.GetValue(System.Object)">
+            <summary>
+            Get Value
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.CanRead">
+            <summary>
+            CanRead= !(field.IsInitOnly || field.FieldType == typeof(IntPtr) || field.IsLiteral);
+            or for PropertyInfo
+            CanRead= !(!property.CanWrite || !property.CanRead || property.PropertyType == typeof(IntPtr) || property.GetIndexParameters().Length > 0);
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.CanWrite">
+            <summary>
+            If you could write to the propertyInfo
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.ReadAble">
+            <summary>
+            Simple can read. this should have been called CanRead to bad we alread have CanRead Property, its a pain to change it now.
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.FastDeepClonerIgnore">
+            <summary>
+            Ignored
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.FastDeepClonerPrimaryIdentifire">
+            <summary>
+            Incase you have circular references in some object
+            You could mark an identifier or a primary key property so that fastDeepcloner could identify them
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.NoneCloneable">
+            <summary>
+            Apply this to properties that cant be cloned, eg ImageSource and other controls.
+            Those property will still be copied insted of cloning
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.Attributes">
+            <summary>
+            All available attributes
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.PropertyType">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.IsVirtual">
+            <summary>
+            IsVirtual
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.IsInternalType">
+            <summary>
+            Is a reference type eg not GetTypeInfo().IsClass
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.GetCustomAttributes``1">
+            <summary>
+            Get a collection of attributes
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.GetCustomAttributes(System.Type)">
+            <summary>
+            Get a collection of attributes
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.ContainAttribute``1">
+            <summary>
+            Validate if attribute exist
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.ContainAttribute(System.Type)">
+            <summary>
+            Validate if attribute type exist
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.GetCustomAttribute``1">
+            <summary>
+            Get first found attribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.GetCustomAttribute(System.Type)">
+            <summary>
+            Get first found attribute type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.PropertyGetValue">
+            <summary>
+            Exist only for PropertyInfo
+            </summary>
+        </member>
+        <member name="P:FastDeepCloner.IFastDeepClonerProperty.PropertySetValue">
+            <summary>
+            Exist only for PropertyInfo
+            </summary>
+        </member>
+        <member name="M:FastDeepCloner.IFastDeepClonerProperty.Add(System.Attribute)">
+            <summary>
+            Using this method will trigger ConfigrationManager.OnAttributeCollectionChanged
+            </summary>
+            <param name="attr"></param>
+        </member>
+        <member name="T:FastDeepCloner.NoneCloneable">
+            <summary>
+            Apply this to properties that cant be cloned, eg ImageSource and other controls.
+            Those property will still be copied insted of cloning
+            </summary>
+        </member>
+        <member name="T:FastDeepCloner.SafeValueType`2">
+            <summary>
+            CustomValueType Dictionary
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="P"></typeparam>
+        </member>
+    </members>
+</doc>

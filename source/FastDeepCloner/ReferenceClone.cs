@@ -107,7 +107,7 @@ namespace FastDeepCloner
                 if (value == null)
                     continue;
 
-                if ((property.IsInternalType || value.GetType().IsInternalType()))
+                if (property.NoneCloneable || property.IsInternalType || value.GetType().IsInternalType())
                     property.SetValue(resObject, value);
                 else
                 {

@@ -21,6 +21,8 @@ namespace FastDeepCloner
 
         public bool FastDeepClonerPrimaryIdentifire { get => ContainAttribute<FastDeepClonerPrimaryIdentifire>(); }
 
+        public bool NoneCloneable { get => ContainAttribute<NoneCloneable>(); }
+
         public string Name { get; private set; }
 
         public string FullName { get; private set; }
