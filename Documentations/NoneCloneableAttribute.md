@@ -23,7 +23,7 @@
     }
 }
 ```
-Now Name should be cloned and Image will be copied insted.
+Now `Name` should be cloned and `Image` will be copied insted.
 
  ```csharp
             var test = new TestControls();
