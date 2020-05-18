@@ -26,7 +26,7 @@ namespace FastDeepCloner
 
         public new void Remove(Attribute attr)
         {
-            this.Remove(attr);
+            base.Remove(attr);
             ContainedAttributes.Remove(attr);
             ContainedAttributestypes.Remove(attr.GetType());
         }
