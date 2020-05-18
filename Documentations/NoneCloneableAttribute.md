@@ -19,16 +19,11 @@
             bitmap.UriSource = new Uri("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRiwabCDDHq1NT1VHBsG4fLi8a5FhcEiiloEdCk23lTDYkst8Mz&usqp=CAU");
             bitmap.EndInit();
             Image = bitmap;
-
-            Btn = new Button()
-            {
-                Content = "test"
-            };
         }
     }
 }
 ```
-Now Name should be cloned and Image will be copied insted.
+Now `Name` should be cloned and `Image` will be copied insted.
 
  ```csharp
             var test = new TestControls();
