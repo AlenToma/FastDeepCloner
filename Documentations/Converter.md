@@ -18,6 +18,7 @@ See above how we easily could convert object to any object.
 Of course the data have to be parsable to the desirable type, or else a default value will be loaded.
 ### List of converterble types
 ```csharp
+Enums
 Boolean
 int
 Decimal
