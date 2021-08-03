@@ -96,22 +96,22 @@ namespace FastDeepCloner
 
         public bool ContainAttribute<T>() where T : Attribute
         {
-            return Attributes?.ContainedAttributestypes.ContainsKey(typeof(T)) ?? false;
+            return Attributes?.ContainedAttributesTypes.ContainsKey(typeof(T)) ?? false;
         }
 
         public T GetCustomAttribute<T>() where T : Attribute
         {
-            return ContainAttribute<T>() ? (T)Attributes?.ContainedAttributestypes[typeof(T)] : null;
+            return ContainAttribute<T>() ? (T)Attributes?.ContainedAttributesTypes[typeof(T)] : null;
         }
 
         public Attribute GetCustomAttribute(Type type)
         {
-            return ContainAttribute(type) ? Attributes?.ContainedAttributestypes[type] : null;
+            return ContainAttribute(type) ? Attributes?.ContainedAttributesTypes[type] : null;
         }
 
         public bool ContainAttribute(Type type)
         {
-            return Attributes?.ContainedAttributestypes.ContainsKey(type) ?? false;
+            return Attributes?.ContainedAttributesTypes.ContainsKey(type) ?? false;
         }
 
         public void SetValue(object o, object value)

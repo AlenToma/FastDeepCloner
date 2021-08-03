@@ -33,7 +33,7 @@ namespace FastDeepCloner
                 return _alreadyCloned[identifier];
 
             if (identifier != null)
-                _alreadyCloned.Add(identifier, CloneToItem);
+                _alreadyCloned.TryAdd(identifier, CloneToItem);
 
             var type2 = CloneToItem.GetType();
             var props2 = FastDeepClonerCachedItems.GetFastDeepClonerProperties(type2);
@@ -88,7 +88,7 @@ namespace FastDeepCloner
             return CloneToItem;
         }
 
-        private object ReferenceTypeClone(Dictionary<string, IFastDeepClonerProperty> properties, Type primaryType, object objectToBeCloned, object appendToValue = null)
+        private object ReferenceTypeClone(IDictionary<string, IFastDeepClonerProperty> properties, Type primaryType, object objectToBeCloned, object appendToValue = null)
         {
             var identifier = objectToBeCloned.GetFastDeepClonerIdentifier();
             if (identifier != null && _alreadyCloned.ContainsKey(identifier))
@@ -97,7 +97,7 @@ namespace FastDeepCloner
             var resObject = appendToValue ?? _settings.OnCreateInstance(primaryType);
 
             if (identifier != null)
-                _alreadyCloned.Add(identifier, resObject);
+                _alreadyCloned.TryAdd(identifier, resObject);
 
             foreach (var property in properties.Values)
             {
