@@ -358,7 +358,7 @@ namespace FastDeepCloner
                 }
                 else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
                 {
-                    CachedIListInternalTypes.TryAdd(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                    CachedIListInternalTypes.TryAdd(type, type.GetRuntimeProperty("Item").PropertyType);
                 }
                 else CachedIListInternalTypes.TryAdd(type, type);
             }
