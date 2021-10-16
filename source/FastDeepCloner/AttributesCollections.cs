@@ -6,7 +6,7 @@ namespace FastDeepCloner
     public class AttributesCollections : List<Attribute>
     {
         internal SafeValueType<Attribute, Attribute> ContainedAttributes = new SafeValueType<Attribute, Attribute>();
-        internal SafeValueType<Type, Attribute> ContainedAttributestypes = new SafeValueType<Type, Attribute>();
+        internal SafeValueType<Type, Attribute> ContainedAttributesTypes = new SafeValueType<Type, Attribute>();
 
         public AttributesCollections(List<Attribute> attrs)
         {
@@ -19,7 +19,7 @@ namespace FastDeepCloner
         public new void Add(Attribute attr)
         {
             ContainedAttributes.TryAdd(attr, attr, true);
-            ContainedAttributestypes.TryAdd(attr.GetType(), attr, true);
+            ContainedAttributesTypes.TryAdd(attr.GetType(), attr, true);
             base.Add(attr);
 
         }
@@ -27,8 +27,8 @@ namespace FastDeepCloner
         public new void Remove(Attribute attr)
         {
             base.Remove(attr);
-            ContainedAttributes.Remove(attr);
-            ContainedAttributestypes.Remove(attr.GetType());
+            ContainedAttributes.TryRemove(attr, out _);
+            ContainedAttributesTypes.TryRemove(attr.GetType(), out _);
         }
 
     }

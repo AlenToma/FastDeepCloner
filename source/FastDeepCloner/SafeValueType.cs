@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 
 namespace FastDeepCloner
 {
@@ -7,23 +7,34 @@ namespace FastDeepCloner
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="P"></typeparam>
-    public class SafeValueType<T, P> : Dictionary<T, P>
+    public class SafeValueType<T, P> : ConcurrentDictionary<T, P>
     {
-        public SafeValueType(Dictionary<T, P> dic = null)
+        public SafeValueType(ConcurrentDictionary<T, P> dictionary = null)
         {
-            if (dic != null)
-                foreach (var item in dic)
-                    TryAdd(item.Key, item.Value);
+            if (dictionary == null)
+            {
+                return;
+            }
+
+            foreach (var item in dictionary)
+            {
+                TryAdd(item.Key, item.Value);
+            }
         }
 
         public bool TryAdd(T key, P item, bool overwrite = false)
         {
-            if (base.ContainsKey(key) && !overwrite)
+            if (ContainsKey(key) && !overwrite)
+            {
                 return true;
+            }
 
-            if (overwrite && this.ContainsKey(key))
-                this.Remove(key);
-            base.Add(key, item);
+            if (overwrite && ContainsKey(key))
+            {
+                TryRemove(key, out _);
+            }
+
+            base.TryAdd(key, item);
 
 
             return true;
@@ -31,19 +42,27 @@ namespace FastDeepCloner
 
         public P GetOrAdd(T key, P item, bool overwrite = false)
         {
-            if (base.ContainsKey(key) && !overwrite)
+            if (ContainsKey(key) && !overwrite)
+            {
                 return base[key];
+            }
 
-            if (overwrite && this.ContainsKey(key))
-                this.Remove(key);
-            base.Add(key, item);
+            if (overwrite && ContainsKey(key))
+            {
+                TryRemove(key, out _);
+            }
+
+            base.TryAdd(key, item);
             return base[key];
         }
 
         public P Get(T key)
         {
-            if (this.ContainsKey(key))
+            if (ContainsKey(key))
+            {
                 return this[key];
+            }
+
             object o = null;
             return (P)o;
         }

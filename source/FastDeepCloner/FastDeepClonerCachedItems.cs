@@ -349,18 +349,18 @@ namespace FastDeepCloner
             if (CachedIListInternalTypes.ContainsKey(type))
                 return CachedIListInternalTypes[type];
             if (type.IsArray)
-                CachedIListInternalTypes.Add(type, type.GetElementType());
+                CachedIListInternalTypes.TryAdd(type, type.GetElementType());
             else
             {
                 if (type.GenericTypeArguments.Any())
                 {
-                    CachedIListInternalTypes.Add(type, type.GenericTypeArguments.First());
+                    CachedIListInternalTypes.TryAdd(type, type.GenericTypeArguments.First());
                 }
                 else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
                 {
-                    CachedIListInternalTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                    CachedIListInternalTypes.TryAdd(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
                 }
-                else CachedIListInternalTypes.Add(type, type);
+                else CachedIListInternalTypes.TryAdd(type, type);
             }
             return CachedIListInternalTypes[type];
         }
@@ -370,24 +370,24 @@ namespace FastDeepCloner
             if (CachedTypes.ContainsKey(type))
                 return CachedTypes[type];
             if (type.IsArray)
-                CachedTypes.Add(type, type.GetElementType());
+                CachedTypes.TryAdd(type, type.GetElementType());
             else
             {
                 if (type.GenericTypeArguments.Any())
                 {
                     if (type.FullName.Contains("ObservableCollection`1"))
-                        CachedTypes.Add(type, typeof(ObservableCollection<>).MakeGenericType(type.GenericTypeArguments.First()));
+                        CachedTypes.TryAdd(type, typeof(ObservableCollection<>).MakeGenericType(type.GenericTypeArguments.First()));
                     else
-                        CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
+                        CachedTypes.TryAdd(type, typeof(List<>).MakeGenericType(type.GenericTypeArguments.First()));
                 }
                 else if (type.FullName.Contains("List`1") || type.FullName.Contains("ObservableCollection`1"))
                 {
                     if (type.FullName.Contains("ObservableCollection`1"))
-                        CachedTypes.Add(type, typeof(ObservableCollection<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                        CachedTypes.TryAdd(type, typeof(ObservableCollection<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
                     else
-                        CachedTypes.Add(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
+                        CachedTypes.TryAdd(type, typeof(List<>).MakeGenericType(type.GetRuntimeProperty("Item").PropertyType));
                 }
-                else CachedTypes.Add(type, type);
+                else CachedTypes.TryAdd(type, type);
             }
             return CachedTypes[type];
         }
@@ -428,16 +428,16 @@ namespace FastDeepCloner
                 var value = p.GetValue(item);
                 if (value == null || p.PropertyType == iProp.PropertyType)
                 {
-                    args.Add(iProp.Name, value);
+                    args.TryAdd(iProp.Name, value);
                     continue;
 
                 }
                 try
                 {
                     if (iProp.PropertyType.IsInterface)
-                        args.Add(iProp.Name, iProp.PropertyType.InterFaceConverter(value));
+                        args.TryAdd(iProp.Name, iProp.PropertyType.InterFaceConverter(value));
                     else
-                        args.Add(iProp.Name, Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType));
+                        args.TryAdd(iProp.Name, Convert.ChangeType(value, DeepCloner.GetProperty(interfaceType, p.Name).PropertyType));
 
                 }
                 catch (Exception e)
@@ -507,7 +507,7 @@ namespace FastDeepCloner
                         item = ProxyTypes[type].Creator() as INotifyPropertyChanged;
                     else
                     {
-                        ProxyTypes.Add(type, INotifyPropertyChangedProxyTypeGenerator.GenerateProxy(type));
+                        ProxyTypes.TryAdd(type, INotifyPropertyChangedProxyTypeGenerator.GenerateProxy(type));
                         item = ProxyTypes[type].Creator() as INotifyPropertyChanged;
                     }
 
@@ -731,7 +731,7 @@ namespace FastDeepCloner
             }
         }
 
-        internal static Dictionary<string, IFastDeepClonerProperty> GetFastDeepClonerFields(this Type primaryType)
+        internal static IDictionary<string, IFastDeepClonerProperty> GetFastDeepClonerFields(this Type primaryType)
         {
             if (!CachedFields.ContainsKey(primaryType))
             {
@@ -743,13 +743,13 @@ namespace FastDeepCloner
 
                 }
                 else primaryType.GetRuntimeFields().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
-                CachedFields.Add(primaryType, properties);
+                CachedFields.TryAdd(primaryType, properties);
             }
             return CachedFields[primaryType];
         }
 
 
-        internal static Dictionary<string, IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type primaryType)
+        internal static IDictionary<string, IFastDeepClonerProperty> GetFastDeepClonerProperties(this Type primaryType)
         {
             if (!CachedPropertyInfo.ContainsKey(primaryType))
             {
@@ -760,7 +760,7 @@ namespace FastDeepCloner
                     primaryType.GetTypeInfo().BaseType.GetRuntimeProperties().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
                 }
                 else primaryType.GetRuntimeProperties().Where(x => properties.TryAdd(x.Name, new FastDeepClonerProperty(x))).ToList();
-                CachedPropertyInfo.Add(primaryType, properties);
+                CachedPropertyInfo.TryAdd(primaryType, properties);
             }
             return CachedPropertyInfo[primaryType];
         }
