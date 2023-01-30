@@ -1,5 +1,5 @@
 ## CloneTo
-You could clone an object to another object and also mapp between tow objects.
+You could clone an object to another object and also mapp between two objects.
 Here is how
 
 we have two diffrent classes here
